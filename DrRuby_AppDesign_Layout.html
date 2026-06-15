@@ -1,0 +1,2712 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DrRuby.ai — App Design Layout</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Jost:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --red:#C8102E;
+  --red-lt:rgba(200,16,46,0.08);
+  --white:#FFFFFF;
+  --off:#F8F7F5;
+  --grey:#F0EFED;
+  --mid:#888;
+  --ink:#1A1A1A;
+  --border:#E8E5E2;
+  --serif:'Cormorant Garamond',serif;
+  --sans:'Jost',sans-serif;
+}
+body{font-family:var(--sans);font-weight:300;color:var(--ink);background:#EDEDEB;-webkit-font-smoothing:antialiased;}
+
+/* ── DESIGN DOC WRAPPER ── */
+.doc-header{background:var(--ink);padding:32px 48px;display:flex;align-items:center;justify-content:space-between;}
+.doc-logo{font-family:var(--serif);font-size:26px;color:white;letter-spacing:0.02em;}
+.doc-logo span{color:var(--red);}
+.doc-title{font-size:10px;font-weight:600;letter-spacing:0.22em;text-transform:uppercase;color:rgba(255,255,255,0.35);margin-top:4px;}
+.doc-meta{font-size:10px;color:rgba(255,255,255,0.3);text-align:right;letter-spacing:0.06em;}
+
+/* ── NAV TABS ── */
+.nav-tabs{background:var(--white);border-bottom:1px solid var(--border);display:flex;padding:0 48px;gap:0;position:sticky;top:0;z-index:100;}
+.tab{font-size:11px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;padding:18px 24px;cursor:pointer;color:var(--mid);border-bottom:2px solid transparent;transition:all 0.2s;white-space:nowrap;}
+.tab:hover{color:var(--ink);}
+.tab.active{color:var(--red);border-bottom-color:var(--red);}
+
+/* ── SCREEN PANELS ── */
+.screen{display:none;padding:32px 48px;gap:32px;flex-direction:column;}
+.screen.active{display:flex;}
+
+/* ── SECTION HEADER ── */
+.sec-header{display:flex;align-items:flex-end;justify-content:space-between;padding-bottom:16px;border-bottom:1px solid var(--border);}
+.sec-title{font-family:var(--serif);font-size:32px;font-weight:300;color:var(--ink);}
+.sec-title em{font-style:italic;color:var(--red);}
+.sec-sub{font-size:10px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--mid);margin-top:4px;}
+.sec-badge{font-size:9px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--red);border:1px solid rgba(200,16,46,0.25);padding:5px 12px;}
+
+/* ── LAYOUT ANNOTATION ── */
+.anno{font-size:9px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:var(--red);margin-bottom:8px;display:flex;align-items:center;gap:8px;}
+.anno::before{content:'';display:block;width:16px;height:1px;background:var(--red);}
+.anno-note{font-size:10px;color:var(--mid);font-weight:300;letter-spacing:0;text-transform:none;}
+
+/* ═══════════════════════════════
+   HOMEPAGE MOCKUP
+═══════════════════════════════ */
+.homepage-wrap{display:flex;flex-direction:column;gap:0;border:1px solid var(--border);overflow:hidden;box-shadow:0 4px 32px rgba(0,0,0,0.08);}
+
+/* Navbar */
+.hp-nav{background:var(--white);padding:0 48px;height:64px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border);}
+.hp-nav-logo{font-family:var(--serif);font-size:22px;color:var(--ink);}
+.hp-nav-logo span{color:var(--red);}
+.hp-nav-links{display:flex;gap:32px;align-items:center;}
+.hp-nav-link{font-size:11px;font-weight:400;letter-spacing:0.1em;color:var(--mid);cursor:pointer;transition:color 0.2s;}
+.hp-nav-link:hover{color:var(--ink);}
+.hp-nav-cta{font-size:10px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;background:var(--red);color:white;padding:9px 20px;cursor:pointer;}
+.hp-nav-cta2{font-size:10px;font-weight:500;letter-spacing:0.1em;color:var(--ink);border:1px solid var(--border);padding:9px 18px;cursor:pointer;}
+
+/* ── HERO CAROUSEL ── */
+.hero-carousel{position:relative;height:580px;overflow:hidden;background:var(--ink);}
+.hero-slides{display:flex;height:100%;transition:transform 0.8s cubic-bezier(0.77,0,0.175,1);}
+.hero-slide{min-width:100%;height:100%;position:relative;display:flex;align-items:flex-end;}
+
+/* Slide backgrounds — large abstract art with CSS */
+.slide-bg{position:absolute;inset:0;}
+.slide-1 .slide-bg{background:radial-gradient(ellipse 80% 80% at 70% 50%,#2D0A12 0%,#1A1A1A 55%,#0D0D0D 100%);}
+.slide-2 .slide-bg{background:radial-gradient(ellipse 70% 90% at 30% 60%,#1A1020 0%,#0D1520 50%,#0A0A0A 100%);}
+.slide-3 .slide-bg{background:radial-gradient(ellipse 90% 70% at 60% 40%,#1F0808 0%,#1A1A1A 50%,#0A0A0A 100%);}
+.slide-4 .slide-bg{background:radial-gradient(ellipse 60% 100% at 80% 50%,#0A1A12 0%,#111 50%,#0D0D0D 100%);}
+
+/* Large abstract visual elements per slide */
+.slide-art{position:absolute;right:0;top:0;width:60%;height:100%;overflow:hidden;}
+.slide-art-circle{position:absolute;border-radius:50%;}
+
+/* Slide content */
+.slide-content{position:relative;z-index:3;padding:0 72px 72px;max-width:640px;}
+.slide-eyebrow{font-size:8px;font-weight:600;letter-spacing:0.32em;text-transform:uppercase;color:rgba(200,16,46,0.65);margin-bottom:18px;}
+.slide-title{font-family:var(--serif);font-size:56px;font-weight:300;color:white;line-height:1.08;margin-bottom:20px;}
+.slide-title em{font-style:italic;color:#F0C0C8;}
+.slide-sub{font-size:12px;font-weight:300;color:rgba(255,255,255,0.45);line-height:1.9;max-width:420px;margin-bottom:32px;}
+.slide-btns{display:flex;gap:12px;align-items:center;}
+.slide-btn-red{font-size:10px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;background:var(--red);color:white;padding:13px 28px;cursor:pointer;border:none;}
+.slide-btn-ghost{font-size:10px;font-weight:400;letter-spacing:0.1em;color:rgba(255,255,255,0.45);border:1px solid rgba(255,255,255,0.12);padding:13px 24px;cursor:pointer;background:none;}
+.slide-btn-ghost:hover{color:white;border-color:rgba(255,255,255,0.3);}
+
+/* Gradient overlay — left side text readable */
+.slide-overlay{position:absolute;inset:0;background:linear-gradient(to right,rgba(10,10,10,0.88) 0%,rgba(10,10,10,0.5) 45%,transparent 70%);z-index:2;}
+
+/* Carousel controls */
+.carousel-dots{position:absolute;bottom:32px;right:72px;display:flex;gap:10px;z-index:10;}
+.c-dot{width:24px;height:2px;background:rgba(255,255,255,0.18);cursor:pointer;transition:all 0.3s;}
+.c-dot.active{background:var(--red);width:40px;}
+.carousel-arrows{position:absolute;right:72px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:8px;z-index:10;}
+.c-arrow{width:36px;height:36px;border:1px solid rgba(255,255,255,0.15);display:flex;align-items:center;justify-content:center;cursor:pointer;color:rgba(255,255,255,0.4);font-size:13px;transition:all 0.2s;}
+.c-arrow:hover{border-color:var(--red);color:white;}
+.carousel-progress{position:absolute;bottom:0;left:0;height:2px;background:var(--red);transition:width 4s linear;z-index:10;}
+
+/* Slide counter */
+.slide-counter{position:absolute;top:32px;right:72px;font-size:9px;font-weight:600;letter-spacing:0.2em;color:rgba(255,255,255,0.2);z-index:10;}
+.slide-counter span{color:rgba(255,255,255,0.6);}
+
+/* ── TRUST BAR ── */
+.trust-bar{background:var(--ink);padding:0 72px;display:flex;align-items:stretch;border-top:1px solid rgba(255,255,255,0.04);}
+.trust-item{display:flex;align-items:center;gap:14px;padding:18px 32px 18px 0;border-right:1px solid rgba(255,255,255,0.06);margin-right:32px;}
+.trust-item:last-child{border:none;margin:0;}
+.trust-icon{width:28px;height:28px;border:1px solid rgba(200,16,46,0.3);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;flex-shrink:0;}
+.trust-name{font-size:10px;font-weight:500;color:rgba(255,255,255,0.65);line-height:1.3;}
+.trust-role{font-size:8px;color:rgba(255,255,255,0.22);letter-spacing:0.06em;margin-top:1px;}
+.trust-separator{flex:1;}
+.trust-privacy{display:flex;align-items:center;gap:10px;margin-left:auto;padding-left:32px;border-left:1px solid rgba(255,255,255,0.06);}
+.trust-privacy-dot{width:6px;height:6px;border-radius:50%;background:#1F9E5A;flex-shrink:0;}
+.trust-privacy-text{font-size:9px;font-weight:500;color:rgba(255,255,255,0.35);letter-spacing:0.08em;}
+
+/* ── CHOICE SECTION ── */
+.hp-choice{display:grid;grid-template-columns:1fr 1fr;gap:0;height:320px;}
+.choice-card{position:relative;overflow:hidden;cursor:pointer;display:flex;flex-direction:column;justify-content:flex-end;padding:36px 48px;transition:all 0.3s;}
+.choice-card.skin{background:linear-gradient(160deg,#F5F0EE 0%,#EDE5E0 100%);}
+.choice-card.health{background:linear-gradient(160deg,#F0F0F0 0%,#E8E5E2 100%);}
+.choice-card:hover{filter:brightness(0.97);}
+.choice-tag{font-size:8px;font-weight:600;letter-spacing:0.24em;text-transform:uppercase;color:var(--red);margin-bottom:12px;}
+.choice-title{font-family:var(--serif);font-size:38px;font-weight:300;color:var(--ink);line-height:1.1;margin-bottom:12px;}
+.choice-desc{font-size:11px;font-weight:300;color:var(--mid);line-height:1.7;margin-bottom:20px;max-width:320px;}
+.choice-cta{font-size:9px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:var(--ink);display:flex;align-items:center;gap:10px;transition:color 0.2s;}
+.choice-cta::after{content:'→';font-size:13px;transition:transform 0.2s;}
+.choice-card:hover .choice-cta{color:var(--red);}
+.choice-card:hover .choice-cta::after{transform:translateX(4px);}
+.choice-decoration{position:absolute;right:48px;top:48px;width:100px;height:100px;border:1px solid rgba(200,16,46,0.1);border-radius:50%;}
+.choice-decoration::after{content:'';position:absolute;inset:18px;border:1px solid rgba(200,16,46,0.06);border-radius:50%;}
+
+/* ── N=1 PHILOSOPHY ── */
+.n1-section{background:var(--ink);padding:72px;}
+.n1-headline{text-align:center;margin-bottom:56px;}
+.n1-eyebrow{font-size:8px;font-weight:600;letter-spacing:0.28em;text-transform:uppercase;color:rgba(200,16,46,0.55);margin-bottom:14px;}
+.n1-title{font-family:var(--serif);font-size:42px;font-weight:300;color:white;line-height:1.15;}
+.n1-title em{font-style:italic;color:#F0C0C8;}
+.n1-cols{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(255,255,255,0.05);}
+.n1-col{background:var(--ink);padding:40px 36px;}
+.n1-col-num{font-family:var(--serif);font-size:48px;font-weight:300;color:rgba(200,16,46,0.2);line-height:1;margin-bottom:20px;}
+.n1-col-title{font-family:var(--serif);font-size:20px;font-weight:300;color:white;margin-bottom:12px;line-height:1.3;}
+.n1-col-desc{font-size:11px;font-weight:300;color:rgba(255,255,255,0.38);line-height:1.9;}
+.n1-col-highlight{font-size:10px;font-weight:500;color:rgba(200,16,46,0.6);margin-top:16px;letter-spacing:0.06em;}
+
+/* ── SCROLL FEATURE SECTION ── */
+.hp-scroll-section{background:var(--off);padding:56px 72px;overflow:hidden;}
+.scroll-label{font-size:9px;font-weight:600;letter-spacing:0.24em;text-transform:uppercase;color:var(--red);margin-bottom:8px;}
+.scroll-title{font-family:var(--serif);font-size:36px;font-weight:300;color:var(--ink);margin-bottom:40px;}
+.scroll-title em{font-style:italic;}
+.scroll-track{display:flex;gap:0;overflow-x:auto;padding-bottom:4px;scrollbar-width:none;border:1px solid var(--border);}
+.scroll-track::-webkit-scrollbar{display:none;}
+.scroll-item{flex:0 0 280px;background:var(--white);border-right:1px solid var(--border);}
+.scroll-item:last-child{border-right:none;}
+.si-img{height:180px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;}
+.si-img-1{background:linear-gradient(135deg,#1A1A1A 0%,#2A1A1A 100%);}
+.si-img-2{background:linear-gradient(135deg,#F5F0EE 0%,#EDE0D8 100%);}
+.si-img-3{background:linear-gradient(135deg,#0A1520 0%,#1A2530 100%);}
+.si-img-4{background:linear-gradient(135deg,#F0EEF5 0%,#E0D8ED 100%);}
+.si-img-5{background:linear-gradient(135deg,#0A150A 0%,#1A251A 100%);}
+.si-img-label{position:absolute;bottom:12px;left:16px;font-size:7px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,0.3);}
+.si-img-label.dark{color:rgba(0,0,0,0.25);}
+.si-large-text{font-family:var(--serif);font-size:72px;font-weight:300;opacity:0.1;line-height:1;user-select:none;}
+.si-body{padding:22px 22px 24px;}
+.si-tag{font-size:8px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:var(--red);margin-bottom:7px;}
+.si-name{font-family:var(--serif);font-size:19px;font-weight:400;color:var(--ink);margin-bottom:7px;line-height:1.2;}
+.si-desc{font-size:10px;color:var(--mid);font-weight:300;line-height:1.65;}
+
+/* ── JENNIFER QUOTE / SOCIAL PROOF ── */
+.quote-section{background:var(--white);display:grid;grid-template-columns:1fr 1fr;gap:0;}
+.quote-left{padding:64px 72px;border-right:1px solid var(--border);}
+.quote-eyebrow{font-size:8px;font-weight:600;letter-spacing:0.24em;text-transform:uppercase;color:var(--red);margin-bottom:20px;}
+.quote-mark{font-family:var(--serif);font-size:80px;line-height:0.6;color:rgba(200,16,46,0.12);margin-bottom:12px;}
+.quote-text{font-family:var(--serif);font-size:22px;font-weight:300;font-style:italic;color:var(--ink);line-height:1.6;margin-bottom:24px;}
+.quote-attribution{display:flex;align-items:center;gap:16px;}
+.quote-avatar{width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,#E8D8D0,#D0C0B8);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:18px;color:rgba(200,16,46,0.5);}
+.quote-who{font-size:11px;font-weight:500;color:var(--ink);}
+.quote-title{font-size:9px;color:var(--mid);margin-top:2px;}
+.quote-right{padding:64px 72px;background:var(--off);}
+.quote-n1-title{font-family:var(--serif);font-size:28px;font-weight:300;color:var(--ink);margin-bottom:16px;line-height:1.2;}
+.quote-n1-title em{font-style:italic;color:var(--red);}
+.quote-n1-desc{font-size:12px;font-weight:300;color:var(--mid);line-height:1.9;margin-bottom:28px;}
+.n1-stat-row{display:flex;gap:32px;margin-top:8px;}
+.n1-stat{text-align:left;}
+.n1-stat-val{font-family:var(--serif);font-size:36px;font-weight:300;color:var(--ink);}
+.n1-stat-label{font-size:9px;color:var(--mid);margin-top:2px;letter-spacing:0.06em;}
+
+/* ── BRENNER SCIENCE STRIP ── */
+.science-strip{background:var(--grey);border-top:1px solid var(--border);}
+.science-top{padding:56px 72px;display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;}
+.sci-left{}
+.sci-eyebrow{font-size:8px;font-weight:600;letter-spacing:0.28em;text-transform:uppercase;color:var(--red);margin-bottom:14px;}
+.sci-title{font-family:var(--serif);font-size:34px;font-weight:300;color:var(--ink);line-height:1.2;margin-bottom:16px;}
+.sci-title em{font-style:italic;}
+.sci-desc{font-size:12px;font-weight:300;color:var(--mid);line-height:1.9;}
+.sci-right{display:flex;flex-direction:column;gap:16px;}
+.sci-advisor{background:var(--white);border:1px solid var(--border);padding:24px 28px;display:flex;gap:20px;align-items:flex-start;}
+.sci-advisor-dot{width:40px;height:40px;background:var(--ink);border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:16px;color:white;}
+.sci-advisor-name{font-size:12px;font-weight:600;color:var(--ink);margin-bottom:2px;}
+.sci-advisor-role{font-size:9px;color:var(--mid);line-height:1.5;margin-bottom:10px;}
+.sci-advisor-quote{font-family:var(--serif);font-size:13px;font-style:italic;color:var(--mid);line-height:1.7;}
+/* How it works mini diagram */
+.science-how{padding:0 72px 56px;display:flex;gap:0;align-items:stretch;}
+.sci-step{flex:1;padding:28px 28px;border:1px solid var(--border);border-right:none;background:var(--white);position:relative;}
+.sci-step:last-child{border-right:1px solid var(--border);}
+.sci-step-num{font-family:var(--serif);font-size:32px;color:rgba(200,16,46,0.15);font-weight:300;margin-bottom:8px;line-height:1;}
+.sci-step-title{font-size:11px;font-weight:600;color:var(--ink);margin-bottom:6px;letter-spacing:0.04em;}
+.sci-step-desc{font-size:10px;color:var(--mid);line-height:1.65;font-weight:300;}
+.sci-step-arrow{position:absolute;right:-10px;top:50%;transform:translateY(-50%);width:20px;height:20px;background:var(--white);border:1px solid var(--border);border-left:none;border-bottom:none;rotate:45deg;z-index:1;}
+
+/* ── FOOTER CTA ── */
+.footer-cta{background:var(--ink);padding:80px 72px;display:flex;align-items:center;justify-content:space-between;gap:48px;}
+.ftc-left{}
+.ftc-eyebrow{font-size:8px;font-weight:600;letter-spacing:0.28em;text-transform:uppercase;color:rgba(200,16,46,0.5);margin-bottom:16px;}
+.ftc-title{font-family:var(--serif);font-size:40px;font-weight:300;color:white;line-height:1.15;margin-bottom:0;}
+.ftc-title em{font-style:italic;color:#F0C0C8;}
+.ftc-right{display:flex;flex-direction:column;gap:12px;flex-shrink:0;align-items:flex-end;}
+.ftc-btn-primary{font-size:11px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;background:var(--red);color:white;padding:16px 36px;cursor:pointer;border:none;width:fit-content;}
+.ftc-btn-ghost{font-size:10px;font-weight:400;letter-spacing:0.1em;color:rgba(255,255,255,0.3);border:none;background:none;cursor:pointer;padding:4px 0;}
+.ftc-fine{font-size:9px;color:rgba(255,255,255,0.15);margin-top:8px;text-align:right;line-height:1.5;}
+.hp-footer-bar{background:#111;padding:20px 72px;display:flex;align-items:center;justify-content:space-between;}
+.hp-footer-logo{font-family:var(--serif);font-size:16px;color:rgba(255,255,255,0.3);}
+.hp-footer-logo span{color:rgba(200,16,46,0.4);}
+.hp-footer-links{display:flex;gap:24px;}
+.hp-footer-link{font-size:9px;color:rgba(255,255,255,0.18);letter-spacing:0.08em;}
+
+/* ═══════════════════════════════
+   SKIN PAGE
+═══════════════════════════════ */
+/* Skin page uses same portal-wrap/sidebar/main pattern as user portal */
+/* Top sticky nav inside skin page */
+.skin-page-nav{background:var(--white);padding:0 32px;height:52px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border);position:sticky;top:0;z-index:10;}
+.spn-breadcrumb{font-size:10px;color:var(--mid);display:flex;align-items:center;gap:8px;}
+.spn-breadcrumb span{color:var(--ink);font-weight:500;}
+.spn-breadcrumb::before{content:'←';color:var(--mid);font-size:12px;}
+.spn-right{display:flex;gap:8px;align-items:center;}
+.spn-mode{font-size:9px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;border:1px solid var(--border);padding:5px 12px;cursor:pointer;color:var(--mid);}
+.spn-mode.active{background:var(--ink);color:white;border-color:var(--ink);}
+
+/* ① SCAN WINDOW */
+.scan-window-wrap{background:var(--ink);padding:32px;display:flex;gap:28px;align-items:flex-start;}
+.scan-window{flex:0 0 320px;height:320px;background:#0A0A0A;border:1px solid rgba(255,255,255,0.08);position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden;}
+.scan-frame{width:200px;height:200px;position:relative;}
+.scan-corner{position:absolute;width:20px;height:20px;border-color:var(--red);border-style:solid;}
+.scan-corner.tl{top:0;left:0;border-width:2px 0 0 2px;}
+.scan-corner.tr{top:0;right:0;border-width:2px 2px 0 0;}
+.scan-corner.bl{bottom:0;left:0;border-width:0 0 2px 2px;}
+.scan-corner.br{bottom:0;right:0;border-width:0 2px 2px 0;}
+.scan-reticle{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;}
+.scan-dot{width:4px;height:4px;background:rgba(200,16,46,0.6);border-radius:50%;}
+.scan-line{position:absolute;left:0;right:0;height:1px;background:linear-gradient(to right,transparent,rgba(200,16,46,0.4),transparent);animation:scanline 2.5s ease-in-out infinite;}
+@keyframes scanline{0%{top:10%;opacity:0;}20%{opacity:1;}80%{opacity:1;}100%{top:90%;opacity:0;}}
+.scan-label{position:absolute;bottom:12px;left:0;right:0;text-align:center;font-size:8px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,0.2);}
+.scan-circle-bg{position:absolute;width:280px;height:280px;border-radius:50%;border:1px solid rgba(200,16,46,0.06);}
+.scan-info{flex:1;display:flex;flex-direction:column;gap:16px;padding-top:4px;}
+.si-title{font-family:var(--serif);font-size:28px;font-weight:300;color:white;line-height:1.2;}
+.si-title em{font-style:italic;color:#F0C0C8;}
+.si-desc{font-size:11px;font-weight:300;color:rgba(255,255,255,0.38);line-height:1.9;max-width:340px;}
+.scan-modes{display:flex;gap:8px;flex-wrap:wrap;}
+.scan-mode-btn{font-size:9px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;padding:8px 16px;cursor:pointer;border:1px solid rgba(255,255,255,0.1);color:rgba(255,255,255,0.3);background:none;transition:all 0.2s;}
+.scan-mode-btn.active{background:var(--red);color:white;border-color:var(--red);}
+.scan-mode-btn:hover{border-color:rgba(200,16,46,0.4);color:rgba(255,255,255,0.7);}
+.scan-scope-card{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);padding:14px 16px;display:flex;gap:12px;align-items:center;max-width:340px;}
+.scan-scope-img{width:44px;height:44px;object-fit:contain;opacity:0.7;flex-shrink:0;}
+.scan-scope-text{}
+.scan-scope-name{font-size:10px;font-weight:500;color:rgba(255,255,255,0.55);margin-bottom:2px;}
+.scan-scope-cta{font-size:9px;color:rgba(200,16,46,0.6);font-weight:600;letter-spacing:0.1em;cursor:pointer;}
+.scan-upload-btn{font-size:10px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;background:var(--red);color:white;padding:12px 24px;border:none;cursor:pointer;width:fit-content;}
+
+/* ② THREE BRENNER INDICES */
+.indices-row{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);}
+.index-card{background:var(--white);padding:28px 28px;}
+.index-eyebrow{font-size:8px;font-weight:600;letter-spacing:0.22em;text-transform:uppercase;color:var(--red);margin-bottom:10px;}
+.index-name{font-family:var(--serif);font-size:22px;font-weight:300;color:var(--ink);margin-bottom:14px;}
+.index-score-row{display:flex;align-items:baseline;gap:10px;margin-bottom:12px;}
+.index-score{font-family:var(--serif);font-size:52px;font-weight:300;line-height:1;color:var(--ink);}
+.index-score.good{color:#1F9E5A;}
+.index-score.warn{color:#B86A00;}
+.index-score.alert{color:var(--red);}
+.index-score-max{font-size:14px;color:var(--mid);}
+.index-bar-wrap{height:4px;background:var(--grey);margin-bottom:10px;}
+.index-bar{height:100%;transition:width 1s;}
+.index-bar.good{background:#1F9E5A;}
+.index-bar.warn{background:#B86A00;}
+.index-bar.alert{background:var(--red);}
+.index-desc{font-size:10px;color:var(--mid);line-height:1.7;font-weight:300;}
+.index-trend{font-size:9px;margin-top:8px;font-weight:500;}
+.index-trend.up{color:#1F9E5A;}
+.index-trend.dn{color:var(--red);}
+
+/* ③ TREND + REPORT GRID */
+.skin-mid-grid{display:grid;grid-template-columns:1.4fr 1fr;gap:16px;padding:20px 28px;background:var(--off);}
+/* Trend chart */
+.trend-card{background:var(--white);border:1px solid var(--border);padding:24px;}
+.trend-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;}
+.trend-title{font-size:9px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--red);}
+.trend-periods{display:flex;gap:4px;}
+.trend-period{font-size:8px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;padding:4px 8px;cursor:pointer;color:var(--mid);border:1px solid transparent;}
+.trend-period.active{color:var(--ink);border-color:var(--border);}
+.trend-chart{height:100px;display:flex;align-items:flex-end;gap:6px;padding-bottom:4px;border-bottom:1px solid var(--border);}
+.trend-bar-group{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;}
+.trend-bars{display:flex;gap:2px;align-items:flex-end;width:100%;}
+.tb{flex:1;border-radius:1px 1px 0 0;min-height:4px;}
+.tb-infl{background:rgba(200,16,46,0.4);}
+.tb-pigm{background:rgba(184,106,0,0.4);}
+.tb-coll{background:rgba(31,158,90,0.4);}
+.trend-date{font-size:7px;color:var(--mid);text-align:center;margin-top:4px;}
+.trend-legend{display:flex;gap:16px;margin-top:10px;}
+.tl-item{display:flex;align-items:center;gap:6px;font-size:9px;color:var(--mid);}
+.tl-dot{width:8px;height:8px;border-radius:2px;flex-shrink:0;}
+
+/* ④ AI REPORT (reuse existing styles) */
+/* ⑤ PRODUCT RECS (reuse existing styles) */
+
+/* ⑥ CLINIC ENTRY */
+.clinic-entry{background:var(--ink);padding:32px 28px;display:flex;align-items:center;justify-content:space-between;gap:24px;margin:0 28px 20px;}
+.ce-left{}
+.ce-eyebrow{font-size:8px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:rgba(200,16,46,0.5);margin-bottom:8px;}
+.ce-title{font-family:var(--serif);font-size:22px;font-weight:300;color:white;line-height:1.3;}
+.ce-desc{font-size:10px;color:rgba(255,255,255,0.3);margin-top:6px;line-height:1.6;max-width:360px;}
+.ce-btn{font-size:10px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;background:var(--red);color:white;padding:12px 24px;border:none;cursor:pointer;flex-shrink:0;}
+
+/* ═══════════════════════════════
+   USER PORTAL MOCKUP
+═══════════════════════════════ */
+.portal-wrap{display:flex;height:760px;border:1px solid var(--border);overflow:hidden;box-shadow:0 4px 32px rgba(0,0,0,0.08);}
+
+/* Sidebar */
+.up-sidebar{width:220px;background:var(--ink);display:flex;flex-direction:column;flex-shrink:0;}
+.ups-logo{padding:28px 24px 24px;border-bottom:1px solid rgba(255,255,255,0.06);}
+.ups-logo-text{font-family:var(--serif);font-size:19px;color:white;}
+.ups-logo-text span{color:var(--red);}
+.ups-logo-sub{font-size:8px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:rgba(200,16,46,0.4);margin-top:3px;}
+.ups-nav{flex:1;padding:16px 0;}
+.ups-section{font-size:8px;font-weight:600;letter-spacing:0.22em;text-transform:uppercase;color:rgba(255,255,255,0.15);padding:10px 24px 4px;}
+.ups-item{display:flex;align-items:center;gap:10px;padding:9px 24px;font-size:11px;color:rgba(255,255,255,0.35);cursor:pointer;border-left:2px solid transparent;transition:all 0.2s;}
+.ups-item:hover{color:rgba(255,255,255,0.7);}
+.ups-item.active{color:white;border-left-color:var(--red);background:rgba(200,16,46,0.07);}
+.ups-icon{width:14px;height:14px;display:flex;align-items:center;justify-content:center;font-size:11px;}
+.ups-badge{font-size:8px;font-weight:700;background:var(--red);color:white;padding:1px 5px;border-radius:2px;margin-left:auto;}
+.ups-user{padding:16px 24px;border-top:1px solid rgba(255,255,255,0.06);}
+.ups-avatar{width:32px;height:32px;border-radius:50%;background:rgba(200,16,46,0.2);display:flex;align-items:center;justify-content:center;font-size:12px;color:white;font-weight:500;float:left;margin-right:10px;}
+.ups-name{font-size:11px;color:rgba(255,255,255,0.65);line-height:1.2;}
+.ups-email{font-size:9px;color:rgba(255,255,255,0.2);}
+
+/* Main Content Area */
+.up-main{flex:1;overflow-y:auto;background:var(--off);}
+.up-topbar{background:var(--white);padding:0 28px;height:52px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border);position:sticky;top:0;z-index:10;}
+.utb-page{font-family:var(--serif);font-size:16px;color:var(--ink);}
+.utb-sub{font-size:8px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:var(--red);}
+.utb-right{display:flex;gap:8px;align-items:center;}
+.utb-pill{font-size:9px;background:var(--off);border:1px solid var(--border);padding:4px 10px;color:var(--mid);}
+.utb-btn{font-size:9px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;background:var(--red);color:white;padding:6px 12px;cursor:pointer;border:none;}
+
+.up-content{padding:20px 28px;display:flex;flex-direction:column;gap:16px;}
+
+/* Summary Bar */
+.up-summary{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;}
+.sum-card{background:var(--white);border:1px solid var(--border);padding:16px 20px;}
+.sum-label{font-size:8px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:var(--mid);margin-bottom:6px;}
+.sum-val{font-family:var(--serif);font-size:26px;font-weight:300;color:var(--ink);}
+.sum-val span{font-size:12px;color:var(--mid);font-family:var(--sans);}
+.sum-trend{font-size:9px;margin-top:4px;}
+.sum-up{color:#1F9E5A;}
+.sum-down{color:var(--red);}
+
+/* Two-col layout */
+.up-two-col{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.up-three-col{display:grid;grid-template-columns:2fr 1fr;gap:16px;}
+
+/* Cards */
+.u-card{background:var(--white);border:1px solid var(--border);padding:20px 22px;}
+.u-card-title{font-size:9px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--red);margin-bottom:14px;display:flex;align-items:center;gap:8px;}
+.u-card-title::before{content:'';width:10px;height:1px;background:var(--red);}
+
+/* AI Report Card */
+.ai-report-preview{display:flex;flex-direction:column;gap:10px;}
+.ai-finding{display:flex;gap:12px;padding:10px 12px;background:var(--off);border-left:2px solid;}
+.ai-finding.good{border-color:#1F9E5A;}
+.ai-finding.warn{border-color:#B86A00;}
+.ai-finding.alert{border-color:var(--red);}
+.ai-find-title{font-size:10px;font-weight:500;color:var(--ink);margin-bottom:2px;}
+.ai-find-desc{font-size:9px;color:var(--mid);line-height:1.5;}
+.ai-tag{font-size:7px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;padding:2px 6px;margin-left:auto;flex-shrink:0;height:fit-content;}
+.ai-tag.good{background:rgba(31,158,90,0.1);color:#1F9E5A;}
+.ai-tag.warn{background:rgba(184,106,0,0.1);color:#B86A00;}
+.ai-tag.alert{background:rgba(200,16,46,0.08);color:var(--red);}
+
+/* Timeline */
+.timeline{display:flex;flex-direction:column;gap:8px;}
+.tl-item{display:flex;gap:12px;align-items:flex-start;}
+.tl-dot{width:8px;height:8px;border-radius:50%;background:var(--border);flex-shrink:0;margin-top:3px;}
+.tl-dot.done{background:var(--red);}
+.tl-line{flex:1;}
+.tl-date{font-size:8px;color:var(--mid);margin-bottom:2px;}
+.tl-label{font-size:10px;color:var(--ink);}
+
+/* Coach Widget */
+.coach-widget{background:var(--ink);padding:20px 22px;}
+.coach-eyebrow{font-size:8px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:rgba(200,16,46,0.6);margin-bottom:6px;}
+.coach-msg{font-family:var(--serif);font-size:16px;font-style:italic;color:rgba(255,255,255,0.8);line-height:1.6;margin-bottom:16px;}
+.coach-input{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);padding:10px 14px;width:100%;font-family:var(--sans);font-size:11px;color:rgba(255,255,255,0.5);outline:none;}
+.coach-input::placeholder{color:rgba(255,255,255,0.2);}
+.coach-actions{display:flex;gap:8px;margin-top:8px;flex-wrap:wrap;}
+.coach-chip{font-size:9px;font-weight:500;color:rgba(255,255,255,0.35);border:1px solid rgba(255,255,255,0.1);padding:4px 10px;cursor:pointer;}
+.coach-chip:hover{color:white;border-color:rgba(200,16,46,0.4);}
+
+/* Product recs */
+.product-list{display:flex;flex-direction:column;gap:8px;}
+.prod-item{display:flex;gap:12px;align-items:center;padding:10px 0;border-bottom:1px solid var(--border);}
+.prod-item:last-child{border:none;}
+.prod-img{width:36px;height:36px;background:var(--grey);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:14px;}
+.prod-name{font-size:10px;font-weight:500;color:var(--ink);margin-bottom:2px;}
+.prod-reason{font-size:9px;color:var(--mid);}
+.prod-score{font-family:var(--serif);font-size:18px;color:var(--red);margin-left:auto;}
+
+/* ═══════════════════════════════
+   CLINIC PORTAL MOCKUP
+═══════════════════════════════ */
+.clinic-wrap{display:flex;height:760px;border:1px solid var(--border);overflow:hidden;box-shadow:0 4px 32px rgba(0,0,0,0.08);}
+.cp-sidebar{width:220px;background:#F2F0EE;border-right:1px solid var(--border);display:flex;flex-direction:column;flex-shrink:0;}
+.cps-header{padding:24px 22px;border-bottom:1px solid var(--border);}
+.cps-logo{font-family:var(--serif);font-size:18px;color:var(--ink);}
+.cps-logo span{color:var(--red);}
+.cps-clinic{font-size:10px;color:var(--mid);margin-top:2px;}
+.cps-nav{flex:1;padding:12px 0;}
+.cps-section{font-size:8px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:rgba(0,0,0,0.2);padding:10px 22px 4px;}
+.cps-item{display:flex;align-items:center;gap:10px;padding:9px 22px;font-size:11px;color:var(--mid);cursor:pointer;border-left:2px solid transparent;transition:all 0.2s;}
+.cps-item:hover{color:var(--ink);}
+.cps-item.active{color:var(--ink);border-left-color:var(--red);background:rgba(200,16,46,0.04);}
+.cps-badge{font-size:8px;font-weight:700;background:var(--red);color:white;padding:1px 5px;border-radius:2px;margin-left:auto;}
+.cps-user{padding:14px 22px;border-top:1px solid var(--border);}
+.cps-dr{font-size:11px;color:var(--ink);font-weight:500;}
+.cps-role{font-size:9px;color:var(--mid);}
+
+.cp-main{flex:1;overflow-y:auto;background:var(--off);}
+.cp-topbar{background:var(--white);padding:0 28px;height:52px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border);position:sticky;top:0;z-index:10;}
+.ctb-title{font-family:var(--serif);font-size:17px;color:var(--ink);}
+.ctb-sub{font-size:8px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:var(--red);}
+.ctb-right{display:flex;gap:8px;align-items:center;}
+.ctb-btn{font-size:9px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:white;background:var(--red);padding:6px 12px;cursor:pointer;border:none;}
+.ctb-btn2{font-size:9px;font-weight:500;letter-spacing:0.08em;color:var(--ink);background:var(--white);padding:6px 12px;cursor:pointer;border:1px solid var(--border);}
+
+.cp-content{padding:20px 28px;display:flex;flex-direction:column;gap:16px;}
+.cp-kpi-row{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;}
+.kpi-card{background:var(--white);border:1px solid var(--border);padding:14px 16px;}
+.kpi-label{font-size:8px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:var(--mid);margin-bottom:4px;}
+.kpi-val{font-family:var(--serif);font-size:24px;font-weight:300;color:var(--ink);}
+.kpi-trend{font-size:9px;color:var(--mid);margin-top:2px;}
+.kpi-trend .up{color:#1F9E5A;}
+.kpi-trend .dn{color:var(--red);}
+
+.cp-two{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.cp-three{display:grid;grid-template-columns:1.4fr 1fr;gap:16px;}
+
+.c-card{background:var(--white);border:1px solid var(--border);padding:20px 22px;}
+.c-card-title{font-size:9px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--red);margin-bottom:14px;display:flex;align-items:center;gap:8px;}
+.c-card-title::before{content:'';width:10px;height:1px;background:var(--red);}
+
+/* Patient Table */
+.patient-table{width:100%;border-collapse:collapse;}
+.patient-table th{font-size:8px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:var(--mid);padding:6px 10px;text-align:left;border-bottom:1px solid var(--border);}
+.patient-table td{font-size:10px;color:var(--ink);padding:8px 10px;border-bottom:1px solid var(--border);}
+.patient-table tr:last-child td{border:none;}
+.patient-table tr:hover td{background:var(--off);}
+.pt-name{font-weight:500;}
+.pt-status{font-size:8px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;padding:2px 7px;}
+.pt-status.active{background:rgba(31,158,90,0.1);color:#1F9E5A;}
+.pt-status.pending{background:rgba(184,106,0,0.1);color:#B86A00;}
+.pt-status.new{background:rgba(200,16,46,0.07);color:var(--red);}
+
+/* Revenue mini chart placeholder */
+.rev-bars{display:flex;align-items:flex-end;gap:4px;height:60px;margin-top:8px;}
+.rev-bar{flex:1;background:var(--grey);border-radius:1px;transition:all 0.3s;position:relative;}
+.rev-bar.highlight{background:var(--red);}
+.rev-bar:hover{opacity:0.8;}
+.rev-months{display:flex;gap:4px;margin-top:4px;}
+.rev-month{flex:1;font-size:7px;text-align:center;color:var(--mid);}
+
+/* Appointment list */
+.appt-list{display:flex;flex-direction:column;gap:8px;}
+.appt-item{display:flex;gap:12px;align-items:center;padding:8px 12px;background:var(--off);}
+.appt-time{font-family:var(--serif);font-size:16px;color:var(--ink);font-weight:300;min-width:44px;text-align:center;border-right:1px solid var(--border);padding-right:12px;}
+.appt-time small{font-family:var(--sans);font-size:8px;color:var(--mid);display:block;letter-spacing:0.1em;}
+.appt-patient{flex:1;}
+.appt-pt-name{font-size:10px;font-weight:500;color:var(--ink);}
+.appt-pt-type{font-size:9px;color:var(--mid);}
+.appt-actions{display:flex;gap:6px;}
+.appt-btn{font-size:8px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;padding:4px 8px;cursor:pointer;border:none;}
+.appt-btn.view{background:var(--off);color:var(--mid);border:1px solid var(--border);}
+.appt-btn.start{background:var(--red);color:white;}
+
+/* ═══════════════════════════════
+   ARCHITECTURE DIAGRAM
+═══════════════════════════════ */
+.arch-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+.arch-node{background:var(--white);border:1px solid var(--border);padding:24px;position:relative;}
+.arch-node.primary{border-top:3px solid var(--red);}
+.arch-node.secondary{border-top:3px solid #888;}
+.arch-label{font-size:8px;font-weight:600;letter-spacing:0.22em;text-transform:uppercase;color:var(--mid);margin-bottom:8px;}
+.arch-name{font-family:var(--serif);font-size:22px;font-weight:300;color:var(--ink);margin-bottom:12px;}
+.arch-features{list-style:none;display:flex;flex-direction:column;gap:5px;}
+.arch-features li{font-size:10px;color:var(--mid);padding-left:14px;position:relative;line-height:1.5;}
+.arch-features li::before{content:'—';position:absolute;left:0;color:rgba(200,16,46,0.4);}
+.arch-features li strong{color:var(--ink);font-weight:500;}
+
+.arch-flow{display:flex;align-items:center;justify-content:center;gap:16px;padding:24px;background:var(--white);border:1px solid var(--border);}
+.af-node{text-align:center;}
+.af-box{padding:10px 20px;font-size:10px;font-weight:500;border:1px solid var(--border);color:var(--ink);}
+.af-box.red{background:var(--red);color:white;border-color:var(--red);}
+.af-arrow{font-size:16px;color:rgba(200,16,46,0.4);}
+.af-label{font-size:8px;color:var(--mid);margin-top:4px;letter-spacing:0.08em;}
+
+/* Color Palette */
+.palette{display:flex;gap:12px;flex-wrap:wrap;}
+.pal-swatch{text-align:center;}
+.pal-color{width:60px;height:60px;border:1px solid var(--border);}
+.pal-name{font-size:8px;font-weight:600;letter-spacing:0.1em;color:var(--mid);margin-top:6px;}
+.pal-hex{font-size:9px;color:var(--ink);font-family:monospace;}
+
+/* Typography */
+.type-row{display:flex;flex-direction:column;gap:12px;background:var(--white);border:1px solid var(--border);padding:24px;}
+.type-item{display:flex;align-items:baseline;gap:20px;padding-bottom:12px;border-bottom:1px solid var(--border);}
+.type-item:last-child{border:none;padding:0;}
+.type-meta{font-size:9px;color:var(--mid);min-width:140px;}
+.type-sample-sm{font-size:11px;color:var(--ink);}
+.type-sample-md{font-size:16px;color:var(--ink);}
+.type-sample-lg{font-family:var(--serif);font-size:28px;font-weight:300;color:var(--ink);}
+.type-sample-xl{font-family:var(--serif);font-size:42px;font-weight:300;font-style:italic;color:var(--ink);}
+.type-sample-cap{font-size:9px;font-weight:600;letter-spacing:0.22em;text-transform:uppercase;color:var(--red);}
+
+/* ── RESPONSIVE HINT ── */
+.mobile-preview{display:flex;gap:24px;align-items:flex-start;}
+.mobile-frame{width:200px;flex-shrink:0;border:6px solid var(--ink);border-radius:18px;overflow:hidden;}
+.mf-notch{background:var(--ink);height:18px;display:flex;align-items:center;justify-content:center;}
+.mf-notch-bar{width:50px;height:4px;background:#333;border-radius:2px;}
+.mf-screen{background:var(--white);}
+.mf-nav{background:var(--ink);padding:12px 14px;display:flex;align-items:center;justify-content:space-between;}
+.mf-logo{font-family:var(--serif);font-size:13px;color:white;}
+.mf-logo span{color:var(--red);}
+.mf-hero{height:120px;background:linear-gradient(135deg,var(--ink),#2A1A1E);display:flex;flex-direction:column;justify-content:flex-end;padding:12px;}
+.mf-hero-t{font-family:var(--serif);font-size:16px;color:white;font-style:italic;}
+.mf-choice-row{display:flex;height:70px;}
+.mf-choice{flex:1;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:4px;}
+.mf-choice.s{background:#F5F0EE;}
+.mf-choice.h{background:#F0F0EE;border-left:1px solid var(--border);}
+.mf-choice-icon{font-size:16px;}
+.mf-choice-label{font-size:8px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink);}
+.mf-bottom-nav{display:flex;background:var(--white);border-top:1px solid var(--border);}
+.mf-bnav-item{flex:1;padding:8px 4px;display:flex;flex-direction:column;align-items:center;gap:2px;}
+.mf-bnav-icon{font-size:14px;}
+.mf-bnav-label{font-size:7px;color:var(--mid);}
+.mf-bnav-item.active .mf-bnav-label{color:var(--red);}
+
+.mobile-notes{flex:1;}
+.mnote{display:flex;gap:12px;margin-bottom:16px;}
+.mnote-num{width:22px;height:22px;background:var(--red);color:white;font-size:9px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.mnote-text{font-size:11px;color:var(--mid);line-height:1.7;padding-top:2px;}
+.mnote-text strong{color:var(--ink);font-weight:500;}
+</style>
+</head>
+<body>
+
+<!-- ═══ DOC HEADER ═══ -->
+<div class="doc-header">
+  <div>
+    <div class="doc-logo">Dr<span>Ruby</span>.ai</div>
+    <div class="doc-title">App Design Layout — v1.0</div>
+  </div>
+  <div class="doc-meta">
+    2026-06-10<br>
+    Screens: Homepage · User Portal · Clinic Portal<br>
+    Color: Red / White / Grey
+  </div>
+</div>
+
+<!-- ═══ TABS ═══ -->
+<div class="nav-tabs">
+  <div class="tab active" onclick="showTab('home')">🏠 Homepage</div>
+  <div class="tab" onclick="showTab('skin')">✨ Skin Page</div>
+  <div class="tab" onclick="showTab('user')">👤 User Portal</div>
+  <div class="tab" onclick="showTab('clinic')">🏥 Clinic Portal</div>
+  <div class="tab" onclick="showTab('healthspan')">💚 Healthspan</div>
+  <div class="tab" onclick="showTab('arch')">🗂 Architecture</div>
+  <div class="tab" onclick="showTab('style')">🎨 Style Guide</div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     HOMEPAGE
+═══════════════════════════════════════════════ -->
+<div id="tab-home" class="screen active">
+  <div class="sec-header">
+    <div>
+      <div class="sec-title">Homepage — <em>Public Landing</em></div>
+      <div class="sec-sub">首页 · 访客可见 · 双入口设计</div>
+    </div>
+    <div class="sec-badge">Responsive Web</div>
+  </div>
+
+  <div class="anno">Section 1 — Top Navigation
+    <span class="anno-note">固定顶部导航栏，始终可见</span>
+  </div>
+  <div class="homepage-wrap">
+    <!-- Nav -->
+    <div class="hp-nav">
+      <div>
+        <div class="hp-nav-logo">Dr<span>Ruby</span>.ai</div>
+      </div>
+      <div class="hp-nav-links">
+        <div class="hp-nav-link" onclick="showTab('home')" style="cursor:pointer;">How it works</div>
+        <div class="hp-nav-link" onclick="showTab('skin')" style="cursor:pointer;">Skin</div>
+        <div class="hp-nav-link" onclick="showTab('healthspan')" style="cursor:pointer;">Healthspan</div>
+        <div class="hp-nav-link" onclick="showTab('clinic')" style="cursor:pointer;">For Clinics</div>
+        <div class="hp-nav-link" onclick="showTab('arch')" style="cursor:pointer;">Science</div>
+        <div class="hp-nav-cta2" onclick="showTab('user')" style="cursor:pointer;">Log in</div>
+        <div class="hp-nav-cta" onclick="showTab('user')" style="cursor:pointer;">Get Started</div>
+      </div>
+    </div>
+
+    <!-- ═══ HERO CAROUSEL ═══ -->
+    <div class="hero-carousel" id="heroCarousel">
+      <div class="hero-slides" id="heroSlides">
+
+        <!-- Slide 1 — Main Brand -->
+        <div class="hero-slide slide-1">
+          <div class="slide-bg"></div>
+          <div class="slide-art">
+            <div class="slide-art-circle" style="width:500px;height:500px;right:-80px;top:-60px;border:1px solid rgba(200,16,46,0.12);"></div>
+            <div class="slide-art-circle" style="width:320px;height:320px;right:40px;top:80px;border:1px solid rgba(200,16,46,0.06);"></div>
+            <!-- SkinScope product image -->
+            <img src="skinscope.jpg" style="position:absolute;right:40px;top:50%;transform:translateY(-50%);height:75%;width:auto;object-fit:contain;opacity:0.55;mix-blend-mode:lighten;filter:contrast(1.1);" alt="SkinScope">
+          </div>
+          <div class="slide-overlay"></div>
+          <div class="slide-content">
+            <div class="slide-eyebrow">Personal Health Intelligence</div>
+            <div class="slide-title">Know your body.<br><em>Before it speaks.</em></div>
+            <div class="slide-sub">AI-powered skin and healthspan analysis — personalized to you alone, not population averages.</div>
+            <div class="slide-btns">
+              <div class="slide-btn-red" onclick="showTab('user')" style="cursor:pointer;">Start Free Analysis</div>
+              <div class="slide-btn-ghost" onclick="showTab('skin')" style="cursor:pointer;">Start with Skin →</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Slide 2 — N=1 / Science -->
+        <div class="hero-slide slide-2">
+          <div class="slide-bg"></div>
+          <div class="slide-art">
+            <div class="slide-art-circle" style="width:600px;height:600px;right:-150px;top:-100px;border:1px solid rgba(91,63,160,0.15);"></div>
+            <div class="slide-art-circle" style="width:350px;height:350px;right:60px;top:80px;border:1px solid rgba(91,63,160,0.08);"></div>
+            <div style="position:absolute;right:80px;top:120px;font-family:'Cormorant Garamond',serif;font-size:220px;font-weight:300;font-style:italic;color:rgba(255,255,255,0.025);line-height:1;user-select:none;">N=1</div>
+          </div>
+          <div class="slide-overlay" style="background:linear-gradient(to right,rgba(10,8,20,0.92) 0%,rgba(10,8,20,0.5) 45%,transparent 70%);"></div>
+          <div class="slide-content">
+            <div class="slide-eyebrow">The N=1 Principle</div>
+            <div class="slide-title">Medicine studies<br>populations.<br><em>We study you.</em></div>
+            <div class="slide-sub">Your data trains your personal health model — not shared, not averaged. Developed with leading skin scientists and women's health experts.</div>
+            <div class="slide-btns">
+              <div class="slide-btn-red" onclick="showTab('healthspan')" style="cursor:pointer;">Explore Healthspan →</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Slide 3 — Data on Device / Privacy -->
+        <div class="hero-slide slide-3">
+          <div class="slide-bg"></div>
+          <div class="slide-art">
+            <div class="slide-art-circle" style="width:400px;height:400px;right:20px;top:40px;border:1px solid rgba(31,158,90,0.12);"></div>
+            <div class="slide-art-circle" style="width:240px;height:240px;right:100px;top:120px;border:1px solid rgba(31,158,90,0.07);"></div>
+            <div style="position:absolute;right:100px;top:150px;font-size:100px;opacity:0.04;color:white;line-height:1;user-select:none;">🔒</div>
+            <!-- Lock icon hint -->
+            <div style="position:absolute;right:160px;top:220px;width:80px;height:80px;border:1px solid rgba(255,255,255,0.06);border-radius:50%;display:flex;align-items:center;justify-content:center;">
+              <div style="width:30px;height:30px;border:1px solid rgba(255,255,255,0.15);border-radius:50%;"></div>
+            </div>
+          </div>
+          <div class="slide-overlay" style="background:linear-gradient(to right,rgba(8,12,8,0.92) 0%,rgba(8,12,8,0.5) 45%,transparent 70%);"></div>
+          <div class="slide-content">
+            <div class="slide-eyebrow">Privacy by Design</div>
+            <div class="slide-title">Your data stays<br><em>on your device.</em><br>Always.</div>
+            <div class="slide-sub">We built DrRuby so your most personal health data never leaves your phone. Your AI model learns you — and only you.</div>
+            <div class="slide-btns">
+              <div class="slide-btn-red" onclick="showTab('arch')" style="cursor:pointer;">How It Works →</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Slide 4 — Brenner / Expert validation -->
+        <div class="hero-slide slide-4">
+          <div class="slide-bg"></div>
+          <div class="slide-art">
+            <div class="slide-art-circle" style="width:480px;height:480px;right:-60px;top:20px;border:1px solid rgba(200,16,46,0.1);"></div>
+            <div style="position:absolute;right:72px;bottom:80px;max-width:300px;padding:24px;border:1px solid rgba(255,255,255,0.06);background:rgba(255,255,255,0.02);">
+              <div style="font-size:8px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:rgba(200,16,46,0.5);margin-bottom:8px;">Scientific Advisor</div>
+              <div style="font-family:'Cormorant Garamond',serif;font-size:13px;font-style:italic;color:rgba(255,255,255,0.5);line-height:1.7;margin-bottom:10px;">"DrRuby connects metabolic aging science to the consumer for the first time."</div>
+              <div style="font-size:9px;color:rgba(255,255,255,0.3);font-weight:500;">Charles Brenner</div>
+              <div style="font-size:8px;color:rgba(255,255,255,0.18);">Biochemist · NAD Biology</div>
+            </div>
+          </div>
+          <div class="slide-overlay"></div>
+          <div class="slide-content">
+            <div class="slide-eyebrow">Built on Real Science</div>
+            <div class="slide-title">Skin is a window<br><em>into your</em><br><em>metabolic age.</em></div>
+            <div class="slide-sub">Developed with leading scientists in metabolic aging, skin biology, and women's health. Not wellness — science.</div>
+            <div class="slide-btns">
+              <div class="slide-btn-red" onclick="showTab('healthspan')" style="cursor:pointer;">Meet Our Scientists</div>
+              <div class="slide-btn-ghost" onclick="showTab('arch')" style="cursor:pointer;">See the Architecture</div>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /hero-slides -->
+
+      <!-- Dots -->
+      <div class="carousel-dots" id="carouselDots">
+        <div class="c-dot active" onclick="goToSlide(0)"></div>
+        <div class="c-dot" onclick="goToSlide(1)"></div>
+        <div class="c-dot" onclick="goToSlide(2)"></div>
+        <div class="c-dot" onclick="goToSlide(3)"></div>
+      </div>
+
+      <!-- Arrows -->
+      <div class="carousel-arrows">
+        <div class="c-arrow" onclick="changeSlide(-1)">↑</div>
+        <div class="c-arrow" onclick="changeSlide(1)">↓</div>
+      </div>
+
+      <!-- Counter -->
+      <div class="carousel-counter" id="slideCounter" style="position:absolute;top:32px;right:72px;font-size:9px;font-weight:600;letter-spacing:0.2em;color:rgba(255,255,255,0.2);z-index:10;"><span>01</span> / 04</div>
+
+      <!-- Progress bar -->
+      <div class="carousel-progress" id="carouselProgress" style="width:0%"></div>
+    </div>
+
+    <!-- ② TRUST BAR -->
+    <div class="trust-bar">
+      <div class="trust-item">
+        <div class="trust-icon">B</div>
+        <div>
+          <div class="trust-name">Charles Brenner</div>
+          <div class="trust-role">Bioscientist · NAD Biology · Chief Scientific Advisor, DrRuby</div>
+        </div>
+      </div>
+      <div class="trust-item">
+        <div class="trust-icon">J</div>
+        <div>
+          <div class="trust-name">Jennifer Gunter</div>
+          <div class="trust-role">Women's Health Expert · N=1 Clinical Tester</div>
+        </div>
+      </div>
+      <div class="trust-item" style="border:none;">
+        <div class="trust-icon" style="border-color:rgba(31,158,90,0.4);">+</div>
+        <div>
+          <div class="trust-name">Skin Science Advisory Board</div>
+          <div class="trust-role">Dermatology · Metabolic Aging · Women's Hormonal Health</div>
+        </div>
+      </div>
+      <div class="trust-privacy">
+        <div class="trust-privacy-dot"></div>
+        <div class="trust-privacy-text">Your data never leaves your device</div>
+      </div>
+    </div>
+
+    <!-- ③ SKIN / HEALTHSPAN DUAL ENTRY -->
+    <div style="background:var(--white);border-bottom:1px solid var(--border);">
+
+      <!-- Bridge header -->
+      <div style="text-align:center;padding:36px 40px 0;">
+        <div style="font-size:9px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--mid);margin-bottom:10px;">Where would you like to start?</div>
+        <div style="font-family:var(--serif);font-size:26px;font-weight:300;color:var(--ink);line-height:1.3;">Two entry points. One profile. <em>Your biology.</em></div>
+      </div>
+
+      <!-- Two cards -->
+      <div class="hp-choice" style="border-top:none;">
+        <div class="choice-card skin" onclick="showTab('skin')" style="cursor:pointer;">
+          <div class="choice-decoration"></div>
+          <div class="choice-tag">See it. Measure it. Track it.</div>
+          <div class="choice-title">Skin<br>Intelligence</div>
+          <div class="choice-desc">Your skin is the most visible biomarker you have. Scan once, and DrRuby gives you three Brenner indices — Inflammation, Pigment Load, Collagen Kinetics — calibrated to you alone.</div>
+          <div style="margin-top:16px;font-size:10px;color:var(--mid);line-height:1.7;border-top:1px solid rgba(255,255,255,0.1);padding-top:14px;">
+            Feeds directly into your Healthspan profile →
+          </div>
+          <div class="choice-cta" style="margin-top:14px;">Start with Skin →</div>
+        </div>
+        <div class="choice-card health" style="border-left:1px solid var(--border);cursor:pointer;" onclick="showTab('healthspan')">
+          <div class="choice-decoration"></div>
+          <div class="choice-tag">Understand it. Optimize it. Own it.</div>
+          <div class="choice-title">Healthspan<br>Intelligence</div>
+          <div class="choice-desc">Evaluate your protocols, understand your biomarkers, and get intel you can bring to your own doctor. No prescriptions. No medical claims. Just the science to have better conversations.</div>
+          <div style="margin-top:16px;font-size:10px;color:var(--mid);line-height:1.7;border-top:1px solid rgba(255,255,255,0.08);padding-top:14px;">
+            Powered by your skin data + Evaluate My Stack →
+          </div>
+          <div class="choice-cta" style="margin-top:14px;">Start with Healthspan →</div>
+        </div>
+      </div>
+
+      <!-- Convergence bridge -->
+      <div style="background:var(--ink);padding:18px 40px;display:flex;align-items:center;justify-content:center;gap:32px;">
+        <div style="text-align:center;">
+          <div style="font-size:9px;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-bottom:3px;">Skin data</div>
+          <div style="font-size:10px;color:rgba(255,255,255,0.5);">Brenner indices</div>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px;">
+          <div style="width:40px;height:1px;background:rgba(200,16,46,0.4);"></div>
+          <div style="width:8px;height:8px;border:1px solid var(--red);transform:rotate(45deg);flex-shrink:0;"></div>
+          <div style="width:40px;height:1px;background:rgba(200,16,46,0.4);"></div>
+        </div>
+        <div style="text-align:center;padding:8px 20px;border:1px solid rgba(255,255,255,0.08);background:rgba(255,255,255,0.03);">
+          <div style="font-size:9px;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:var(--red);margin-bottom:3px;">Your DrRuby Profile</div>
+          <div style="font-size:10px;color:rgba(255,255,255,0.5);">One body. All data. N=1.</div>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px;">
+          <div style="width:40px;height:1px;background:rgba(200,16,46,0.4);"></div>
+          <div style="width:8px;height:8px;border:1px solid var(--red);transform:rotate(45deg);flex-shrink:0;"></div>
+          <div style="width:40px;height:1px;background:rgba(200,16,46,0.4);"></div>
+        </div>
+        <div style="text-align:center;">
+          <div style="font-size:9px;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-bottom:3px;">Healthspan data</div>
+          <div style="font-size:10px;color:rgba(255,255,255,0.5);">Stack · Biomarkers · Intel</div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ④ N=1 PHILOSOPHY SECTION -->
+    <div class="n1-section">
+      <div class="n1-headline">
+        <div class="n1-eyebrow">The DrRuby Principle</div>
+        <div class="n1-title">Medicine has always studied populations.<br><em>DrRuby studies you.</em></div>
+      </div>
+      <div class="n1-cols">
+        <div class="n1-col">
+          <div class="n1-col-num">01</div>
+          <div class="n1-col-title">Your N=1 experiment</div>
+          <div class="n1-col-desc">Every person's skin ages differently. We don't compare you to a population average — we use your own historical data as the baseline. Each scan trains your personal model, not anyone else's.</div>
+          <div class="n1-col-highlight">In consultation with Jennifer Gunter, MD · N=1 clinical tester</div>
+        </div>
+        <div class="n1-col" style="background:#111;">
+          <div class="n1-col-num">02</div>
+          <div class="n1-col-title">Your data, on your device</div>
+          <div class="n1-col-desc">Your health data is yours alone. DrRuby is built so your most personal information — skin scans, biomarkers, hormonal patterns — never leaves your phone. Not shared. Not sold. Not aggregated.</div>
+          <div class="n1-col-highlight" style="color:rgba(31,158,90,0.6);">Privacy by architecture, not policy</div>
+        </div>
+        <div class="n1-col">
+          <div class="n1-col-num">03</div>
+          <div class="n1-col-title">A model that learns you</div>
+          <div class="n1-col-desc">As you use DrRuby over time, the AI builds a personal health model specific to your biology. Recommendations get sharper. Patterns become clearer. The longer you use it, the more it knows you.</div>
+          <div class="n1-col-highlight">Powered by metabolic aging science · Charles Brenner</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ⑤ SCROLLING FEATURE CARDS (large images) -->
+    <div class="hp-scroll-section">
+      <div class="scroll-label">What DrRuby Does</div>
+      <div class="scroll-title">Everything your health needs,<br><em>nothing it doesn't</em></div>
+      <div class="scroll-track">
+        <div class="scroll-item">
+          <div class="si-img si-img-1">
+            <div class="si-large-text" style="color:white;">Rx</div>
+            <div class="si-img-label">AI Analysis</div>
+          </div>
+          <div class="si-body">
+            <div class="si-tag">Personal Profile</div>
+            <div class="si-name">Your Health Baseline</div>
+            <div class="si-desc">Skin, metabolic, hormonal, and lifestyle markers — all analyzed against your own history, not a population average.</div>
+          </div>
+        </div>
+        <div class="scroll-item">
+          <div class="si-img si-img-2">
+            <div class="si-large-text" style="color:rgba(200,16,46,0.2);">AI</div>
+            <div class="si-img-label dark">AI Report</div>
+          </div>
+          <div class="si-body">
+            <div class="si-tag">Actionable Reports</div>
+            <div class="si-name">Know What to Act On</div>
+            <div class="si-desc">Clear findings — Good, Monitor, Action — written in plain language. Downloadable to share with your doctor.</div>
+          </div>
+        </div>
+        <div class="scroll-item">
+          <div class="si-img si-img-3">
+            <div class="si-large-text" style="color:white;">N=1</div>
+            <div class="si-img-label">AI Coach</div>
+          </div>
+          <div class="si-body">
+            <div class="si-tag">Personal AI Coach</div>
+            <div class="si-name">Always On. Always Private.</div>
+            <div class="si-desc">Chat with an AI that knows your data — stored only on your device. Ask anything. Get answers grounded in your biology.</div>
+          </div>
+        </div>
+        <div class="scroll-item">
+          <div class="si-img si-img-4">
+            <div class="si-large-text" style="color:rgba(91,63,160,0.15);">Rx</div>
+            <div class="si-img-label dark">Clinical</div>
+          </div>
+          <div class="si-body">
+            <div class="si-tag">Clinical Connect</div>
+            <div class="si-name">Book a Partner Clinic</div>
+            <div class="si-desc">Browse partner clinics. Share your DrRuby report before arrival so your doctor already knows your history.</div>
+          </div>
+        </div>
+        <div class="scroll-item">
+          <div class="si-img si-img-5">
+            <div class="si-large-text" style="color:rgba(31,158,90,0.15);">→</div>
+            <div class="si-img-label">Recommendations</div>
+          </div>
+          <div class="si-body">
+            <div class="si-tag">Personalized Products</div>
+            <div class="si-name">Matched to Your Data</div>
+            <div class="si-desc">Treatments, supplements, and protocols scored by fit with your health profile. No generic lists.</div>
+          </div>
+        </div>
+        <!-- SkinScope Card -->
+        <div class="scroll-item" style="flex:0 0 300px;">
+          <div class="si-img" style="height:180px;background:#0A0A0A;padding:0;overflow:hidden;position:relative;">
+            <img src="skinscope.jpg" style="width:100%;height:100%;object-fit:cover;object-position:center;" alt="DrRuby SkinScope">
+            <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.5) 0%,transparent 60%);"></div>
+            <div style="position:absolute;top:10px;right:12px;font-size:8px;font-weight:700;letter-spacing:0.14em;background:var(--red);color:white;padding:3px 8px;">$99</div>
+            <div class="si-img-label">SkinScope Hardware</div>
+          </div>
+          <div class="si-body">
+            <div class="si-tag">Go Deeper</div>
+            <div class="si-name">SkinScope Attachment</div>
+            <div class="si-desc">Unlock dermatoscope-grade precision. Polarized + multi-spectral analysis — DermLite quality at 1/20 the price. Clips onto any iPhone.</div>
+            <div style="margin-top:12px;font-size:9px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--red);cursor:pointer;">Learn More →</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ⑥ JENNIFER GUTHE QUOTE + N=1 STATS -->
+    <div class="quote-section">
+      <div class="quote-left">
+        <div class="quote-eyebrow">From Our N=1 Tester</div>
+        <div class="quote-mark">"</div>
+        <div class="quote-text">I'd actually use this for my own n=1 experimentation. And for my patients who keep asking — <em>'Is this actually working, doctor?'</em></div>
+        <div class="quote-attribution">
+          <div class="quote-avatar">J</div>
+          <div>
+            <div class="quote-who">Jennifer Gunter</div>
+            <div class="quote-title">Women's Health Expert · DrRuby Clinical Advisor</div>
+          </div>
+        </div>
+      </div>
+      <div class="quote-right">
+        <div class="quote-n1-title">Because your body is not<br>an <em>average.</em></div>
+        <div class="quote-n1-desc">Most health apps compare you to population benchmarks. DrRuby's N=1 approach means your score, your trend, and your recommendations are calibrated entirely to your own baseline — the way real clinical science works.</div>
+        <div class="n1-stat-row">
+          <div class="n1-stat">
+            <div class="n1-stat-val">100%</div>
+            <div class="n1-stat-label">Personalized to you</div>
+          </div>
+          <div class="n1-stat">
+            <div class="n1-stat-val">0</div>
+            <div class="n1-stat-label">Data shared externally</div>
+          </div>
+          <div class="n1-stat">
+            <div class="n1-stat-val">∞</div>
+            <div class="n1-stat-label">Learns over time</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ⑦ BRENNER SCIENCE STRIP -->
+    <div class="science-strip">
+      <div class="science-top">
+        <div class="sci-left">
+          <div class="sci-eyebrow">Built on Real Science</div>
+          <div class="sci-title">Skin is a window<br>into your<br><em>metabolic age.</em></div>
+          <div class="sci-desc">DrRuby's biomarker scoring is developed with leading researchers in metabolic aging, skin biology, and women's hormonal health. We don't use wellness language — we use the science of how bodies actually change over time.</div>
+        </div>
+        <div class="sci-right">
+          <div class="sci-advisor">
+            <div class="sci-advisor-dot">B</div>
+            <div>
+              <div class="sci-advisor-name">Charles Brenner</div>
+              <div class="sci-advisor-role">Bioscientist · NAD Biology · Chief Scientific Advisor, DrRuby</div>
+              <div class="sci-advisor-quote">"DrRuby connects metabolic aging science to the consumer for the first time. We don't just analyze skin — we read the body's metabolic state through skin."</div>
+            </div>
+          </div>
+          <div class="sci-advisor" style="background:var(--off);">
+            <div class="sci-advisor-dot" style="background:rgba(200,16,46,0.15);color:var(--red);">J</div>
+            <div>
+              <div class="sci-advisor-name">Jennifer Gunter</div>
+              <div class="sci-advisor-role">Women's Health Expert · Clinical Advisor · DrRuby N=1 Tester</div>
+              <div class="sci-advisor-quote">"The combination of skin intelligence and hormonal health tracking fills a gap that no other platform has addressed for women in their 40s and beyond."</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- How it works: 5-step diagram -->
+      <div class="science-how">
+        <div class="sci-step">
+          <div class="sci-step-num">01</div>
+          <div class="sci-step-title">You upload data</div>
+          <div class="sci-step-desc">Skin scan, bloodwork, wearable data, or manual inputs. Stored locally on your device.</div>
+          <div class="sci-step-arrow"></div>
+        </div>
+        <div class="sci-step">
+          <div class="sci-step-num">02</div>
+          <div class="sci-step-title">AI builds your baseline</div>
+          <div class="sci-step-desc">Your personal model is initialized — calibrated to your biology, not a population average.</div>
+          <div class="sci-step-arrow"></div>
+        </div>
+        <div class="sci-step">
+          <div class="sci-step-num">03</div>
+          <div class="sci-step-title">Science scores your data</div>
+          <div class="sci-step-desc">Brenner-lab metabolic aging indices score your skin, hormonal, and systemic markers.</div>
+          <div class="sci-step-arrow"></div>
+        </div>
+        <div class="sci-step">
+          <div class="sci-step-num">04</div>
+          <div class="sci-step-title">You get a clear report</div>
+          <div class="sci-step-desc">Plain-language findings with specific actions — not generic lifestyle tips.</div>
+          <div class="sci-step-arrow"></div>
+        </div>
+        <div class="sci-step">
+          <div class="sci-step-num">05</div>
+          <div class="sci-step-title">Model improves with you</div>
+          <div class="sci-step-desc">Every new data point sharpens your personal model. The longer you use it, the smarter it gets.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ⑧ FOOTER CTA -->
+    <div class="footer-cta">
+      <div class="ftc-left">
+        <div class="ftc-eyebrow">Start Today — Free</div>
+        <div class="ftc-title">Your personal health<br>intelligence starts<br><em>with one scan.</em></div>
+      </div>
+      <div class="ftc-right">
+        <div class="ftc-btn-primary" onclick="showTab('user')" style="cursor:pointer;">Start Free Analysis</div>
+        <div class="ftc-btn-ghost" onclick="showTab('user')" style="cursor:pointer;">Already a member? Log in →</div>
+        <div class="ftc-fine">No credit card required · Data stays on your device<br>Backed by science, not wellness trends</div>
+      </div>
+    </div>
+    <div class="hp-footer-bar">
+      <div class="hp-footer-logo">Dr<span>Ruby</span>.ai</div>
+      <div class="hp-footer-links">
+        <div class="hp-footer-link">Privacy</div>
+        <div class="hp-footer-link">Science</div>
+        <div class="hp-footer-link">For Clinics</div>
+        <div class="hp-footer-link">Terms</div>
+        <div class="hp-footer-link">© 2026 DrRuby</div>
+      </div>
+    </div>
+
+  </div><!-- /homepage-wrap -->
+
+  <!-- Page Structure Note -->
+  <div style="background:var(--white);border:1px solid var(--border);padding:24px 28px;">
+    <div class="anno">完整首页结构 <span class="anno-note">8 个区块，从上至下</span></div>
+    <div style="display:flex;flex-direction:column;gap:8px;">
+      <div style="display:flex;gap:12px;align-items:center;"><div style="width:22px;height:22px;background:var(--ink);color:white;font-size:9px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;">①</div><div style="font-size:11px;color:var(--ink);">Top Nav — 固定导航，始终可见</div></div>
+      <div style="display:flex;gap:12px;align-items:center;"><div style="width:22px;height:22px;background:var(--red);color:white;font-size:9px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;">②</div><div style="font-size:11px;color:var(--ink);">Hero Carousel — 4 张大图轮播（品牌 / N=1 / On-device / Brenner）自动切换</div></div>
+      <div style="display:flex;gap:12px;align-items:center;"><div style="width:22px;height:22px;background:var(--ink);color:white;font-size:9px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;">③</div><div style="font-size:11px;color:var(--ink);">Trust Bar — Brenner · Jennifer Gunter · On-device privacy 一行展示</div></div>
+      <div style="display:flex;gap:12px;align-items:center;"><div style="width:22px;height:22px;background:var(--border);color:var(--ink);font-size:9px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;">④</div><div style="font-size:11px;color:var(--ink);">Skin / Healthspan 双入口 — 两个大卡片，点击进入各自功能流</div></div>
+      <div style="display:flex;gap:12px;align-items:center;"><div style="width:22px;height:22px;background:var(--ink);color:white;font-size:9px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;">⑤</div><div style="font-size:11px;color:var(--ink);">N=1 哲学区 — 三列：你的N=1 / 数据在你设备上 / 个人模型持续学习</div></div>
+      <div style="display:flex;gap:12px;align-items:center;"><div style="width:22px;height:22px;background:var(--border);color:var(--ink);font-size:9px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;">⑥</div><div style="font-size:11px;color:var(--ink);">横向滚动功能展示 — 5 张大图卡片（分析 / 报告 / Coach / 诊所 / 推荐）</div></div>
+      <div style="display:flex;gap:12px;align-items:center;"><div style="width:22px;height:22px;background:var(--border);color:var(--ink);font-size:9px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;">⑦</div><div style="font-size:11px;color:var(--ink);">Jennifer Gunter 引用 + N=1 数据 — 真实背书 + 100% / 0 / ∞ 三个核心数字</div></div>
+      <div style="display:flex;gap:12px;align-items:center;"><div style="width:22px;height:22px;background:var(--border);color:var(--ink);font-size:9px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;">⑧</div><div style="font-size:11px;color:var(--ink);">Brenner Science Strip — 两位顾问引用 + 5步工作原理图</div></div>
+      <div style="display:flex;gap:12px;align-items:center;"><div style="width:22px;height:22px;background:var(--red);color:white;font-size:9px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;">⑨</div><div style="font-size:11px;color:var(--ink);">Footer CTA — 免费开始 + 登录入口 + 隐私声明</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     USER PORTAL
+═══════════════════════════════════════════════ -->
+<!-- ═══════════════════════════════════════════════
+     SKIN PAGE
+═══════════════════════════════════════════════ -->
+<div id="tab-skin" class="screen">
+  <div class="sec-header">
+    <div>
+      <div class="sec-title">Skin Intelligence — <em>Analysis Page</em></div>
+      <div class="sec-sub">用户点击 Skin 入口后的第二页</div>
+    </div>
+    <div style="display:flex;gap:10px;align-items:center;">
+      <div onclick="showTab('home')" style="font-size:9px;color:var(--mid);cursor:pointer;padding:5px 10px;border:1px solid var(--border);">← Homepage</div>
+      <div onclick="showTab('healthspan')" style="font-size:9px;font-weight:600;color:white;background:var(--ink);cursor:pointer;padding:5px 12px;display:flex;align-items:center;gap:6px;">
+        <span style="display:block;width:6px;height:6px;border-radius:50%;background:#1F9E5A;flex-shrink:0;"></span>
+        Your skin scores feed Healthspan →
+      </div>
+      <div class="sec-badge">Web + Mobile App</div>
+    </div>
+  </div>
+
+  <div class="portal-wrap" style="height:auto;min-height:900px;">
+    <!-- Reuse same sidebar as User Portal (abbreviated) -->
+    <div class="up-sidebar" style="width:200px;">
+      <div class="ups-logo">
+        <div class="ups-logo-text">Dr<span>Ruby</span></div>
+        <div class="ups-logo-sub">Skin Intelligence</div>
+      </div>
+      <div class="ups-nav">
+        <div class="ups-section">Skin</div>
+        <div class="ups-item active"><div class="ups-icon">◉</div><span>Scan & Analyse</span></div>
+        <div class="ups-item"><div class="ups-icon">◎</div><span>My Skin History</span></div>
+        <div class="ups-item"><div class="ups-icon">◎</div><span>Reports</span><span class="ups-badge">2</span></div>
+        <div class="ups-item"><div class="ups-icon">◎</div><span>SkinScope</span></div>
+        <div class="ups-section">Care</div>
+        <div class="ups-item"><div class="ups-icon">◎</div><span>Products</span></div>
+        <div class="ups-item" onclick="showTab('clinic')" style="cursor:pointer;"><div class="ups-icon">◎</div><span>Book Clinic</span></div>
+        <div class="ups-section">Science</div>
+        <div class="ups-item"><div class="ups-icon">◎</div><span>The 3 Indices</span></div>
+        <div class="ups-item"><div class="ups-icon">◎</div><span>Brenner Lab</span></div>
+      </div>
+      <div class="ups-user" style="overflow:hidden;">
+        <div class="ups-avatar">RJ</div>
+        <div><div class="ups-name">Ruby Johnson</div><div class="ups-email">Last scan: Jun 8</div></div>
+      </div>
+    </div>
+
+    <!-- Main skin content -->
+    <div class="up-main">
+      <!-- Sticky top nav -->
+      <div class="skin-page-nav">
+        <div class="spn-breadcrumb">Home &nbsp;/&nbsp; <span>Skin Analysis</span></div>
+        <div class="spn-right">
+          <div class="spn-mode active">📷 Phone Camera</div>
+          <div class="spn-mode">🔬 SkinScope</div>
+          <div class="spn-mode">📁 Upload</div>
+        </div>
+      </div>
+
+      <!-- ① FREQUENCY GATE BANNER -->
+      <div style="background:#0D0D0D;border-bottom:1px solid rgba(255,255,255,0.06);padding:10px 28px;display:flex;align-items:center;justify-content:space-between;gap:16px;">
+        <div style="display:flex;align-items:center;gap:20px;">
+          <!-- State A: cooldown active (default) -->
+          <div id="freq-state-cooldown" style="display:flex;align-items:center;gap:10px;">
+            <div style="width:8px;height:8px;border-radius:50%;background:rgba(200,16,46,0.5);flex-shrink:0;"></div>
+            <div>
+              <span style="font-size:9px;font-weight:600;color:rgba(255,255,255,0.6);letter-spacing:0.1em;">Last scan: Jun 8 &nbsp;·&nbsp; Next scan recommended: </span>
+              <span style="font-size:9px;font-weight:700;color:var(--red);">Jul 8</span>
+              <span style="font-size:9px;color:rgba(255,255,255,0.3);"> (22 days)</span>
+            </div>
+          </div>
+          <div style="font-size:8px;color:rgba(255,255,255,0.2);">|</div>
+          <div style="font-size:8.5px;color:rgba(255,255,255,0.3);">Skin changes on a 28-day cycle. More frequent scans add noise, not signal.</div>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px;flex-shrink:0;">
+          <!-- Tracking Mode toggle -->
+          <div style="font-size:8.5px;color:rgba(255,255,255,0.35);letter-spacing:0.08em;">Tracking Mode</div>
+          <div style="width:32px;height:18px;background:rgba(255,255,255,0.1);border-radius:9px;position:relative;cursor:pointer;border:1px solid rgba(255,255,255,0.12);">
+            <div style="width:12px;height:12px;border-radius:50%;background:rgba(255,255,255,0.25);position:absolute;top:2px;left:2px;transition:all 0.2s;"></div>
+          </div>
+          <div style="font-size:8px;color:rgba(255,255,255,0.2);">OFF</div>
+        </div>
+      </div>
+
+      <!-- Tracking Mode ON state (shown when user activates — annotation only) -->
+      <div style="background:rgba(31,158,90,0.07);border-bottom:1px solid rgba(31,158,90,0.15);padding:8px 28px;display:flex;align-items:center;gap:12px;">
+        <div style="width:7px;height:7px;border-radius:50%;background:rgba(31,158,90,0.8);flex-shrink:0;"></div>
+        <div style="font-size:8.5px;color:rgba(31,158,90,0.8);"><strong>Tracking Mode active</strong> — weekly scans enabled. Tracking: "Testing new NR protocol (started Jun 1)." Auto-expires: Aug 24.</div>
+        <div style="margin-left:auto;font-size:8px;font-weight:600;color:rgba(31,158,90,0.6);cursor:pointer;letter-spacing:0.08em;">Edit ›</div>
+      </div>
+
+      <!-- ① SCAN WINDOW -->
+      <div class="scan-window-wrap">
+        <div class="scan-window" style="position:relative;">
+          <div class="scan-circle-bg"></div>
+          <div class="scan-frame">
+            <div class="scan-corner tl"></div>
+            <div class="scan-corner tr"></div>
+            <div class="scan-corner bl"></div>
+            <div class="scan-corner br"></div>
+            <div class="scan-reticle"><div class="scan-dot"></div></div>
+            <div class="scan-line"></div>
+          </div>
+          <div class="scan-label">Position your cheek in the frame</div>
+
+          <!-- ② IMAGE QUALITY GATE — overlaid on scan window -->
+          <!-- State: checking (animated) -->
+          <div style="position:absolute;bottom:0;left:0;right:0;background:rgba(0,0,0,0.82);padding:10px 14px;">
+            <div style="font-size:8px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-bottom:8px;">Image Quality Check</div>
+            <div style="display:flex;flex-direction:column;gap:5px;">
+              <!-- Pass -->
+              <div style="display:flex;align-items:center;gap:8px;">
+                <div style="width:14px;height:14px;border-radius:50%;background:rgba(31,158,90,0.2);border:1px solid rgba(31,158,90,0.5);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                  <span style="font-size:8px;color:rgba(31,158,90,0.9);">✓</span>
+                </div>
+                <span style="font-size:8.5px;color:rgba(255,255,255,0.55);">Focus & sharpness</span>
+              </div>
+              <!-- Fail -->
+              <div style="display:flex;align-items:center;gap:8px;">
+                <div style="width:14px;height:14px;border-radius:50%;background:rgba(200,16,46,0.15);border:1px solid rgba(200,16,46,0.5);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                  <span style="font-size:8px;color:var(--red);">✗</span>
+                </div>
+                <span style="font-size:8.5px;color:rgba(200,16,46,0.9);">Too dark — move to better light</span>
+              </div>
+              <!-- Pass -->
+              <div style="display:flex;align-items:center;gap:8px;">
+                <div style="width:14px;height:14px;border-radius:50%;background:rgba(31,158,90,0.2);border:1px solid rgba(31,158,90,0.5);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                  <span style="font-size:8px;color:rgba(31,158,90,0.9);">✓</span>
+                </div>
+                <span style="font-size:8.5px;color:rgba(255,255,255,0.55);">Skin area coverage</span>
+              </div>
+              <!-- Pass -->
+              <div style="display:flex;align-items:center;gap:8px;">
+                <div style="width:14px;height:14px;border-radius:50%;background:rgba(31,158,90,0.2);border:1px solid rgba(31,158,90,0.5);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                  <span style="font-size:8px;color:rgba(31,158,90,0.9);">✓</span>
+                </div>
+                <span style="font-size:8.5px;color:rgba(255,255,255,0.55);">Steady — no motion blur</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="scan-info">
+          <div class="si-title">Your skin,<br><em>analyzed deeply.</em></div>
+          <div class="si-desc">Position your face in the frame and capture. DrRuby will score your skin across three science-backed indices developed with Charles Brenner's metabolic aging research.</div>
+          <div class="scan-modes">
+            <button class="scan-mode-btn active">Cheek (Left)</button>
+            <button class="scan-mode-btn">Cheek (Right)</button>
+            <button class="scan-mode-btn">Forehead</button>
+            <button class="scan-mode-btn">Under Eye</button>
+          </div>
+          <div class="scan-scope-card">
+            <img src="skinscope.jpg" class="scan-scope-img" alt="SkinScope">
+            <div class="scan-scope-text">
+              <div class="scan-scope-name">Want dermatoscope-grade precision?</div>
+              <div class="scan-scope-cta">Upgrade to SkinScope — $99 →</div>
+            </div>
+          </div>
+
+          <!-- Quality gate blocks capture until all checks pass -->
+          <div style="display:flex;flex-direction:column;gap:8px;">
+            <button class="scan-upload-btn" style="opacity:0.35;cursor:not-allowed;" disabled>Capture Scan</button>
+            <div style="font-size:8.5px;color:rgba(200,16,46,0.7);padding-left:2px;">Fix lighting issue to enable capture →</div>
+          </div>
+
+          <!-- All-pass state (annotation) -->
+          <div style="margin-top:4px;padding:10px 14px;background:rgba(31,158,90,0.07);border:1px solid rgba(31,158,90,0.2);">
+            <div style="font-size:8px;font-weight:700;color:rgba(31,158,90,0.9);letter-spacing:0.1em;margin-bottom:3px;">✓ ALL CHECKS PASSED</div>
+            <div style="font-size:8px;color:rgba(31,158,90,0.65);">Image quality confirmed. Tap Capture to save.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ENGINEERING ANNOTATION: Scan UX Rules -->
+      <div style="background:#FFFBE6;border:1px solid #E8D080;border-top:none;padding:14px 20px;">
+        <div style="font-size:8.5px;font-weight:700;color:#7A5C00;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:10px;">⚙ Engineering Notes — Skin Scan UX Rules</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+          <div>
+            <div style="font-size:8.5px;font-weight:700;color:#7A5C00;margin-bottom:4px;">Frequency Gate (hard rules)</div>
+            <div style="font-size:8px;color:#8B6914;line-height:1.8;">
+              · Hard cooldown: 72h minimum between any scans (cannot be overridden)<br>
+              · Default mode: monthly cadence (30-day soft prompt)<br>
+              · Tracking Mode: user-initiated, enables weekly scans, max 12 weeks, auto-expires<br>
+              · If user attempts 3+ scans in 7 days → show gentle prompt directing to dermatologist<br>
+              · Rationale: prevent health anxiety loops; protect Insight Engine data quality
+            </div>
+          </div>
+          <div>
+            <div style="font-size:8.5px;font-weight:700;color:#7A5C00;margin-bottom:4px;">Image Quality Gate (technical)</div>
+            <div style="font-size:8px;color:#8B6914;line-height:1.8;">
+              · Run on-device, real-time (target &lt;200ms per frame)<br>
+              · V1 (MVP): Laplacian variance (blur), histogram (exposure), bounding-box ratio (coverage), inter-frame delta (motion) — all rule-based, Core Image / CameraX<br>
+              · V2: lightweight MobileNet on-device classifier — after V1 baseline<br>
+              · Capture button DISABLED until all 4 checks pass<br>
+              · Error messages must be specific: not "bad photo" — "Too dark, move to better light" / "Too blurry, hold still" / "Frame the skin closer"<br>
+              · Only high-quality images enter Insight Engine; bad images rejected, not stored
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ② THREE BRENNER INDICES -->
+      <div style="padding:20px 28px 0;background:var(--off);">
+        <div style="font-size:9px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--red);margin-bottom:12px;display:flex;align-items:center;gap:8px;"><span style="display:block;width:12px;height:1px;background:var(--red);"></span>The 3 Brenner Skin Indices · Latest Scan Jun 8</div>
+      </div>
+      <div class="indices-row" style="margin:0 28px;">
+        <!-- Inflammation Index -->
+        <div class="index-card">
+          <div class="index-eyebrow">Index 01</div>
+          <div class="index-name">Inflammation Index</div>
+          <div class="index-score-row">
+            <div class="index-score good">72</div>
+            <div class="index-score-max">/100</div>
+          </div>
+          <div class="index-bar-wrap"><div class="index-bar good" style="width:72%;"></div></div>
+          <div class="index-desc">Measures skin redness, reactive markers, and oxidative stress signals. Lower inflammation → slower aging.</div>
+          <div class="index-trend up">↑ +6 pts since last scan</div>
+        </div>
+        <!-- Pigment Load Index -->
+        <div class="index-card" style="background:var(--off);">
+          <div class="index-eyebrow">Index 02</div>
+          <div class="index-name">Pigment Load Index</div>
+          <div class="index-score-row">
+            <div class="index-score warn">58</div>
+            <div class="index-score-max">/100</div>
+          </div>
+          <div class="index-bar-wrap"><div class="index-bar warn" style="width:58%;"></div></div>
+          <div class="index-desc">Tracks uneven pigmentation, UV damage accumulation, and melanin distribution patterns over time.</div>
+          <div class="index-trend dn">↓ −3 pts — sun exposure detected</div>
+        </div>
+        <!-- Collagen / Kinetics Index -->
+        <div class="index-card">
+          <div class="index-eyebrow">Index 03</div>
+          <div class="index-name">Collagen Kinetics Index</div>
+          <div class="index-score-row">
+            <div class="index-score good">81</div>
+            <div class="index-score-max">/100</div>
+          </div>
+          <div class="index-bar-wrap"><div class="index-bar good" style="width:81%;"></div></div>
+          <div class="index-desc">Assesses structural skin density, elasticity, and collagen turnover rate — requires SkinScope for full accuracy.</div>
+          <div class="index-trend up">↑ +9 pts this quarter</div>
+        </div>
+      </div>
+      <div style="margin:0 28px 0;padding:10px 14px;background:rgba(200,16,46,0.04);border:1px solid rgba(200,16,46,0.1);border-top:none;">
+        <span style="font-size:9px;color:var(--mid);">🔬 <strong style="color:var(--ink);">SkinScope unlocks full Collagen Kinetics accuracy.</strong> Currently estimated from phone camera. <span style="color:var(--red);cursor:pointer;font-weight:600;">Upgrade →</span></span>
+      </div>
+
+      <!-- ③ TREND CHART + AI REPORT -->
+      <div class="skin-mid-grid">
+        <!-- Trend Chart -->
+        <div class="trend-card">
+          <div class="trend-header">
+            <div class="trend-title">Trend Over Time</div>
+            <div class="trend-periods">
+              <div class="trend-period">30d</div>
+              <div class="trend-period active">90d</div>
+              <div class="trend-period">1yr</div>
+            </div>
+          </div>
+          <div class="trend-chart">
+            <!-- 8 scan data points, each with 3 bars -->
+            <div class="trend-bar-group"><div class="trend-bars"><div class="tb tb-infl" style="height:48px;"></div><div class="tb tb-pigm" style="height:52px;"></div><div class="tb tb-coll" style="height:55px;"></div></div><div class="trend-date">Mar 10</div></div>
+            <div class="trend-bar-group"><div class="trend-bars"><div class="tb tb-infl" style="height:52px;"></div><div class="tb tb-pigm" style="height:49px;"></div><div class="tb tb-coll" style="height:58px;"></div></div><div class="trend-date">Mar 25</div></div>
+            <div class="trend-bar-group"><div class="trend-bars"><div class="tb tb-infl" style="height:55px;"></div><div class="tb tb-pigm" style="height:50px;"></div><div class="tb tb-coll" style="height:62px;"></div></div><div class="trend-date">Apr 8</div></div>
+            <div class="trend-bar-group"><div class="trend-bars"><div class="tb tb-infl" style="height:58px;"></div><div class="tb tb-pigm" style="height:53px;"></div><div class="tb tb-coll" style="height:65px;"></div></div><div class="trend-date">Apr 22</div></div>
+            <div class="trend-bar-group"><div class="trend-bars"><div class="tb tb-infl" style="height:60px;"></div><div class="tb tb-pigm" style="height:55px;"></div><div class="tb tb-coll" style="height:68px;"></div></div><div class="trend-date">May 6</div></div>
+            <div class="trend-bar-group"><div class="trend-bars"><div class="tb tb-infl" style="height:64px;"></div><div class="tb tb-pigm" style="height:52px;"></div><div class="tb tb-coll" style="height:72px;"></div></div><div class="trend-date">May 20</div></div>
+            <div class="trend-bar-group"><div class="trend-bars"><div class="tb tb-infl" style="height:66px;"></div><div class="tb tb-pigm" style="height:54px;"></div><div class="tb tb-coll" style="height:75px;"></div></div><div class="trend-date">Jun 1</div></div>
+            <div class="trend-bar-group" style="opacity:1;"><div class="trend-bars"><div class="tb tb-infl" style="height:72px;background:rgba(200,16,46,0.75);"></div><div class="tb tb-pigm" style="height:58px;background:rgba(184,106,0,0.75);"></div><div class="tb tb-coll" style="height:81px;background:rgba(31,158,90,0.75);"></div></div><div class="trend-date" style="color:var(--red);font-weight:600;">Jun 8 ●</div></div>
+          </div>
+          <div class="trend-legend">
+            <div class="tl-item"><div class="tl-dot" style="background:rgba(200,16,46,0.5);"></div>Inflammation</div>
+            <div class="tl-item"><div class="tl-dot" style="background:rgba(184,106,0,0.5);"></div>Pigment Load</div>
+            <div class="tl-item"><div class="tl-dot" style="background:rgba(31,158,90,0.5);"></div>Collagen</div>
+          </div>
+          <div style="margin-top:12px;padding:10px 12px;background:var(--off);border-left:2px solid #1F9E5A;">
+            <div style="font-size:10px;font-weight:500;color:var(--ink);">Overall trend: improving</div>
+            <div style="font-size:9px;color:var(--mid);margin-top:2px;">Inflammation and Collagen both up significantly over 90 days. Pigment needs attention.</div>
+          </div>
+        </div>
+
+        <!-- AI Report -->
+        <div class="u-card" style="border:1px solid var(--border);">
+          <div class="u-card-title">AI Analysis — Jun 8</div>
+          <div class="ai-report-preview">
+            <div class="ai-finding good">
+              <div>
+                <div class="ai-find-title">Barrier function strengthening</div>
+                <div class="ai-find-desc">Inflammation score up 6pts. Consistent with peptide serum introduction 4 weeks ago.</div>
+              </div>
+              <div class="ai-tag good">Positive</div>
+            </div>
+            <div class="ai-finding warn">
+              <div>
+                <div class="ai-find-title">UV pigmentation accumulation</div>
+                <div class="ai-find-desc">Pigment Load down 3pts. Sunscreen compliance may have dropped — cross-referenced with weather data.</div>
+              </div>
+              <div class="ai-tag warn">Monitor</div>
+            </div>
+            <div class="ai-finding alert">
+              <div>
+                <div class="ai-find-title">Upgrade scan for Collagen accuracy</div>
+                <div class="ai-find-desc">Collagen Kinetics Index is estimated. SkinScope attachment will give full cross-polarized reading.</div>
+              </div>
+              <div class="ai-tag alert">Action</div>
+            </div>
+          </div>
+          <div style="margin-top:14px;padding-top:12px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;">
+            <span style="font-size:9px;color:var(--mid);">Based on 8 scans over 90 days</span>
+            <span style="font-size:9px;font-weight:600;color:var(--red);letter-spacing:0.12em;text-transform:uppercase;cursor:pointer;">Full PDF Report →</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ⑤ PRODUCT RECOMMENDATIONS -->
+      <div style="padding:0 28px 20px;background:var(--off);">
+        <div class="u-card">
+          <div class="u-card-title">Recommended Based on Your Scan</div>
+          <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;">
+            <div class="prod-item" style="flex-direction:column;align-items:flex-start;border:1px solid var(--border);padding:14px;border-bottom:1px solid var(--border);">
+              <div style="font-size:18px;margin-bottom:8px;">☀️</div>
+              <div class="prod-name">SPF 50 Mineral Sunscreen</div>
+              <div class="prod-reason" style="margin:4px 0 8px;">Addresses pigment drop</div>
+              <div style="font-size:10px;font-weight:700;color:var(--red);">Match 96</div>
+            </div>
+            <div class="prod-item" style="flex-direction:column;align-items:flex-start;border:1px solid var(--border);padding:14px;border-bottom:1px solid var(--border);">
+              <div style="font-size:18px;margin-bottom:8px;">🧴</div>
+              <div class="prod-name">Niacinamide Brightening Serum</div>
+              <div class="prod-reason" style="margin:4px 0 8px;">Pigment Load correction</div>
+              <div style="font-size:10px;font-weight:700;color:var(--red);">Match 91</div>
+            </div>
+            <div class="prod-item" style="flex-direction:column;align-items:flex-start;border:1px solid var(--border);padding:14px;border-bottom:1px solid var(--border);">
+              <div style="font-size:18px;margin-bottom:8px;">💊</div>
+              <div class="prod-name">Collagen Peptide Complex</div>
+              <div class="prod-reason" style="margin:4px 0 8px;">Supports collagen index</div>
+              <div style="font-size:10px;font-weight:700;color:var(--red);">Match 88</div>
+            </div>
+            <div class="prod-item" style="flex-direction:column;align-items:flex-start;border:1px solid rgba(200,16,46,0.15);padding:14px;background:rgba(200,16,46,0.02);border-bottom:1px solid rgba(200,16,46,0.15);">
+              <div style="font-size:18px;margin-bottom:8px;">🔬</div>
+              <div class="prod-name">SkinScope Attachment</div>
+              <div class="prod-reason" style="margin:4px 0 8px;">Unlock full Collagen data</div>
+              <div style="font-size:10px;font-weight:700;color:var(--red);">$99 — Upgrade</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ⑥ CLINIC ENTRY -->
+      <div class="clinic-entry">
+        <div class="ce-left">
+          <div class="ce-eyebrow">Clinical Care</div>
+          <div class="ce-title">Want a dermatologist's eyes<br>on your scan?</div>
+          <div class="ce-desc">Share your DrRuby report with a partner clinic before your visit. Your doctor arrives prepared — no need to explain your history from scratch.</div>
+        </div>
+        <button class="ce-btn">Book a Skin Clinic →</button>
+      </div>
+
+    </div><!-- /up-main -->
+  </div><!-- /portal-wrap -->
+</div>
+
+<div id="tab-user" class="screen">
+  <div class="sec-header">
+    <div>
+      <div class="sec-title">User Portal — <em>Personal Dashboard</em></div>
+      <div class="sec-sub">用户登录后 · 个人健康中心 · Skin + Healthspan combined</div>
+    </div>
+    <div style="display:flex;gap:8px;align-items:center;">
+      <div onclick="showTab('skin')" style="font-size:9px;color:white;background:var(--red);cursor:pointer;padding:5px 12px;font-weight:600;">Skin</div>
+      <div style="font-size:9px;color:var(--mid);">+</div>
+      <div onclick="showTab('healthspan')" style="font-size:9px;color:white;background:var(--ink);cursor:pointer;padding:5px 12px;font-weight:600;">Healthspan</div>
+      <div class="sec-badge">Web + Mobile App</div>
+    </div>
+  </div>
+
+  <div class="anno">Dashboard Overview — 主页总览</div>
+  <div class="portal-wrap">
+    <!-- Sidebar -->
+    <div class="up-sidebar">
+      <div class="ups-logo">
+        <div class="ups-logo-text">Dr<span>Ruby</span></div>
+        <div class="ups-logo-sub">Health Intelligence</div>
+      </div>
+      <div class="ups-nav">
+        <div class="ups-section">My Health</div>
+        <div class="ups-item active">
+          <div class="ups-icon">◉</div>
+          <span>Dashboard</span>
+        </div>
+        <div class="ups-item" onclick="showTab('skin')" style="cursor:pointer;">
+          <div class="ups-icon">◎</div>
+          <span>Skin Analysis</span>
+        </div>
+        <div class="ups-item" onclick="showTab('healthspan')" style="cursor:pointer;">
+          <div class="ups-icon">◎</div>
+          <span>Healthspan</span>
+        </div>
+        <div class="ups-item">
+          <div class="ups-icon">◎</div>
+          <span>My Health Profile</span>
+        </div>
+        <div class="ups-section">AI Tools</div>
+        <div class="ups-item">
+          <div class="ups-icon">◎</div>
+          <span>AI Reports</span>
+          <span class="ups-badge">2</span>
+        </div>
+        <div class="ups-item">
+          <div class="ups-icon">◎</div>
+          <span>Personal Coach</span>
+        </div>
+        <div class="ups-section">Care</div>
+        <div class="ups-item" onclick="showTab('clinic')" style="cursor:pointer;">
+          <div class="ups-icon">◎</div>
+          <span>Book a Clinic</span>
+        </div>
+        <div class="ups-item">
+          <div class="ups-icon">◎</div>
+          <span>Products & Plans</span>
+        </div>
+        <div class="ups-item">
+          <div class="ups-icon">◎</div>
+          <span>Appointments</span>
+        </div>
+      </div>
+      <div class="ups-user" style="overflow:hidden;">
+        <div class="ups-avatar">RJ</div>
+        <div style="overflow:hidden;">
+          <div class="ups-name">Ruby Johnson</div>
+          <div class="ups-email">rubysun@gmail.com</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main -->
+    <div class="up-main">
+      <div class="up-topbar">
+        <div>
+          <div class="utb-page">Good morning, Ruby</div>
+          <div class="utb-sub">Dashboard Overview</div>
+        </div>
+        <div class="utb-right">
+          <div class="utb-pill">🟢 4 sources connected</div>
+          <button class="utb-btn">Run New Analysis</button>
+        </div>
+      </div>
+
+      <div class="up-content">
+        <!-- Summary cards -->
+        <div class="up-summary">
+          <div class="sum-card">
+            <div class="sum-label">Skin Score</div>
+            <div class="sum-val">78<span>/100</span></div>
+            <div class="sum-trend sum-up">↑ +4 this month</div>
+          </div>
+          <div class="sum-card">
+            <div class="sum-label">Biological Age</div>
+            <div class="sum-val">33<span> yrs</span></div>
+            <div class="sum-trend sum-up">↓ 2 yrs younger than actual</div>
+          </div>
+          <div class="sum-card">
+            <div class="sum-label">Healthspan Score</div>
+            <div class="sum-val">82<span>/100</span></div>
+            <div class="sum-trend sum-up">↑ +6 this quarter</div>
+          </div>
+          <div class="sum-card">
+            <div class="sum-label">Next Appointment</div>
+            <div class="sum-val" style="font-size:16px;margin-top:4px;">Jun 18</div>
+            <div class="sum-trend" style="color:var(--mid);">Dr. Chen · Skin Consult</div>
+          </div>
+        </div>
+
+        <!-- AI Report + Timeline -->
+        <div class="up-three-col">
+          <div class="u-card">
+            <div class="u-card-title">Latest AI Analysis Report</div>
+            <div class="ai-report-preview">
+              <div class="ai-finding good">
+                <div>
+                  <div class="ai-find-title">Hydration levels improved significantly</div>
+                  <div class="ai-find-desc">Skin moisture +18% over 30 days. Consistent with your new routine.</div>
+                </div>
+                <div class="ai-tag good">Positive</div>
+              </div>
+              <div class="ai-finding warn">
+                <div>
+                  <div class="ai-find-title">Cortisol marker slightly elevated</div>
+                  <div class="ai-find-desc">Consider stress reduction protocols. Sleep data shows irregular patterns.</div>
+                </div>
+                <div class="ai-tag warn">Monitor</div>
+              </div>
+              <div class="ai-finding alert">
+                <div>
+                  <div class="ai-find-title">Vitamin D levels below optimal range</div>
+                  <div class="ai-find-desc">Recommend supplementation — see product suggestions below.</div>
+                </div>
+                <div class="ai-tag alert">Action</div>
+              </div>
+            </div>
+            <div style="margin-top:14px;padding-top:12px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;">
+              <span style="font-size:9px;color:var(--mid);">Report generated Jun 8, 2026</span>
+              <span style="font-size:9px;font-weight:600;color:var(--red);letter-spacing:0.12em;text-transform:uppercase;cursor:pointer;">Full Report →</span>
+            </div>
+          </div>
+          <div class="u-card">
+            <div class="u-card-title">Recent Activity</div>
+            <div class="timeline">
+              <div class="tl-item"><div class="tl-dot done"></div><div class="tl-line"><div class="tl-date">Jun 8</div><div class="tl-label">AI Report generated</div></div></div>
+              <div class="tl-item"><div class="tl-dot done"></div><div class="tl-line"><div class="tl-date">Jun 5</div><div class="tl-label">Skin scan uploaded</div></div></div>
+              <div class="tl-item"><div class="tl-dot done"></div><div class="tl-line"><div class="tl-date">Jun 2</div><div class="tl-label">Appointment booked — Jun 18</div></div></div>
+              <div class="tl-item"><div class="tl-dot done"></div><div class="tl-line"><div class="tl-date">May 30</div><div class="tl-label">Blood panel data connected</div></div></div>
+              <div class="tl-item"><div class="tl-dot"></div><div class="tl-line"><div class="tl-date">Upcoming</div><div class="tl-label">Follow-up scan due Jun 20</div></div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Coach + Recs -->
+        <div class="up-two-col">
+          <div class="coach-widget" style="padding:0;overflow:hidden;display:flex;flex-direction:column;height:420px;">
+            <!-- Chat header -->
+            <div style="background:var(--ink);padding:14px 18px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;">
+              <div>
+                <div style="font-size:10px;font-weight:700;letter-spacing:0.16em;color:var(--red);text-transform:uppercase;">DrRuby AI</div>
+                <div style="font-size:9px;color:rgba(255,255,255,0.5);margin-top:2px;">Powered by your data · Not a chatbot</div>
+              </div>
+              <div style="font-size:8px;background:rgba(31,158,90,0.2);color:#1F9E5A;padding:3px 8px;border-radius:20px;font-weight:600;">● Live</div>
+            </div>
+
+            <!-- Chat messages -->
+            <div style="flex:1;overflow-y:auto;padding:14px 16px;display:flex;flex-direction:column;gap:12px;background:#FAFAFA;">
+
+              <!-- Proactive push from Insight Engine (Principle 1) -->
+              <div style="background:var(--red);border-radius:2px 12px 12px 12px;padding:12px 14px;max-width:88%;">
+                <div style="font-size:8px;font-weight:700;letter-spacing:0.12em;color:rgba(255,255,255,0.6);text-transform:uppercase;margin-bottom:6px;">⚡ Insight Engine detected a change</div>
+                <div style="font-size:10px;color:white;line-height:1.7;">Your <strong>Recovery Score dropped 15%</strong> this week (Day 7–14). Cross-referencing your intervention log: you stopped Magnesium Glycinate on Jun 7.</div>
+                <div style="font-size:9px;color:rgba(255,255,255,0.75);margin-top:8px;line-height:1.6;">Research suggests magnesium supports sleep quality and autonomic recovery.<br><span style="color:rgba(255,255,255,0.5);">Source: Abbasi et al., 2012 · evidence: rct</span></div>
+                <div style="margin-top:10px;display:flex;gap:6px;">
+                  <div style="font-size:8px;background:rgba(255,255,255,0.15);color:white;padding:4px 10px;border-radius:20px;cursor:pointer;font-weight:600;">Resume + track 4 weeks</div>
+                  <div style="font-size:8px;background:rgba(255,255,255,0.1);color:rgba(255,255,255,0.7);padding:4px 10px;border-radius:20px;cursor:pointer;">Show my trend</div>
+                </div>
+              </div>
+
+              <!-- User logs intervention via chat (Principle 3) -->
+              <div style="align-self:flex-end;background:white;border:1px solid var(--border);border-radius:12px 2px 12px 12px;padding:10px 13px;max-width:75%;">
+                <div style="font-size:10px;color:var(--ink);">I started magnesium again yesterday, 400mg before bed</div>
+                <div style="font-size:8px;color:var(--mid);margin-top:4px;">Jun 14 · 9:42am</div>
+              </div>
+
+              <!-- System confirms logging (Principle 3) -->
+              <div style="background:white;border:1px solid #1F9E5A;border-radius:2px 12px 12px 12px;padding:10px 13px;max-width:85%;">
+                <div style="font-size:8px;font-weight:700;color:#1F9E5A;letter-spacing:0.1em;margin-bottom:5px;">✓ LOGGED TO INTERVENTION GRAPH</div>
+                <div style="font-size:10px;color:var(--ink);line-height:1.6;">Magnesium Glycinate 400mg · Start date Jun 13. I'll track your Recovery Score and HRV over the next 4 weeks and tell you if we see a response.</div>
+              </div>
+
+              <!-- Score card click → chatbot explains (Principle 4 hybrid UI) -->
+              <div style="background:white;border:1px solid var(--border);border-radius:2px 12px 12px 12px;padding:10px 13px;max-width:88%;">
+                <div style="font-size:8px;color:var(--mid);margin-bottom:5px;">You tapped: Skin Score 78 ↑+4</div>
+                <div style="font-size:10px;color:var(--ink);line-height:1.7;">Your Skin Score rose 4 points this month. The main driver is <strong>hydration (+18%)</strong> — consistent with your new HA serum (started May 22). Your Collagen Index is still at 58; this is the gap to watch.<br><span style="font-size:9px;color:var(--mid);">Based on: Skin scan Jun 5 · Wearable sleep data · Intervention log</span></div>
+              </div>
+
+            </div>
+
+            <!-- Input area -->
+            <div style="border-top:1px solid var(--border);padding:10px 14px;background:white;flex-shrink:0;">
+              <div style="display:flex;gap:6px;margin-bottom:8px;flex-wrap:wrap;">
+                <div style="font-size:8px;background:var(--off);color:var(--ink);padding:4px 10px;border-radius:20px;cursor:pointer;border:1px solid var(--border);">Why is my Vitamin D low?</div>
+                <div style="font-size:8px;background:var(--off);color:var(--ink);padding:4px 10px;border-radius:20px;cursor:pointer;border:1px solid var(--border);">I started HRT today</div>
+                <div style="font-size:8px;background:var(--off);color:var(--ink);padding:4px 10px;border-radius:20px;cursor:pointer;border:1px solid var(--border);">Explain my collagen score</div>
+              </div>
+              <div style="display:flex;gap:8px;align-items:center;">
+                <input style="flex:1;border:1px solid var(--border);border-radius:6px;padding:8px 12px;font-size:10px;font-family:inherit;outline:none;" placeholder="Ask a question or log something (supplement, symptom, lab…)">
+                <div style="background:var(--red);color:white;padding:8px 14px;border-radius:6px;font-size:9px;font-weight:700;cursor:pointer;flex-shrink:0;">Send</div>
+              </div>
+              <div style="font-size:7.5px;color:var(--mid);margin-top:6px;text-align:center;">DrRuby provides health information, not medical advice · Always consult your doctor</div>
+            </div>
+          </div>
+          <div class="u-card">
+            <div class="u-card-title">Recommended for You</div>
+            <div class="product-list">
+              <div class="prod-item">
+                <div class="prod-img">💊</div>
+                <div><div class="prod-name">Vitamin D3 + K2</div><div class="prod-reason">Addresses your deficiency</div></div>
+                <div class="prod-score">94</div>
+              </div>
+              <div class="prod-item">
+                <div class="prod-img">🧴</div>
+                <div><div class="prod-name">HA Serum — Hydration</div><div class="prod-reason">Supports skin improvement</div></div>
+                <div class="prod-score">89</div>
+              </div>
+              <div class="prod-item">
+                <div class="prod-img">🌙</div>
+                <div><div class="prod-name">Magnesium Glycinate</div><div class="prod-reason">Cortisol + sleep support</div></div>
+                <div class="prod-score">87</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Chatbot UI Design Principles Annotation -->
+  <div style="background:#FFF8E1;border:1px solid #E8C080;padding:20px 28px;margin-top:0;">
+    <div style="font-size:9px;font-weight:700;letter-spacing:0.16em;color:#8B5E20;text-transform:uppercase;margin-bottom:12px;">⚡ DrRuby AI — 4 Design Principles (Chatbot as UI, not product)</div>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;">
+      <div>
+        <div style="font-size:9px;font-weight:700;color:var(--ink);margin-bottom:4px;">1 · Proactive push</div>
+        <div style="font-size:8.5px;color:#555;line-height:1.6;">Insight Engine detects a change → chatbot sends a message. User doesn't need to ask first. Data drives the conversation.</div>
+      </div>
+      <div>
+        <div style="font-size:9px;font-weight:700;color:var(--ink);margin-bottom:4px;">2 · LLM = translator only</div>
+        <div style="font-size:8.5px;color:#555;line-height:1.6;">LLM receives structured output from Insight Engine (Layer 3) and converts it to natural language + citation. It does not generate insights itself.</div>
+      </div>
+      <div>
+        <div style="font-size:9px;font-weight:700;color:var(--ink);margin-bottom:4px;">3 · Chat = data logging</div>
+        <div style="font-size:8.5px;color:#555;line-height:1.6;">"I started magnesium today" → auto-logged to Intervention Graph, tracking begins. No forms. Conversation is the input interface.</div>
+      </div>
+      <div>
+        <div style="font-size:9px;font-weight:700;color:var(--ink);margin-bottom:4px;">4 · Hybrid UI</div>
+        <div style="font-size:8.5px;color:#555;line-height:1.6;">Score cards at top are clickable → chatbot explains that specific score using the user's own longitudinal data. Chat is the explanation layer, not the entry point.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- User Portal Page Map -->
+  <div style="background:var(--white);border:1px solid var(--border);padding:24px 28px;">
+    <div class="anno">User Portal — 5 Main Sections</div>
+    <div class="arch-grid">
+      <div class="arch-node primary">
+        <div class="arch-label">Section 1</div>
+        <div class="arch-name">Health Profile</div>
+        <ul class="arch-features">
+          <li><strong>Personal data:</strong> age, goals, conditions</li>
+          <li><strong>Connected sources:</strong> wearables, labs, photos</li>
+          <li><strong>Skin + Healthspan overview</strong></li>
+          <li><strong>Score history:</strong> trends over time</li>
+        </ul>
+      </div>
+      <div class="arch-node primary">
+        <div class="arch-label">Section 2</div>
+        <div class="arch-name">AI Reports</div>
+        <ul class="arch-features">
+          <li><strong>Auto-generated</strong> after each data upload</li>
+          <li><strong>Findings:</strong> Good / Monitor / Action</li>
+          <li><strong>Plain language</strong> explanations</li>
+          <li><strong>Downloadable PDF</strong> to share with doctor</li>
+        </ul>
+      </div>
+      <div class="arch-node primary">
+        <div class="arch-label">Section 3</div>
+        <div class="arch-name">Personal Coach</div>
+        <ul class="arch-features">
+          <li><strong>Chat interface</strong> — always-on AI</li>
+          <li><strong>On-device data</strong> — private by design</li>
+          <li><strong>Routine optimization</strong> suggestions</li>
+          <li><strong>Contextual Q&A</strong> about your own data</li>
+        </ul>
+      </div>
+      <div class="arch-node secondary">
+        <div class="arch-label">Section 4</div>
+        <div class="arch-name">Clinic Booking</div>
+        <ul class="arch-features">
+          <li><strong>Browse partner clinics</strong> by specialty</li>
+          <li><strong>Share DrRuby data</strong> before appointment</li>
+          <li><strong>Appointment calendar</strong> + reminders</li>
+          <li><strong>Post-visit notes</strong> synced back</li>
+        </ul>
+      </div>
+      <div class="arch-node secondary">
+        <div class="arch-label">Section 5</div>
+        <div class="arch-name">Products & Plans</div>
+        <ul class="arch-features">
+          <li><strong>AI-matched products:</strong> scored by fit</li>
+          <li><strong>Treatment protocols</strong> curated by need</li>
+          <li><strong>Subscription bundles</strong> available</li>
+          <li><strong>Track what you're using</strong></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- SKIN → HEALTHSPAN BRIDGE -->
+  <div style="background:var(--ink);padding:28px 40px;display:flex;align-items:center;justify-content:space-between;gap:32px;">
+    <div>
+      <div style="font-size:9px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-bottom:6px;">Your skin data doesn't stop here</div>
+      <div style="font-family:var(--serif);font-size:20px;font-weight:300;color:white;line-height:1.4;">Your Brenner indices feed directly into your<br><em>Healthspan intelligence profile.</em></div>
+    </div>
+    <div style="display:flex;gap:12px;flex-shrink:0;">
+      <button onclick="showTab('healthspan')" style="background:var(--red);color:white;border:none;padding:10px 22px;font-family:var(--sans);font-size:10px;font-weight:700;letter-spacing:0.1em;cursor:pointer;">See Healthspan Profile →</button>
+      <button onclick="showTab('user')" style="background:transparent;color:rgba(255,255,255,0.5);border:1px solid rgba(255,255,255,0.15);padding:10px 22px;font-family:var(--sans);font-size:10px;cursor:pointer;">My Full Dashboard</button>
+    </div>
+  </div>
+
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     CLINIC PORTAL
+═══════════════════════════════════════════════ -->
+<div id="tab-clinic" class="screen">
+  <div class="sec-header">
+    <div>
+      <div class="sec-title">Clinic Portal — <em>Today's Workbench</em></div>
+      <div class="sec-sub">诊所操作系统 · 数据由患者授权 · DrRuby 平台转介</div>
+    </div>
+    <div style="display:flex;gap:10px;align-items:center;">
+      <div onclick="showTab('home')" style="font-size:9px;color:var(--mid);cursor:pointer;padding:5px 10px;border:1px solid var(--border);">← Homepage</div>
+      <div class="sec-badge">Web Only · B2B</div>
+    </div>
+  </div>
+
+  <div class="anno">首屏 — 今日工作台（三件最重要的事）</div>
+  <div class="clinic-wrap">
+    <!-- Sidebar — 6 modules (no consumables) -->
+    <div class="cp-sidebar">
+      <div class="cps-header">
+        <div class="cps-logo">Dr<span>Ruby</span></div>
+        <div class="cps-clinic">Clarity Skin Clinic</div>
+      </div>
+      <div class="cps-nav">
+        <div class="cps-section">Today</div>
+        <div class="cps-item active">⊞ Workbench</div>
+        <div class="cps-section">Clinical</div>
+        <div class="cps-item">◎ AI Reports <span class="cps-badge">5</span></div>
+        <div class="cps-item">◎ Skin Archive</div>
+        <div class="cps-item">◎ Patients</div>
+        <div class="cps-section">Operations</div>
+        <div class="cps-item">◎ Appointments <span class="cps-badge">3 new</span></div>
+        <div class="cps-item">◎ Treatments & Billing</div>
+        <div class="cps-item">◎ CRM & Follow-up</div>
+        <div class="cps-section">Platform</div>
+        <div class="cps-item">◎ DrRuby Referrals <span class="cps-badge" style="background:#1F9E5A;">2</span></div>
+        <div class="cps-item">◎ Finance & Fees</div>
+        <div class="cps-item">◎ Compliance</div>
+        <div class="cps-section">Account</div>
+        <div class="cps-item">◎ Modules & Billing</div>
+        <div class="cps-item">◎ Clinic Settings</div>
+      </div>
+      <div class="cps-user">
+        <div class="cps-dr">Dr. Sarah Williams</div>
+        <div class="cps-role">Lead Dermatologist</div>
+      </div>
+    </div>
+
+    <!-- Main -->
+    <div class="cp-main">
+      <div class="cp-topbar">
+        <div>
+          <div class="ctb-title">Good morning, Dr. Chen</div>
+          <div class="ctb-sub">Wednesday Jun 10 · Clarity Skin Clinic</div>
+        </div>
+        <div class="ctb-right">
+          <!-- Data authorization notice -->
+          <div style="font-size:9px;color:var(--mid);background:rgba(31,158,90,0.06);border:1px solid rgba(31,158,90,0.15);padding:5px 12px;display:flex;align-items:center;gap:6px;">
+            <span style="width:6px;height:6px;border-radius:50%;background:#1F9E5A;flex-shrink:0;display:block;"></span>
+            Patient data shown by authorization only
+          </div>
+          <button class="ctb-btn">Generate Report</button>
+        </div>
+      </div>
+
+      <div class="cp-content">
+
+        <!-- ① PRIORITY BANNER — AI Reports (most important) -->
+        <div style="background:var(--ink);padding:20px 22px;display:flex;align-items:center;justify-content:space-between;gap:20px;">
+          <div style="display:flex;align-items:center;gap:16px;">
+            <div style="width:40px;height:40px;background:var(--red);display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:22px;font-weight:300;color:white;flex-shrink:0;">5</div>
+            <div>
+              <div style="font-size:11px;font-weight:600;color:white;margin-bottom:2px;">AI Reports awaiting your review</div>
+              <div style="font-size:9px;color:rgba(255,255,255,0.35);">Patients are waiting — review, edit if needed, then send. Reports stay on DrRuby platform.</div>
+            </div>
+          </div>
+          <button class="ctb-btn" style="flex-shrink:0;">Review Reports →</button>
+        </div>
+
+        <!-- Report queue preview -->
+        <div class="c-card" style="border-top:none;">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;">
+            <div class="c-card-title" style="margin:0;">Pending AI Reports</div>
+            <span style="font-size:9px;color:var(--mid);">AI drafts ready · Doctor review required before sending</span>
+          </div>
+          <table class="patient-table">
+            <thead>
+              <tr>
+                <th>Patient</th>
+                <th>Scan Date</th>
+                <th>Inflammation</th>
+                <th>Pigment</th>
+                <th>Collagen</th>
+                <th>Data Auth</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr style="background:rgba(200,16,46,0.02);">
+                <td><span class="pt-name">Sarah Mitchell</span></td>
+                <td>Jun 8</td>
+                <td><span style="color:#B86A00;font-weight:500;">61/100</span></td>
+                <td><span style="color:var(--red);font-weight:500;">48/100</span></td>
+                <td><span style="color:#1F9E5A;font-weight:500;">74/100</span></td>
+                <td><span style="font-size:8px;color:#1F9E5A;">● Authorized</span></td>
+                <td><button class="appt-btn start" style="font-size:8px;padding:3px 10px;">Review</button></td>
+              </tr>
+              <tr>
+                <td><span class="pt-name">Mia Johnson</span></td>
+                <td>Jun 7</td>
+                <td><span style="color:#1F9E5A;font-weight:500;">78/100</span></td>
+                <td><span style="color:#B86A00;font-weight:500;">55/100</span></td>
+                <td><span style="color:#1F9E5A;font-weight:500;">82/100</span></td>
+                <td><span style="font-size:8px;color:#1F9E5A;">● Authorized</span></td>
+                <td><button class="appt-btn start" style="font-size:8px;padding:3px 10px;">Review</button></td>
+              </tr>
+              <tr>
+                <td><span class="pt-name">Emily Carter</span></td>
+                <td>Jun 6</td>
+                <td><span style="color:#1F9E5A;font-weight:500;">84/100</span></td>
+                <td><span style="color:#1F9E5A;font-weight:500;">72/100</span></td>
+                <td><span style="color:#1F9E5A;font-weight:500;">88/100</span></td>
+                <td><span style="font-size:8px;color:#1F9E5A;">● Authorized</span></td>
+                <td><button class="appt-btn start" style="font-size:8px;padding:3px 10px;">Review</button></td>
+              </tr>
+              <tr>
+                <td><span class="pt-name">Rachel Thompson</span></td>
+                <td>Jun 5</td>
+                <td><span style="color:#B86A00;font-weight:500;">66/100</span></td>
+                <td><span style="color:#B86A00;font-weight:500;">59/100</span></td>
+                <td><span style="color:#B86A00;font-weight:500;">63/100</span></td>
+                <td><span style="font-size:8px;color:#1F9E5A;">● Authorized</span></td>
+                <td><button class="appt-btn start" style="font-size:8px;padding:3px 10px;">Review</button></td>
+              </tr>
+              <tr>
+                <td><span class="pt-name">Claire Foster</span></td>
+                <td>Jun 5</td>
+                <td><span style="color:var(--red);font-weight:500;">44/100</span></td>
+                <td><span style="color:var(--red);font-weight:500;">41/100</span></td>
+                <td><span style="color:#B86A00;font-weight:500;">58/100</span></td>
+                <td><span style="font-size:8px;color:#1F9E5A;">● Authorized</span></td>
+                <td><button class="appt-btn start" style="font-size:8px;padding:3px 10px;">Review</button></td>
+              </tr>
+            </tbody>
+          </table>
+          <div style="margin-top:12px;padding:10px 12px;background:rgba(31,158,90,0.04);border:1px solid rgba(31,158,90,0.1);font-size:9px;color:var(--mid);line-height:1.6;">
+            🔒 <strong style="color:var(--ink);">Data Privacy:</strong> You are seeing only data each patient has explicitly authorized to share with this clinic. Patients can revoke access at any time from their DrRuby app. Full patient profiles remain on DrRuby platform.
+          </div>
+        </div>
+
+        <!-- ② TODAY'S APPOINTMENTS + ③ NEW REFERRALS -->
+        <div class="cp-two">
+
+          <!-- Today's Appointments -->
+          <div class="c-card">
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;">
+              <div class="c-card-title" style="margin:0;">Today's Appointments</div>
+              <span style="font-size:9px;color:var(--mid);">8 total · 3 remaining</span>
+            </div>
+            <div class="appt-list">
+              <div class="appt-item" style="opacity:0.4;">
+                <div class="appt-time">9:00<small>AM</small></div>
+                <div class="appt-patient"><div class="appt-pt-name">Emily Carter</div><div class="appt-pt-type">Skin Follow-up · Done</div></div>
+              </div>
+              <div class="appt-item" style="opacity:0.4;">
+                <div class="appt-time">10:30<small>AM</small></div>
+                <div class="appt-patient"><div class="appt-pt-name">Mia Johnson</div><div class="appt-pt-type">Treatment Review · Done</div></div>
+              </div>
+              <div class="appt-item" style="background:rgba(200,16,46,0.04);border-left:2px solid var(--red);">
+                <div class="appt-time">1:00<small>PM</small></div>
+                <div class="appt-patient">
+                  <div class="appt-pt-name">Sarah Mitchell</div>
+                  <div class="appt-pt-type">Report Review · <span style="color:var(--red);font-weight:600;">Now</span></div>
+                </div>
+                <div class="appt-actions"><button class="appt-btn start">Start</button></div>
+              </div>
+              <div class="appt-item">
+                <div class="appt-time">3:00<small>PM</small></div>
+                <div class="appt-patient"><div class="appt-pt-name">Rachel Thompson</div><div class="appt-pt-type">Skin Consultation</div></div>
+                <div class="appt-actions"><button class="appt-btn view">View</button></div>
+              </div>
+              <div class="appt-item">
+                <div class="appt-time">4:30<small>PM</small></div>
+                <div class="appt-patient">
+                  <div class="appt-pt-name">Sophie Davis</div>
+                  <div class="appt-pt-type">Initial Consult · <span style="color:#1F9E5A;font-weight:500;">DrRuby Referral</span></div>
+                </div>
+                <div class="appt-actions"><button class="appt-btn view">View</button></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- New Referrals from DrRuby -->
+          <div class="c-card" style="border-top:3px solid #1F9E5A;">
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;">
+              <div style="font-size:9px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:#1F9E5A;display:flex;align-items:center;gap:8px;"><span style="display:block;width:10px;height:1px;background:#1F9E5A;"></span>New DrRuby Referrals</div>
+              <span style="font-size:8px;font-weight:700;background:#1F9E5A;color:white;padding:2px 7px;border-radius:2px;">2 NEW</span>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:10px;">
+
+              <div style="border:1px solid rgba(31,158,90,0.15);background:rgba(31,158,90,0.02);padding:14px;">
+                <div style="display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:8px;">
+                  <div>
+                    <div style="font-size:11px;font-weight:500;color:var(--ink);">Sophie Davis</div>
+                    <div style="font-size:9px;color:var(--mid);margin-top:1px;">Referred via DrRuby · Jun 10, 9:42am</div>
+                  </div>
+                  <span style="font-size:8px;font-weight:600;color:#1F9E5A;border:1px solid rgba(31,158,90,0.3);padding:2px 7px;">NEW</span>
+                </div>
+                <div style="display:flex;gap:8px;margin-bottom:10px;">
+                  <div style="font-size:9px;background:rgba(200,16,46,0.07);color:var(--red);padding:2px 8px;font-weight:600;">Inflammation 52</div>
+                  <div style="font-size:9px;background:rgba(184,106,0,0.07);color:#B86A00;padding:2px 8px;font-weight:600;">Pigment 48</div>
+                </div>
+                <div style="font-size:9px;color:var(--mid);line-height:1.6;margin-bottom:10px;">Patient notes: "Persistent redness and uneven tone, 3 months. Concerned about early pigmentation."</div>
+                <div style="font-size:8px;color:rgba(0,0,0,0.3);margin-bottom:8px;">⚠ Showing authorized data only · Patient controls full access</div>
+                <div style="display:flex;gap:8px;">
+                  <button class="appt-btn start" style="font-size:8px;padding:4px 12px;">Accept</button>
+                  <button class="appt-btn view" style="font-size:8px;padding:4px 12px;">View Profile</button>
+                </div>
+              </div>
+
+              <div style="border:1px solid rgba(31,158,90,0.15);background:rgba(31,158,90,0.02);padding:14px;">
+                <div style="display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:8px;">
+                  <div>
+                    <div style="font-size:11px;font-weight:500;color:var(--ink);">Jessica Moore</div>
+                    <div style="font-size:9px;color:var(--mid);margin-top:1px;">Referred via DrRuby · Jun 9, 3:15pm</div>
+                  </div>
+                  <span style="font-size:8px;font-weight:600;color:#1F9E5A;border:1px solid rgba(31,158,90,0.3);padding:2px 7px;">NEW</span>
+                </div>
+                <div style="display:flex;gap:8px;margin-bottom:10px;">
+                  <div style="font-size:9px;background:rgba(200,16,46,0.07);color:var(--red);padding:2px 8px;font-weight:600;">Inflammation 44</div>
+                  <div style="font-size:9px;background:rgba(200,16,46,0.07);color:var(--red);padding:2px 8px;font-weight:600;">Collagen 51</div>
+                </div>
+                <div style="font-size:9px;color:var(--mid);line-height:1.6;margin-bottom:10px;">Patient notes: "Looking for professional assessment of collagen loss and treatment options."</div>
+                <div style="font-size:8px;color:rgba(0,0,0,0.3);margin-bottom:8px;">⚠ Showing authorized data only · Patient controls full access</div>
+                <div style="display:flex;gap:8px;">
+                  <button class="appt-btn start" style="font-size:8px;padding:4px 12px;">Accept</button>
+                  <button class="appt-btn view" style="font-size:8px;padding:4px 12px;">View Profile</button>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <!-- Finance summary strip -->
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);">
+          <div style="background:var(--white);padding:16px 20px;">
+            <div class="kpi-label">This Month Revenue</div>
+            <div class="kpi-val">$12,840</div>
+            <div class="kpi-trend"><span class="up">↑ 18%</span> vs last month</div>
+          </div>
+          <div style="background:var(--white);padding:16px 20px;">
+            <div class="kpi-label">DrRuby Referral Income</div>
+            <div class="kpi-val" style="color:#1F9E5A;">$2,480</div>
+            <div class="kpi-trend">8 appointments this month</div>
+          </div>
+          <div style="background:var(--white);padding:16px 20px;">
+            <div class="kpi-label">Platform Module Fee</div>
+            <div class="kpi-val" style="font-size:20px;color:var(--mid);">$480<span style="font-size:11px;">/mo</span></div>
+            <div class="kpi-trend">Pro Plan · 4 modules active</div>
+          </div>
+          <div style="background:var(--off);padding:16px 20px;border-left:2px solid #1F9E5A;">
+            <div class="kpi-label">Net from DrRuby</div>
+            <div class="kpi-val" style="color:#1F9E5A;">+$2,000</div>
+            <div class="kpi-trend">Referral income minus platform fee</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Module Map -->
+  <div style="background:var(--white);border:1px solid var(--border);padding:24px 28px;">
+    <div class="anno">Clinic Portal — 6 模块 · 模块化定价</div>
+    <div class="arch-grid">
+      <div class="arch-node primary">
+        <div class="arch-label">Module 1 · Core</div>
+        <div class="arch-name">Skin Archive</div>
+        <ul class="arch-features">
+          <li><strong>术前/术后对比</strong>照片工具</li>
+          <li><strong>DrRuby AI 评分</strong>自动导入</li>
+          <li><strong>患者授权数据</strong>，随时可撤回</li>
+          <li><strong>视觉效果证据</strong>促进复购</li>
+        </ul>
+      </div>
+      <div class="arch-node primary">
+        <div class="arch-label">Module 2 · Core</div>
+        <div class="arch-name">AI Reports</div>
+        <ul class="arch-features">
+          <li><strong>AI 自动生成草稿</strong></li>
+          <li><strong>医生审核</strong>后发送给患者</li>
+          <li><strong>报告留在 DrRuby</strong> 平台</li>
+          <li><strong>患者在 app 里查看</strong>，不离开平台</li>
+        </ul>
+      </div>
+      <div class="arch-node primary">
+        <div class="arch-label">Module 3</div>
+        <div class="arch-name">Appointments</div>
+        <ul class="arch-features">
+          <li><strong>DrRuby 平台转介</strong>自动进入</li>
+          <li><strong>多维排班</strong>医生 + 仪器</li>
+          <li><strong>治疗提醒</strong>自动发送</li>
+          <li><strong>转介费</strong>自动计算</li>
+        </ul>
+      </div>
+      <div class="arch-node secondary">
+        <div class="arch-label">Module 4</div>
+        <div class="arch-name">Treatments & Billing</div>
+        <ul class="arch-features">
+          <li><strong>疗程包</strong>管理与次数划扣</li>
+          <li><strong>发票自动化</strong></li>
+          <li><strong>CRM 回访</strong>术后 3/7 天</li>
+          <li><strong>老带新</strong>分销模块</li>
+        </ul>
+      </div>
+      <div class="arch-node secondary">
+        <div class="arch-label">Module 5</div>
+        <div class="arch-name">Compliance</div>
+        <ul class="arch-features">
+          <li><strong>电子知情同意书</strong>数字签名</li>
+          <li><strong>经营数据看板</strong></li>
+          <li><strong>转化率追踪</strong></li>
+          <li><strong>合规文书</strong>归档</li>
+        </ul>
+      </div>
+      <div class="arch-node secondary">
+        <div class="arch-label">Revenue Model</div>
+        <div class="arch-name">收费方式</div>
+        <ul class="arch-features">
+          <li><strong>转介费：</strong>每次成功预约 DrRuby 抽佣</li>
+          <li><strong>模块年费：</strong>按模块分层订阅</li>
+          <li><strong>基础包：</strong>$200–300/月（2模块）</li>
+          <li><strong>全套：</strong>$500–700/月（5模块）</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     HEALTHSPAN
+═══════════════════════════════════════════════ -->
+<div id="tab-healthspan" class="screen">
+  <div class="sec-header">
+    <div>
+      <div class="sec-title">Healthspan — <em>Your Intel. Your Doctor. Your Decisions.</em></div>
+      <div class="sec-sub">DrRuby gives you the science to have better conversations with your own medical team — without us becoming a medical practice.</div>
+    </div>
+    <div style="display:flex;gap:10px;align-items:center;">
+      <div onclick="showTab('home')" style="font-size:9px;color:var(--mid);cursor:pointer;padding:5px 10px;border:1px solid var(--border);">← Homepage</div>
+      <div onclick="showTab('skin')" style="font-size:9px;font-weight:600;color:white;background:var(--red);cursor:pointer;padding:5px 12px;">
+        ← Powered by your Skin data
+      </div>
+      <div class="anno" style="margin:0;">Healthspan Page Mockup</div>
+    </div>
+  </div>
+
+  <!-- BRENNER POSITIONING QUOTE — full width -->
+  <div style="background:var(--ink);padding:48px 56px;position:relative;overflow:hidden;">
+    <div style="position:absolute;top:0;right:0;width:300px;height:100%;background:linear-gradient(90deg,transparent,rgba(200,16,46,0.06));pointer-events:none;"></div>
+    <div style="max-width:760px;">
+      <div style="font-family:var(--serif);font-size:26px;font-weight:300;color:white;line-height:1.55;margin-bottom:20px;">
+        "We can provide the intel that allows them to get what they want and need from their own doctor or medical systems. Without us getting into the medical business."
+      </div>
+      <div style="display:flex;align-items:center;gap:14px;">
+        <div style="width:36px;height:1px;background:var(--red);"></div>
+        <div>
+          <div style="font-size:10px;font-weight:600;color:white;letter-spacing:0.15em;text-transform:uppercase;">Charles Brenner</div>
+          <div style="font-size:9px;color:rgba(255,255,255,0.35);margin-top:2px;">Bioscientist · NAD Biology · Chief Scientific Advisor, DrRuby</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- WHAT HEALTHSPAN MEANS HERE -->
+  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:1px;background:var(--border);">
+    <div style="background:var(--white);padding:28px 28px;">
+      <div style="font-size:9px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--red);margin-bottom:12px;">Not Longevity</div>
+      <div style="font-family:var(--serif);font-size:18px;font-weight:300;color:var(--ink);margin-bottom:10px;line-height:1.4;">How well you function — not just how long you live</div>
+      <div style="font-size:10px;color:var(--mid);line-height:1.7;">DrRuby tracks the biomarkers that actually affect your daily experience: energy, sleep quality, inflammation, skin biology, hormonal rhythm. No age-guessing. No longevity promises.</div>
+    </div>
+    <div style="background:var(--white);padding:28px 28px;">
+      <div style="font-size:9px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--red);margin-bottom:12px;">N=1 Science</div>
+      <div style="font-family:var(--serif);font-size:18px;font-weight:300;color:var(--ink);margin-bottom:10px;line-height:1.4;">Your data is your baseline — not a population average</div>
+      <div style="font-size:10px;color:var(--mid);line-height:1.7;">Brenner's NAD biology shows individual variation is enormous. What matters is your trend over time — not where you rank against strangers.</div>
+    </div>
+    <div style="background:var(--white);padding:28px 28px;">
+      <div style="font-size:9px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--red);margin-bottom:12px;">Doctor-Ready Intel</div>
+      <div style="font-family:var(--serif);font-size:18px;font-weight:300;color:var(--ink);margin-bottom:10px;line-height:1.4;">Walk into your appointment knowing exactly what to ask</div>
+      <div style="font-size:10px;color:var(--mid);line-height:1.7;">DrRuby summarizes your trends, flags changes worth discussing, and gives you the vocabulary to have a productive conversation — without us replacing your doctor.</div>
+    </div>
+  </div>
+
+  <!-- EVALUATE MY STACK — hero feature -->
+  <div style="background:var(--off);border:1px solid var(--border);padding:36px 40px;">
+    <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:40px;">
+
+      <!-- Left: description -->
+      <div style="flex:1;max-width:400px;">
+        <div style="font-size:9px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--red);margin-bottom:10px;">Key Feature</div>
+        <div style="font-family:var(--serif);font-size:28px;font-weight:300;color:var(--ink);line-height:1.3;margin-bottom:14px;">Evaluate My Stack</div>
+        <div style="font-size:11px;color:var(--mid);line-height:1.7;margin-bottom:18px;">Tell DrRuby what supplements, hormones, and protocols you're currently taking. Our AI cross-references your personal biomarkers, skin scores, and the latest research — then tells you what's working, what's redundant, and what's missing.</div>
+        <div style="font-size:10px;color:var(--mid);line-height:1.8;margin-bottom:20px;">
+          <div style="margin-bottom:6px;">✓ Backed by NAD biology + Brenner research database</div>
+          <div style="margin-bottom:6px;">✓ Personalised to your N=1 data, not generic recommendations</div>
+          <div style="margin-bottom:6px;">✓ Output formatted as a summary you can share with your doctor</div>
+          <div>✓ Never prescribes — always informs</div>
+        </div>
+        <button style="background:var(--red);color:white;border:none;padding:10px 22px;font-family:var(--sans);font-size:10px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;cursor:pointer;">Evaluate My Stack →</button>
+      </div>
+
+      <!-- Right: mockup input panel -->
+      <div style="flex:1;background:white;border:1px solid var(--border);padding:22px 24px;">
+        <div style="font-size:10px;font-weight:600;color:var(--ink);margin-bottom:16px;letter-spacing:0.05em;">MY CURRENT STACK</div>
+
+        <!-- Stack entries -->
+        <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:16px;">
+          <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 12px;background:var(--off);border:1px solid var(--border);">
+            <div>
+              <div style="font-size:10px;font-weight:500;color:var(--ink);">NR (Nicotinamide Riboside)</div>
+              <div style="font-size:9px;color:var(--mid);">300mg · Morning</div>
+            </div>
+            <div style="font-size:9px;font-weight:600;color:#1F9E5A;background:rgba(31,158,90,0.08);padding:2px 8px;">✓ Supported</div>
+          </div>
+          <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 12px;background:var(--off);border:1px solid var(--border);">
+            <div>
+              <div style="font-size:10px;font-weight:500;color:var(--ink);">Collagen Peptides</div>
+              <div style="font-size:9px;color:var(--mid);">10g · Daily</div>
+            </div>
+            <div style="font-size:9px;font-weight:600;color:#B86A00;background:rgba(184,106,0,0.08);padding:2px 8px;">⚡ Review dose</div>
+          </div>
+          <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 12px;background:var(--off);border:1px solid var(--border);">
+            <div>
+              <div style="font-size:10px;font-weight:500;color:var(--ink);">Vitamin D3 + K2</div>
+              <div style="font-size:9px;color:var(--mid);">5000 IU · With fat</div>
+            </div>
+            <div style="font-size:9px;font-weight:600;color:#1F9E5A;background:rgba(31,158,90,0.08);padding:2px 8px;">✓ Supported</div>
+          </div>
+          <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 12px;background:rgba(200,16,46,0.03);border:1px solid rgba(200,16,46,0.12);">
+            <div>
+              <div style="font-size:10px;font-weight:500;color:var(--ink);">Generic Multivitamin</div>
+              <div style="font-size:9px;color:var(--mid);">1 tab · Daily</div>
+            </div>
+            <div style="font-size:9px;font-weight:600;color:var(--red);background:rgba(200,16,46,0.08);padding:2px 8px;">↔ Redundant</div>
+          </div>
+          <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 12px;background:var(--off);border:1px dashed var(--border);cursor:pointer;color:var(--mid);">
+            <div style="font-size:10px;">+ Add supplement or protocol</div>
+            <div style="font-size:14px;color:var(--red);">+</div>
+          </div>
+        </div>
+
+        <!-- AI Insight -->
+        <div style="background:var(--ink);padding:12px 14px;margin-top:4px;">
+          <div style="font-size:8px;font-weight:600;letter-spacing:0.15em;color:rgba(255,255,255,0.4);text-transform:uppercase;margin-bottom:6px;">DrRuby Assessment</div>
+          <div style="font-size:10px;color:white;line-height:1.6;">Your collagen score (58) suggests your current peptide dose may be insufficient given your scan data. Your NR intake aligns well with your inflammation trends. Share this summary with your dermatologist before your next visit.</div>
+          <div style="margin-top:10px;display:flex;gap:8px;">
+            <button style="background:var(--red);color:white;border:none;padding:5px 14px;font-size:8px;font-weight:600;cursor:pointer;letter-spacing:0.1em;">Export for Doctor</button>
+            <button style="background:transparent;color:rgba(255,255,255,0.5);border:1px solid rgba(255,255,255,0.15);padding:5px 14px;font-size:8px;cursor:pointer;">View Full Analysis</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- EXPERT ADVISORS — Brenner + Skin MD + Women's Health MD -->
+  <div style="background:var(--white);padding:36px 40px;">
+    <div style="font-size:9px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--mid);margin-bottom:6px;">Scientific Advisory</div>
+    <div style="font-family:var(--serif);font-size:22px;font-weight:300;color:var(--ink);margin-bottom:24px;">The expertise behind your intel</div>
+
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;">
+
+      <!-- Brenner -->
+      <div style="border:1px solid var(--border);padding:24px;">
+        <div style="width:48px;height:48px;background:var(--ink);margin-bottom:14px;display:flex;align-items:center;justify-content:center;">
+          <span style="font-family:var(--serif);font-size:20px;color:white;font-weight:300;">CB</span>
+        </div>
+        <div style="font-size:9px;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:var(--red);margin-bottom:4px;">NAD Biology</div>
+        <div style="font-size:14px;font-weight:500;color:var(--ink);margin-bottom:4px;">Charles Brenner</div>
+        <div style="font-size:9px;color:var(--mid);margin-bottom:12px;line-height:1.5;">Bioscientist · Pioneer of NAD+ biology · Chief Scientific Advisor, DrRuby</div>
+        <div style="font-size:9px;color:var(--mid);line-height:1.7;border-top:1px solid var(--border);padding-top:12px;">Advises on: NR/NAD protocols, inflammation biology, supplement efficacy, the science behind Evaluate My Stack.</div>
+      </div>
+
+      <!-- Skin MD -->
+      <div style="border:1px solid var(--border);padding:24px;">
+        <div style="width:48px;height:48px;background:var(--off);border:1px solid var(--border);margin-bottom:14px;display:flex;align-items:center;justify-content:center;">
+          <span style="font-family:var(--serif);font-size:20px;color:var(--ink);font-weight:300;">MD</span>
+        </div>
+        <div style="font-size:9px;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:var(--red);margin-bottom:4px;">Dermatology</div>
+        <div style="font-size:14px;font-weight:500;color:var(--ink);margin-bottom:4px;">Medical Advisor</div>
+        <div style="font-size:9px;color:var(--mid);margin-bottom:12px;line-height:1.5;">Board-certified dermatologist with specialty in functional skin aging, photoaging, and the skin-systemic health connection.</div>
+        <div style="font-size:9px;color:var(--mid);line-height:1.7;border-top:1px solid var(--border);padding-top:12px;">Advises on: Brenner Index clinical context, skin biomarker interpretation, when to refer to a specialist, SkinScope protocols.</div>
+      </div>
+
+      <!-- Women's Health -->
+      <div style="border:1px solid var(--border);padding:24px;">
+        <div style="width:48px;height:48px;background:var(--off);border:1px solid var(--border);margin-bottom:14px;display:flex;align-items:center;justify-content:center;">
+          <span style="font-family:var(--serif);font-size:20px;color:var(--ink);font-weight:300;">WH</span>
+        </div>
+        <div style="font-size:9px;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:var(--red);margin-bottom:4px;">Women's Health</div>
+        <div style="font-size:14px;font-weight:500;color:var(--ink);margin-bottom:4px;">Medical Advisor</div>
+        <div style="font-size:9px;color:var(--mid);margin-bottom:12px;line-height:1.5;">Specialist in hormonal health, perimenopause, and the intersection of metabolic and skin biology in women over 35.</div>
+        <div style="font-size:9px;color:var(--mid);line-height:1.7;border-top:1px solid var(--border);padding-top:12px;">Advises on: hormonal rhythm tracking, HRT + supplement interactions, women-specific healthspan protocols and red flags.</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- WHAT DRRUBY TRACKS -->
+  <div style="background:var(--off);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:32px 40px;">
+    <div style="font-size:9px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--mid);margin-bottom:20px;">What Healthspan Tracks</div>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;">
+      <div>
+        <div style="font-size:10px;font-weight:600;color:var(--ink);margin-bottom:8px;padding-bottom:8px;border-bottom:2px solid var(--red);">Skin Biology</div>
+        <div style="font-size:9px;color:var(--mid);line-height:1.8;">Brenner Inflammation Index<br>Pigment Load Score<br>Collagen Kinetics<br>UV Damage Trend<br>Barrier Function</div>
+      </div>
+      <div>
+        <div style="font-size:10px;font-weight:600;color:var(--ink);margin-bottom:8px;padding-bottom:8px;border-bottom:2px solid var(--ink);">Energy & Recovery</div>
+        <div style="font-size:9px;color:var(--mid);line-height:1.8;">Self-reported energy trend<br>Sleep quality (via wearable)<br>HRV pattern<br>Exercise recovery score<br>NAD-relevant markers</div>
+      </div>
+      <div>
+        <div style="font-size:10px;font-weight:600;color:var(--ink);margin-bottom:8px;padding-bottom:8px;border-bottom:2px solid var(--ink);">Women's Health</div>
+        <div style="font-size:9px;color:var(--mid);line-height:1.8;">Hormonal cycle rhythm<br>Perimenopause signals<br>Mood + cognition log<br>Skin-hormone correlation<br>Supplement timing</div>
+      </div>
+      <div>
+        <div style="font-size:10px;font-weight:600;color:var(--ink);margin-bottom:8px;padding-bottom:8px;border-bottom:2px solid var(--ink);">Protocol Intelligence</div>
+        <div style="font-size:9px;color:var(--mid);line-height:1.8;">Stack evaluation<br>Redundancy detection<br>Gap identification<br>Evidence strength rating<br>Doctor-ready summaries</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- JENNIFER GUTHE — healthspan real user anchor -->
+  <div style="background:white;padding:40px;display:flex;align-items:center;gap:48px;border-bottom:1px solid var(--border);">
+    <div style="flex-shrink:0;width:64px;height:64px;background:var(--off);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;">
+      <span style="font-family:var(--serif);font-size:26px;font-weight:300;color:var(--ink);">JG</span>
+    </div>
+    <div style="flex:1;">
+      <div style="font-family:var(--serif);font-size:20px;font-weight:300;color:var(--ink);line-height:1.5;margin-bottom:10px;">"DrRuby gave me language I could bring into my doctor's office. Not a diagnosis — a conversation starter. That's exactly what was missing."</div>
+      <div style="font-size:9px;color:var(--mid);">Jennifer Gunter · DrRuby early tester · Los Angeles</div>
+    </div>
+    <div style="flex-shrink:0;text-align:right;">
+      <div style="font-size:9px;color:var(--mid);margin-bottom:4px;">Testing since</div>
+      <div style="font-family:var(--serif);font-size:22px;font-weight:300;color:var(--ink);">Day 1</div>
+      <div style="font-size:8px;color:var(--mid);">N=1 · Own data · Own pace</div>
+    </div>
+  </div>
+
+  <!-- BOTTOM CTA -->
+  <div style="background:var(--red);padding:32px 40px;display:flex;align-items:center;justify-content:space-between;">
+    <div>
+      <div style="font-family:var(--serif);font-size:22px;font-weight:300;color:white;margin-bottom:6px;">Your intel. Your doctor. Your decisions.</div>
+      <div style="font-size:10px;color:rgba(255,255,255,0.6);">DrRuby Healthspan — included with every membership · $20/month</div>
+    </div>
+    <div style="display:flex;gap:12px;">
+      <button onclick="showTab('user')" style="background:white;color:var(--red);border:none;padding:10px 22px;font-family:var(--sans);font-size:10px;font-weight:700;letter-spacing:0.1em;cursor:pointer;">Go to My Dashboard →</button>
+      <button onclick="showTab('skin')" style="background:transparent;color:white;border:1px solid rgba(255,255,255,0.4);padding:10px 22px;font-family:var(--sans);font-size:10px;font-weight:600;letter-spacing:0.1em;cursor:pointer;">← View My Skin Data</button>
+    </div>
+  </div>
+
+  <!-- HEALTHSPAN → CLINIC BRIDGE -->
+  <div style="background:var(--off);border-top:1px solid var(--border);padding:18px 40px;display:flex;align-items:center;justify-content:space-between;">
+    <div style="font-size:10px;color:var(--mid);">Ready to talk to a specialist about what you've found?</div>
+    <button onclick="showTab('clinic')" style="background:transparent;border:1px solid var(--border);color:var(--ink);padding:7px 18px;font-family:var(--sans);font-size:9px;font-weight:600;cursor:pointer;letter-spacing:0.1em;">Find a Partner Clinic →</button>
+  </div>
+
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     ARCHITECTURE
+═══════════════════════════════════════════════ -->
+<div id="tab-arch" class="screen">
+  <div class="sec-header">
+    <div>
+      <div class="sec-title">Information <em>Architecture</em></div>
+      <div class="sec-sub">页面结构与用户流</div>
+    </div>
+  </div>
+
+  <div class="anno">Overall Site Structure — 整体页面结构</div>
+  <div style="background:var(--white);border:1px solid var(--border);padding:32px;">
+    <div style="display:flex;flex-direction:column;gap:20px;">
+      <!-- Public -->
+      <div style="border:1px solid var(--border);padding:20px 24px;">
+        <div style="font-size:8px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--mid);margin-bottom:12px;">PUBLIC — No Login Required</div>
+        <div style="display:flex;gap:12px;flex-wrap:wrap;">
+          <div style="background:var(--off);padding:8px 16px;font-size:10px;color:var(--ink);">Homepage</div>
+          <div style="background:var(--off);padding:8px 16px;font-size:10px;color:var(--ink);">Skin Information</div>
+          <div style="background:var(--off);padding:8px 16px;font-size:10px;color:var(--ink);">Healthspan Information</div>
+          <div style="background:var(--off);padding:8px 16px;font-size:10px;color:var(--ink);">For Clinics</div>
+          <div style="background:var(--off);padding:8px 16px;font-size:10px;color:var(--ink);">Science / About</div>
+          <div style="background:var(--off);padding:8px 16px;font-size:10px;color:var(--ink);">Pricing</div>
+          <div style="background:var(--off);padding:8px 16px;font-size:10px;color:var(--ink);">Login / Register</div>
+        </div>
+      </div>
+      <!-- User Portal -->
+      <div style="border:1px solid rgba(200,16,46,0.2);padding:20px 24px;background:rgba(200,16,46,0.02);">
+        <div style="font-size:8px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--red);margin-bottom:12px;">USER PORTAL — Logged In (Consumer)</div>
+        <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:8px;">
+          <div style="background:var(--white);border:1px solid var(--border);padding:12px;font-size:10px;">
+            <div style="font-weight:600;color:var(--ink);margin-bottom:6px;">Dashboard</div>
+            <div style="font-size:9px;color:var(--mid);line-height:1.5;">Scores, alerts, recent activity</div>
+          </div>
+          <div style="background:var(--white);border:1px solid var(--border);padding:12px;font-size:10px;">
+            <div style="font-weight:600;color:var(--ink);margin-bottom:6px;">Health Profile</div>
+            <div style="font-size:9px;color:var(--mid);line-height:1.5;">Skin + Healthspan data, history</div>
+          </div>
+          <div style="background:var(--white);border:1px solid var(--border);padding:12px;font-size:10px;">
+            <div style="font-weight:600;color:var(--ink);margin-bottom:6px;">AI Reports</div>
+            <div style="font-size:9px;color:var(--mid);line-height:1.5;">Analysis, findings, PDF export</div>
+          </div>
+          <div style="background:var(--white);border:1px solid rgba(200,16,46,0.3);padding:12px;font-size:10px;">
+            <div style="font-weight:600;color:var(--red);margin-bottom:6px;">AI Coach · UI Layer</div>
+            <div style="font-size:9px;color:var(--mid);line-height:1.5;">Presents Insight Engine outputs in natural language. Proactive push + conversational logging. Not a chatbot — a UI for the data engine.</div>
+          </div>
+          <div style="background:var(--white);border:1px solid var(--border);padding:12px;font-size:10px;">
+            <div style="font-weight:600;color:var(--ink);margin-bottom:6px;">Clinic + Shop</div>
+            <div style="font-size:9px;color:var(--mid);line-height:1.5;">Book, buy, track</div>
+          </div>
+        </div>
+      </div>
+      <!-- Clinic Portal -->
+      <div style="border:1px solid #888;padding:20px 24px;background:rgba(0,0,0,0.01);">
+        <div style="font-size:8px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:#888;margin-bottom:12px;">CLINIC PORTAL — Logged In (B2B)</div>
+        <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:8px;">
+          <div style="background:var(--white);border:1px solid var(--border);padding:12px;font-size:10px;">
+            <div style="font-weight:600;color:var(--ink);margin-bottom:6px;">Dashboard</div>
+            <div style="font-size:9px;color:var(--mid);line-height:1.5;">KPIs, today's schedule</div>
+          </div>
+          <div style="background:var(--white);border:1px solid var(--border);padding:12px;font-size:10px;">
+            <div style="font-weight:600;color:var(--ink);margin-bottom:6px;">Patients</div>
+            <div style="font-size:9px;color:var(--mid);line-height:1.5;">List, records, DrRuby data</div>
+          </div>
+          <div style="background:var(--white);border:1px solid var(--border);padding:12px;font-size:10px;">
+            <div style="font-weight:600;color:var(--ink);margin-bottom:6px;">Reports</div>
+            <div style="font-size:9px;color:var(--mid);line-height:1.5;">AI draft, review, send</div>
+          </div>
+          <div style="background:var(--white);border:1px solid var(--border);padding:12px;font-size:10px;">
+            <div style="font-weight:600;color:var(--ink);margin-bottom:6px;">Appointments</div>
+            <div style="font-size:9px;color:var(--mid);line-height:1.5;">Calendar, manage, notify</div>
+          </div>
+          <div style="background:var(--white);border:1px solid var(--border);padding:12px;font-size:10px;">
+            <div style="font-weight:600;color:var(--ink);margin-bottom:6px;">Finance</div>
+            <div style="font-size:9px;color:var(--mid);line-height:1.5;">Revenue, commissions, payouts</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="anno">AI Technical Architecture — 五层系统架构</div>
+  <div style="background:var(--white);border:1px solid var(--border);padding:28px 32px;">
+    <div style="font-size:9px;color:var(--mid);margin-bottom:20px;">The product is the Insight Engine (Layer 3). The chatbot is the UI. RAG knowledge base is table stakes — not the moat.</div>
+    <div style="display:flex;flex-direction:column;gap:0;">
+
+      <div style="border:1px solid var(--border);padding:16px 20px;background:#F5F5F5;">
+        <div style="display:flex;align-items:center;gap:16px;">
+          <div style="font-size:9px;font-weight:700;color:var(--mid);letter-spacing:0.16em;text-transform:uppercase;min-width:80px;">Layer 1</div>
+          <div>
+            <div style="font-size:11px;font-weight:700;color:var(--ink);">Evidence Graph · RAG Knowledge Base</div>
+            <div style="font-size:9px;color:var(--mid);margin-top:3px;">Structured scientific claims from Brenner (NAD+, metabolism), Gunter (women's health, pending), dermatology literature · evidence_level tiers: rct / clinical_guideline / expert_opinion / emerging · PostgreSQL + pgvector · Not the moat — table stakes</div>
+          </div>
+          <div style="margin-left:auto;font-size:8px;background:#E8E8E8;color:#888;padding:3px 10px;border-radius:20px;white-space:nowrap;">Table stakes</div>
+        </div>
+      </div>
+      <div style="text-align:center;font-size:14px;color:rgba(200,16,46,0.3);padding:4px;">↓</div>
+
+      <div style="border:1px solid var(--border);padding:16px 20px;background:#F5F5F5;">
+        <div style="display:flex;align-items:center;gap:16px;">
+          <div style="font-size:9px;font-weight:700;color:var(--mid);letter-spacing:0.16em;text-transform:uppercase;min-width:80px;">Layer 2</div>
+          <div>
+            <div style="font-size:11px;font-weight:700;color:var(--ink);">User Longitudinal Data · On-Device</div>
+            <div style="font-size:9px;color:var(--mid);margin-top:3px;">Labs, wearables, skin photos, symptoms, interventions, outcomes — stored locally encrypted (Core Data / Room + SQLCipher) · Tiered consent: Tier 0 default on-device, Tier 1 opt-in encrypted upload, Tier 2 opt-in research contribution</div>
+          </div>
+          <div style="margin-left:auto;font-size:8px;background:#E3F2FD;color:#1565C0;padding:3px 10px;border-radius:20px;white-space:nowrap;">Input to moat</div>
+        </div>
+      </div>
+      <div style="text-align:center;font-size:14px;color:rgba(200,16,46,0.3);padding:4px;">↓</div>
+
+      <div style="border:2px solid var(--red);padding:16px 20px;background:rgba(200,16,46,0.03);">
+        <div style="display:flex;align-items:center;gap:16px;">
+          <div style="font-size:9px;font-weight:700;color:var(--red);letter-spacing:0.16em;text-transform:uppercase;min-width:80px;">Layer 3</div>
+          <div style="flex:1;">
+            <div style="font-size:11px;font-weight:700;color:var(--ink);">DrRuby Insight Engine · N-of-1 Analytics <span style="color:var(--red);">← THE MOAT</span></div>
+            <div style="font-size:9px;color:var(--mid);margin-top:3px;line-height:1.7;">
+              Change detection (moving average, z-score) · Intervention Graph (what worked for <em>this</em> user, with lag and confidence) · Proprietary scores: Skin Age Score, Metabolic Score, Recovery Score, Inflammation Score, Hormonal Stability Index · V1: rule-based + statistical · V2: Bayesian attribution · Patent candidates: scoring methodology + Intervention Graph structure
+            </div>
+          </div>
+          <div style="margin-left:auto;font-size:8px;background:rgba(200,16,46,0.1);color:var(--red);padding:3px 10px;border-radius:20px;white-space:nowrap;font-weight:700;">IP · File patent</div>
+        </div>
+      </div>
+      <div style="text-align:center;font-size:14px;color:rgba(200,16,46,0.3);padding:4px;">↓</div>
+
+      <div style="border:1px solid var(--border);padding:16px 20px;background:#F5F5F5;">
+        <div style="display:flex;align-items:center;gap:16px;">
+          <div style="font-size:9px;font-weight:700;color:var(--mid);letter-spacing:0.16em;text-transform:uppercase;min-width:80px;">Layer 4</div>
+          <div>
+            <div style="font-size:11px;font-weight:700;color:var(--ink);">Recommendation Engine</div>
+            <div style="font-size:9px;color:var(--mid);margin-top:3px;">Combines Layer 3 insights + Layer 1 evidence → structured recommendation object · This runs before the LLM, not inside it · Output is structured data, not prose</div>
+          </div>
+          <div style="margin-left:auto;font-size:8px;background:#E8F5E9;color:#2E7D32;padding:3px 10px;border-radius:20px;white-space:nowrap;">Differentiator</div>
+        </div>
+      </div>
+      <div style="text-align:center;font-size:14px;color:rgba(200,16,46,0.3);padding:4px;">↓</div>
+
+      <div style="border:1px solid var(--border);padding:16px 20px;background:#F5F5F5;">
+        <div style="display:flex;align-items:center;gap:16px;">
+          <div style="font-size:9px;font-weight:700;color:var(--mid);letter-spacing:0.16em;text-transform:uppercase;min-width:80px;">Layer 5</div>
+          <div>
+            <div style="font-size:11px;font-weight:700;color:var(--ink);">Conversation Interface · UI Only</div>
+            <div style="font-size:9px;color:var(--mid);margin-top:3px;">LLM API (Claude / GPT-4o) translates Layer 3+4 structured output into natural language + citations · Proactive push when Insight Engine detects change · Conversational data logging ("I started NR today" → writes to Intervention Graph) · Hybrid UI: score cards + chat · FDA guardrails embedded in system prompt</div>
+          </div>
+          <div style="margin-left:auto;font-size:8px;background:#E8E8E8;color:#888;padding:3px 10px;border-radius:20px;white-space:nowrap;">UI, not product</div>
+        </div>
+      </div>
+
+    </div>
+    <div style="margin-top:16px;padding:12px 16px;background:#FFF8E1;border:1px solid #E8C080;font-size:8.5px;color:#8B5E20;line-height:1.7;">
+      <strong>Why this can't be replicated in 3 weeks:</strong> Layer 1 (RAG on PubMed) can. Layers 3–4 cannot — because they require months of a user's longitudinal data and the Intervention Graph that grows with it. The data is the moat. Brenner's role is Scientific Advisory Board — he defines scoring methodology, not claim validation.
+    </div>
+  </div>
+
+  <div class="anno">User Flow — 两个用户旅程</div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;">
+    <div style="background:var(--white);border:1px solid var(--border);padding:24px;">
+      <div style="font-size:9px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--red);margin-bottom:16px;">Consumer Journey</div>
+      <div class="arch-flow" style="flex-direction:column;align-items:flex-start;gap:8px;padding:0;">
+        <div style="display:flex;align-items:center;gap:12px;"><div class="af-box" style="min-width:160px;">Visit Homepage</div><span style="font-size:9px;color:var(--mid);">首页</span></div>
+        <div style="padding-left:12px;font-size:16px;color:rgba(200,16,46,0.3);">↓</div>
+        <div style="display:flex;align-items:center;gap:12px;"><div class="af-box" style="min-width:160px;">Choose Skin or Healthspan</div><span style="font-size:9px;color:var(--mid);">双入口选择</span></div>
+        <div style="padding-left:12px;font-size:16px;color:rgba(200,16,46,0.3);">↓</div>
+        <div style="display:flex;align-items:center;gap:12px;"><div class="af-box red" style="min-width:160px;">Register / Onboard</div><span style="font-size:9px;color:var(--mid);">注册</span></div>
+        <div style="padding-left:12px;font-size:16px;color:rgba(200,16,46,0.3);">↓</div>
+        <div style="display:flex;align-items:center;gap:12px;"><div class="af-box" style="min-width:160px;">Upload Data / Connect Devices</div><span style="font-size:9px;color:var(--mid);">数据接入</span></div>
+        <div style="padding-left:12px;font-size:16px;color:rgba(200,16,46,0.3);">↓</div>
+        <div style="display:flex;align-items:center;gap:12px;"><div class="af-box" style="min-width:160px;">Receive AI Report</div><span style="font-size:9px;color:var(--mid);">AI分析</span></div>
+        <div style="padding-left:12px;font-size:16px;color:rgba(200,16,46,0.3);">↓</div>
+        <div style="display:flex;align-items:center;gap:12px;"><div class="af-box" style="min-width:160px;">Chat with AI Coach</div><span style="font-size:9px;color:var(--mid);">个人Coach</span></div>
+        <div style="padding-left:12px;font-size:16px;color:rgba(200,16,46,0.3);">↓</div>
+        <div style="display:flex;align-items:center;gap:12px;"><div class="af-box" style="min-width:160px;">Book Clinic / Buy Products</div><span style="font-size:9px;color:var(--mid);">预约 + 购买</span></div>
+      </div>
+    </div>
+    <div style="background:var(--white);border:1px solid var(--border);padding:24px;">
+      <div style="font-size:9px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:#888;margin-bottom:16px;">Clinic Journey</div>
+      <div class="arch-flow" style="flex-direction:column;align-items:flex-start;gap:8px;padding:0;">
+        <div style="display:flex;align-items:center;gap:12px;"><div class="af-box" style="min-width:160px;">Apply / Onboard as Clinic</div><span style="font-size:9px;color:var(--mid);">合作申请</span></div>
+        <div style="padding-left:12px;font-size:16px;color:rgba(200,16,46,0.3);">↓</div>
+        <div style="display:flex;align-items:center;gap:12px;"><div class="af-box" style="min-width:160px;">Set Up Clinic Profile</div><span style="font-size:9px;color:var(--mid);">诊所资料</span></div>
+        <div style="padding-left:12px;font-size:16px;color:rgba(200,16,46,0.3);">↓</div>
+        <div style="display:flex;align-items:center;gap:12px;"><div class="af-box red" style="min-width:160px;">Patient Requests Appointment</div><span style="font-size:9px;color:var(--mid);">患者预约</span></div>
+        <div style="padding-left:12px;font-size:16px;color:rgba(200,16,46,0.3);">↓</div>
+        <div style="display:flex;align-items:center;gap:12px;"><div class="af-box" style="min-width:160px;">Review Patient DrRuby Data</div><span style="font-size:9px;color:var(--mid);">患者数据</span></div>
+        <div style="padding-left:12px;font-size:16px;color:rgba(200,16,46,0.3);">↓</div>
+        <div style="display:flex;align-items:center;gap:12px;"><div class="af-box" style="min-width:160px;">Conduct Appointment</div><span style="font-size:9px;color:var(--mid);">就诊</span></div>
+        <div style="padding-left:12px;font-size:16px;color:rgba(200,16,46,0.3);">↓</div>
+        <div style="display:flex;align-items:center;gap:12px;"><div class="af-box" style="min-width:160px;">Generate AI Report for Patient</div><span style="font-size:9px;color:var(--mid);">AI报告</span></div>
+        <div style="padding-left:12px;font-size:16px;color:rgba(200,16,46,0.3);">↓</div>
+        <div style="display:flex;align-items:center;gap:12px;"><div class="af-box" style="min-width:160px;">Track Revenue & Payouts</div><span style="font-size:9px;color:var(--mid);">收益管理</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     STYLE GUIDE
+═══════════════════════════════════════════════ -->
+<div id="tab-style" class="screen">
+  <div class="sec-header">
+    <div>
+      <div class="sec-title">Style <em>Guide</em></div>
+      <div class="sec-sub">颜色 · 字体 · 组件</div>
+    </div>
+  </div>
+
+  <div class="anno">Color Palette — 品牌颜色</div>
+  <div style="background:var(--white);border:1px solid var(--border);padding:28px;">
+    <div class="palette">
+      <div class="pal-swatch"><div class="pal-color" style="background:#C8102E;"></div><div class="pal-name">Primary Red</div><div class="pal-hex">#C8102E</div></div>
+      <div class="pal-swatch"><div class="pal-color" style="background:#1A1A1A;"></div><div class="pal-name">Deep Ink</div><div class="pal-hex">#1A1A1A</div></div>
+      <div class="pal-swatch"><div class="pal-color" style="background:#FFFFFF;border:1px solid #E8E5E2;"></div><div class="pal-name">White</div><div class="pal-hex">#FFFFFF</div></div>
+      <div class="pal-swatch"><div class="pal-color" style="background:#F8F7F5;"></div><div class="pal-name">Off White</div><div class="pal-hex">#F8F7F5</div></div>
+      <div class="pal-swatch"><div class="pal-color" style="background:#F0EFED;"></div><div class="pal-name">Light Grey</div><div class="pal-hex">#F0EFED</div></div>
+      <div class="pal-swatch"><div class="pal-color" style="background:#E8E5E2;"></div><div class="pal-name">Border Grey</div><div class="pal-hex">#E8E5E2</div></div>
+      <div class="pal-swatch"><div class="pal-color" style="background:#888888;"></div><div class="pal-name">Mid Grey</div><div class="pal-hex">#888888</div></div>
+      <div class="pal-swatch"><div class="pal-color" style="background:#1F9E5A;"></div><div class="pal-name">Success Green</div><div class="pal-hex">#1F9E5A</div></div>
+      <div class="pal-swatch"><div class="pal-color" style="background:#B86A00;"></div><div class="pal-name">Warning Amber</div><div class="pal-hex">#B86A00</div></div>
+    </div>
+  </div>
+
+  <div class="anno">Typography — 字体系统</div>
+  <div class="type-row">
+    <div class="type-item">
+      <div class="type-meta">Cormorant Garamond 300<br>Display / Hero</div>
+      <div class="type-sample-xl">Know your body.</div>
+    </div>
+    <div class="type-item">
+      <div class="type-meta">Cormorant Garamond 300<br>Section Titles</div>
+      <div class="type-sample-lg">Personal Health Intelligence</div>
+    </div>
+    <div class="type-item">
+      <div class="type-meta">Jost 400<br>Body / Cards</div>
+      <div class="type-sample-md">AI-powered analysis, personalized for you.</div>
+    </div>
+    <div class="type-item">
+      <div class="type-meta">Jost 300<br>Body Text</div>
+      <div class="type-sample-sm">Biomarker tracking and personalized protocols to help you live better — grounded in science.</div>
+    </div>
+    <div class="type-item">
+      <div class="type-meta">Jost 600 Uppercase<br>Labels / Tags</div>
+      <div class="type-sample-cap">Skin Intelligence · AI Analysis · Healthspan</div>
+    </div>
+  </div>
+
+  <div class="anno">Mobile Preview — 移动端适配</div>
+  <div class="mobile-preview">
+    <div class="mobile-frame">
+      <div class="mf-notch"><div class="mf-notch-bar"></div></div>
+      <div class="mf-screen">
+        <div class="mf-nav">
+          <div class="mf-logo">Dr<span>Ruby</span></div>
+          <div style="font-size:18px;color:rgba(255,255,255,0.5);">☰</div>
+        </div>
+        <div class="mf-hero">
+          <div class="mf-hero-t">Know your body.<br>Before it speaks.</div>
+        </div>
+        <div class="mf-choice-row">
+          <div class="mf-choice s">
+            <div class="mf-choice-icon">✨</div>
+            <div class="mf-choice-label">Skin</div>
+          </div>
+          <div class="mf-choice h">
+            <div class="mf-choice-icon">🧬</div>
+            <div class="mf-choice-label">Healthspan</div>
+          </div>
+        </div>
+        <div style="height:80px;background:var(--off);display:flex;align-items:center;justify-content:center;padding:12px;">
+          <div style="width:100%;height:8px;background:var(--border);border-radius:4px;"></div>
+        </div>
+        <div class="mf-bottom-nav">
+          <div class="mf-bnav-item active">
+            <div class="mf-bnav-icon">🏠</div>
+            <div class="mf-bnav-label" style="color:var(--red);">Home</div>
+          </div>
+          <div class="mf-bnav-item">
+            <div class="mf-bnav-icon">📊</div>
+            <div class="mf-bnav-label">Dashboard</div>
+          </div>
+          <div class="mf-bnav-item">
+            <div class="mf-bnav-icon">💬</div>
+            <div class="mf-bnav-label">Coach</div>
+          </div>
+          <div class="mf-bnav-item">
+            <div class="mf-bnav-icon">🏥</div>
+            <div class="mf-bnav-label">Clinics</div>
+          </div>
+          <div class="mf-bnav-item">
+            <div class="mf-bnav-icon">👤</div>
+            <div class="mf-bnav-label">Profile</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="mobile-notes">
+      <div class="mnote">
+        <div class="mnote-num">1</div>
+        <div class="mnote-text"><strong>顶部导航</strong> — 极简 hamburger 菜单，品牌 logo 居中或靠左。深色背景与品牌保持一致。</div>
+      </div>
+      <div class="mnote">
+        <div class="mnote-num">2</div>
+        <div class="mnote-text"><strong>Hero 全宽</strong> — 大图 + 斜体品牌语，滑动进入双入口卡片选择。</div>
+      </div>
+      <div class="mnote">
+        <div class="mnote-num">3</div>
+        <div class="mnote-text"><strong>Skin / Healthspan 双卡</strong> — 移动端横排，各占 50%，点击进入对应功能流程。</div>
+      </div>
+      <div class="mnote">
+        <div class="mnote-num">4</div>
+        <div class="mnote-text"><strong>底部导航栏</strong> — 5 个核心入口：Home · Dashboard · AI Coach · Clinics · Profile。固定在屏幕底部。</div>
+      </div>
+      <div class="mnote">
+        <div class="mnote-num">5</div>
+        <div class="mnote-text"><strong>数据隐私</strong> — AI Coach 数据存储在设备本地 (on-device)，在 Profile 页面展示隐私说明。</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+function showTab(name) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById('tab-' + name).classList.add('active');
+  event.target.classList.add('active');
+}
+
+// ── HERO CAROUSEL ──
+let currentSlide = 0;
+const totalSlides = 4;
+let autoTimer, progressTimer;
+
+function goToSlide(n) {
+  currentSlide = (n + totalSlides) % totalSlides;
+  const slides = document.getElementById('heroSlides');
+  const dots = document.querySelectorAll('.c-dot');
+  const counter = document.getElementById('slideCounter');
+  const progress = document.getElementById('carouselProgress');
+  if (!slides) return;
+  slides.style.transform = `translateX(-${currentSlide * 100}%)`;
+  dots.forEach((d,i) => d.classList.toggle('active', i === currentSlide));
+  if (counter) counter.innerHTML = `<span>${String(currentSlide+1).padStart(2,'0')}</span> / 04`;
+  // reset progress bar
+  if (progress) {
+    progress.style.transition = 'none';
+    progress.style.width = '0%';
+    setTimeout(() => {
+      progress.style.transition = 'width 4.5s linear';
+      progress.style.width = '100%';
+    }, 50);
+  }
+}
+
+function changeSlide(dir) {
+  clearInterval(autoTimer);
+  goToSlide(currentSlide + dir);
+  startAuto();
+}
+
+function startAuto() {
+  clearInterval(autoTimer);
+  autoTimer = setInterval(() => {
+    goToSlide(currentSlide + 1);
+  }, 4800);
+}
+
+// Start on load
+window.addEventListener('load', () => {
+  goToSlide(0);
+  startAuto();
+});
+</script>
+</body>
+</html>
