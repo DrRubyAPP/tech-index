@@ -32,7 +32,7 @@ p,li,td,div{min-font-size:14px;}
 .doc-meta{font-size:15px;color:rgba(255,255,255,0.3);text-align:right;letter-spacing:0.06em;}
 
 /* ── NAV TABS ── */
-.nav-tabs{background:var(--white);border-bottom:1px solid var(--border);display:flex;padding:0 48px;gap:0;position:sticky;top:0;z-index:100;}
+.nav-tabs{background:var(--white);border-bottom:1px solid var(--border);display:flex;padding:0 24px;gap:0;position:sticky;top:0;z-index:100;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch;}.nav-tabs::-webkit-scrollbar{display:none;}
 .tab{font-size:14px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;padding:18px 24px;cursor:pointer;color:var(--mid);border-bottom:2px solid transparent;transition:all 0.2s;white-space:nowrap;}
 .tab:hover{color:var(--ink);}
 .tab.active{color:var(--red);border-bottom-color:var(--red);}
@@ -1476,41 +1476,50 @@ p,li,td,div{min-font-size:14px;}
         <div style="font-size:14px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--red);margin-bottom:12px;display:flex;align-items:center;gap:8px;"><span style="display:block;width:12px;height:1px;background:var(--red);"></span>The 3 Brenner Skin Indices · Latest Scan Jun 8</div>
       </div>
       <div class="indices-row" style="margin:0 28px;">
-        <!-- Inflammation Index -->
+        <!-- Inflammatory Activity -->
         <div class="index-card">
-          <div class="index-eyebrow">Biomarker 01</div>
-          <div class="index-name">Erythema Score</div>
-          <div class="index-score-row">
-            <div class="index-score good">72</div>
-            <div class="index-score-max">/100</div>
+          <div class="index-eyebrow">Direct Signal 01</div>
+          <div class="index-name">Inflammatory Activity</div>
+          <div class="index-score-row" style="gap:8px;align-items:center;">
+            <div style="font-size:32px;font-weight:600;color:#C8102E;line-height:1;">↑</div>
+            <div style="display:flex;flex-direction:column;gap:2px;">
+              <div style="font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#C8102E;">Improving</div>
+              <div style="font-size:11px;color:#888;letter-spacing:0.08em;">Confidence: <strong style="color:#111;">High</strong></div>
+            </div>
           </div>
           <div class="index-bar-wrap"><div class="index-bar good" style="width:72%;"></div></div>
-          <div class="index-desc">Measures skin redness and erythema density — an early signal of inflammation, hormonal shifts, and barrier stress.</div>
-          <div class="index-trend up">↑ +6 pts since last scan</div>
+          <div class="index-desc">Skin redness and erythema density — an early visible signal of inflammatory activity and barrier stress.</div>
+          <div class="index-trend up">↑ Trending up since last scan</div>
         </div>
         <!-- Pigmentation Index -->
         <div class="index-card" style="background:var(--off);">
-          <div class="index-eyebrow">Biomarker 02</div>
+          <div class="index-eyebrow">Direct Signal 02</div>
           <div class="index-name">Pigmentation Index</div>
-          <div class="index-score-row">
-            <div class="index-score warn">58</div>
-            <div class="index-score-max">/100</div>
+          <div class="index-score-row" style="gap:8px;align-items:center;">
+            <div style="font-size:32px;font-weight:600;color:#888;line-height:1;">↓</div>
+            <div style="display:flex;flex-direction:column;gap:2px;">
+              <div style="font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#888;">Needs Attention</div>
+              <div style="font-size:11px;color:#888;letter-spacing:0.08em;">Confidence: <strong style="color:#111;">Medium</strong></div>
+            </div>
           </div>
           <div class="index-bar-wrap"><div class="index-bar warn" style="width:58%;"></div></div>
           <div class="index-desc">Tracks uneven pigmentation, UV damage accumulation, and melanin distribution patterns over time.</div>
-          <div class="index-trend dn">↓ −3 pts — sun exposure detected</div>
+          <div class="index-trend dn">↓ Declining — sun exposure detected</div>
         </div>
-        <!-- Texture & Pore Score -->
+        <!-- Texture & Pore -->
         <div class="index-card">
-          <div class="index-eyebrow">Biomarker 03</div>
-          <div class="index-name">Texture & Pore Score</div>
-          <div class="index-score-row">
-            <div class="index-score good">81</div>
-            <div class="index-score-max">/100</div>
+          <div class="index-eyebrow">Direct Signal 03</div>
+          <div class="index-name">Texture & Pore</div>
+          <div class="index-score-row" style="gap:8px;align-items:center;">
+            <div style="font-size:32px;font-weight:600;color:#C8102E;line-height:1;">↑</div>
+            <div style="display:flex;flex-direction:column;gap:2px;">
+              <div style="font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#C8102E;">Improving</div>
+              <div style="font-size:11px;color:#888;letter-spacing:0.08em;">Confidence: <strong style="color:#111;">High</strong></div>
+            </div>
           </div>
           <div class="index-bar-wrap"><div class="index-bar good" style="width:81%;"></div></div>
           <div class="index-desc">Assesses pore size distribution and surface texture uniformity — reflects skin structure and barrier function over time.</div>
-          <div class="index-trend up">↑ +9 pts this quarter</div>
+          <div class="index-trend up">↑ Strong improvement this quarter</div>
         </div>
       </div>
       <div style="margin:0 28px 0;padding:10px 14px;background:rgba(200,16,46,0.04);border:1px solid rgba(200,16,46,0.1);border-top:none;">
@@ -1558,7 +1567,7 @@ p,li,td,div{min-font-size:14px;}
             <div class="ai-finding good">
               <div>
                 <div class="ai-find-title">Barrier function strengthening</div>
-                <div class="ai-find-desc">Inflammation score up 6pts. Consistent with peptide serum introduction 4 weeks ago.</div>
+                <div class="ai-find-desc">Inflammatory Activity trending up. Consistent with peptide serum introduction 4 weeks ago.</div>
               </div>
               <div class="ai-tag good">Positive</div>
             </div>
@@ -1604,13 +1613,13 @@ p,li,td,div{min-font-size:14px;}
             <div class="prod-item" style="flex-direction:column;align-items:flex-start;border:1px solid var(--border);padding:14px;border-bottom:1px solid var(--border);">
               <div style="font-size:18px;margin-bottom:8px;">💊</div>
               <div class="prod-name">Collagen Peptide Complex</div>
-              <div class="prod-reason" style="margin:4px 0 8px;">Supports collagen index</div>
+              <div class="prod-reason" style="margin:4px 0 8px;">Supports skin barrier function</div>
               <div style="font-size:15px;font-weight:700;color:var(--red);">Match 88</div>
             </div>
             <div class="prod-item" style="flex-direction:column;align-items:flex-start;border:1px solid rgba(200,16,46,0.15);padding:14px;background:rgba(200,16,46,0.02);border-bottom:1px solid rgba(200,16,46,0.15);">
               <div style="font-size:18px;margin-bottom:8px;">🔬</div>
               <div class="prod-name">SkinScope Attachment</div>
-              <div class="prod-reason" style="margin:4px 0 8px;">Unlock full Collagen data</div>
+              <div class="prod-reason" style="margin:4px 0 8px;">Unlock full Structural signals (Phase 2)</div>
               <div style="font-size:15px;font-weight:700;color:var(--red);">$99 — Upgrade</div>
             </div>
           </div>
@@ -1826,8 +1835,8 @@ p,li,td,div{min-font-size:14px;}
 
               <!-- Score card click → chatbot explains (Principle 4 hybrid UI) -->
               <div style="background:white;border:1px solid var(--border);border-radius:2px 12px 12px 12px;padding:10px 13px;max-width:88%;">
-                <div style="font-size:14px;color:var(--mid);margin-bottom:5px;">You tapped: Skin Score 78 ↑+4</div>
-                <div style="font-size:15px;color:var(--ink);line-height:1.7;">Your Skin Score rose 4 points this month. The main driver is <strong>hydration (+18%)</strong> — consistent with your new HA serum (started May 22). Your Collagen Index is still at 58; this is the gap to watch.<br><span style="font-size:14px;color:var(--mid);">Based on: Skin scan Jun 5 · Wearable sleep data · Intervention log</span></div>
+                <div style="font-size:14px;color:var(--mid);margin-bottom:5px;">You tapped: Skin State ↑ Improving</div>
+                <div style="font-size:15px;color:var(--ink);line-height:1.7;">Your Skin State has been improving this month. The main driver is <strong>hydration</strong> — consistent with your new HA serum (started May 22). Pigmentation is the signal to watch — it's trending down.<br><span style="font-size:14px;color:var(--mid);">Based on: Skin scan Jun 5 · Wearable sleep data · Intervention log</span></div>
               </div>
 
             </div>
@@ -1837,7 +1846,7 @@ p,li,td,div{min-font-size:14px;}
               <div style="display:flex;gap:6px;margin-bottom:8px;flex-wrap:wrap;">
                 <div style="font-size:14px;background:var(--off);color:var(--ink);padding:4px 10px;border-radius:20px;cursor:pointer;border:1px solid var(--border);">Why is my Vitamin D low?</div>
                 <div style="font-size:14px;background:var(--off);color:var(--ink);padding:4px 10px;border-radius:20px;cursor:pointer;border:1px solid var(--border);">I started HRT today</div>
-                <div style="font-size:14px;background:var(--off);color:var(--ink);padding:4px 10px;border-radius:20px;cursor:pointer;border:1px solid var(--border);">Explain my collagen score</div>
+                <div style="font-size:14px;background:var(--off);color:var(--ink);padding:4px 10px;border-radius:20px;cursor:pointer;border:1px solid var(--border);">How is my Skin State trending?</div>
               </div>
               <div style="display:flex;gap:8px;align-items:center;">
                 <input style="flex:1;border:1px solid var(--border);border-radius:6px;padding:8px 12px;font-size:15px;font-family:inherit;outline:none;" placeholder="Ask a question or log something (supplement, symptom, lab…)">
@@ -2056,9 +2065,9 @@ p,li,td,div{min-font-size:14px;}
               <tr>
                 <th>Patient</th>
                 <th>Scan Date</th>
-                <th>Inflammation</th>
-                <th>Pigment</th>
-                <th>Collagen</th>
+                <th>Inflammatory Activity</th>
+                <th>Pigmentation</th>
+                <th>Texture & Structure</th>
                 <th>Data Auth</th>
                 <th></th>
               </tr>
@@ -2067,45 +2076,45 @@ p,li,td,div{min-font-size:14px;}
               <tr style="background:rgba(200,16,46,0.02);">
                 <td><span class="pt-name">Sarah Mitchell</span></td>
                 <td>Jun 8</td>
-                <td><span style="color:#888888;font-weight:500;">61/100</span></td>
-                <td><span style="color:var(--red);font-weight:500;">48/100</span></td>
-                <td><span style="color:var(--red);font-weight:500;">74/100</span></td>
+                <td><span style="color:#888888;font-weight:500;">↔ Stable</span></td>
+                <td><span style="color:var(--red);font-weight:500;">↓ Declining</span></td>
+                <td><span style="color:var(--red);font-weight:500;">↑ Improving</span></td>
                 <td><span style="font-size:14px;color:var(--red);">● Authorized</span></td>
                 <td><button class="appt-btn start" style="font-size:14px;padding:3px 10px;">Review</button></td>
               </tr>
               <tr>
                 <td><span class="pt-name">Mia Johnson</span></td>
                 <td>Jun 7</td>
-                <td><span style="color:var(--red);font-weight:500;">78/100</span></td>
-                <td><span style="color:#888888;font-weight:500;">55/100</span></td>
-                <td><span style="color:var(--red);font-weight:500;">82/100</span></td>
+                <td><span style="color:var(--red);font-weight:500;">↑ Improving</span></td>
+                <td><span style="color:#888888;font-weight:500;">↔ Stable</span></td>
+                <td><span style="color:var(--red);font-weight:500;">↑ Improving</span></td>
                 <td><span style="font-size:14px;color:var(--red);">● Authorized</span></td>
                 <td><button class="appt-btn start" style="font-size:14px;padding:3px 10px;">Review</button></td>
               </tr>
               <tr>
                 <td><span class="pt-name">Emily Carter</span></td>
                 <td>Jun 6</td>
-                <td><span style="color:var(--red);font-weight:500;">84/100</span></td>
-                <td><span style="color:var(--red);font-weight:500;">72/100</span></td>
-                <td><span style="color:var(--red);font-weight:500;">88/100</span></td>
+                <td><span style="color:var(--red);font-weight:500;">↑ Improving</span></td>
+                <td><span style="color:var(--red);font-weight:500;">↑ Improving</span></td>
+                <td><span style="color:var(--red);font-weight:500;">↑ Strong</span></td>
                 <td><span style="font-size:14px;color:var(--red);">● Authorized</span></td>
                 <td><button class="appt-btn start" style="font-size:14px;padding:3px 10px;">Review</button></td>
               </tr>
               <tr>
                 <td><span class="pt-name">Rachel Thompson</span></td>
                 <td>Jun 5</td>
-                <td><span style="color:#888888;font-weight:500;">66/100</span></td>
-                <td><span style="color:#888888;font-weight:500;">59/100</span></td>
-                <td><span style="color:#888888;font-weight:500;">63/100</span></td>
+                <td><span style="color:#888888;font-weight:500;">↔ Stable</span></td>
+                <td><span style="color:#888888;font-weight:500;">↔ Stable</span></td>
+                <td><span style="color:#888888;font-weight:500;">↔ Stable</span></td>
                 <td><span style="font-size:14px;color:var(--red);">● Authorized</span></td>
                 <td><button class="appt-btn start" style="font-size:14px;padding:3px 10px;">Review</button></td>
               </tr>
               <tr>
                 <td><span class="pt-name">Claire Foster</span></td>
                 <td>Jun 5</td>
-                <td><span style="color:var(--red);font-weight:500;">44/100</span></td>
-                <td><span style="color:var(--red);font-weight:500;">41/100</span></td>
-                <td><span style="color:#888888;font-weight:500;">58/100</span></td>
+                <td><span style="color:var(--red);font-weight:500;">↓ Declining</span></td>
+                <td><span style="color:var(--red);font-weight:500;">↓ Declining</span></td>
+                <td><span style="color:#888888;font-weight:500;">↔ Stable</span></td>
                 <td><span style="font-size:14px;color:var(--red);">● Authorized</span></td>
                 <td><button class="appt-btn start" style="font-size:14px;padding:3px 10px;">Review</button></td>
               </tr>
@@ -2175,8 +2184,8 @@ p,li,td,div{min-font-size:14px;}
                   <span style="font-size:14px;font-weight:600;color:var(--red);border:1px solid rgba(200,16,46,0.3);padding:2px 7px;">NEW</span>
                 </div>
                 <div style="display:flex;gap:8px;margin-bottom:10px;">
-                  <div style="font-size:14px;background:rgba(200,16,46,0.07);color:var(--red);padding:2px 8px;font-weight:600;">Inflammation 52</div>
-                  <div style="font-size:14px;background:rgba(136,136,136,0.07);color:#888888;padding:2px 8px;font-weight:600;">Pigment 48</div>
+                  <div style="font-size:14px;background:rgba(200,16,46,0.07);color:var(--red);padding:2px 8px;font-weight:600;">Inflammatory Activity ↑</div>
+                  <div style="font-size:14px;background:rgba(136,136,136,0.07);color:#888888;padding:2px 8px;font-weight:600;">Pigmentation ↓</div>
                 </div>
                 <div style="font-size:14px;color:var(--mid);line-height:1.6;margin-bottom:10px;">Patient notes: "Persistent redness and uneven tone, 3 months. Concerned about early pigmentation."</div>
                 <div style="font-size:14px;color:rgba(0,0,0,0.3);margin-bottom:8px;">⚠ Showing authorized data only · Patient controls full access</div>
@@ -2195,10 +2204,10 @@ p,li,td,div{min-font-size:14px;}
                   <span style="font-size:14px;font-weight:600;color:var(--red);border:1px solid rgba(200,16,46,0.3);padding:2px 7px;">NEW</span>
                 </div>
                 <div style="display:flex;gap:8px;margin-bottom:10px;">
-                  <div style="font-size:14px;background:rgba(200,16,46,0.07);color:var(--red);padding:2px 8px;font-weight:600;">Inflammation 44</div>
-                  <div style="font-size:14px;background:rgba(200,16,46,0.07);color:var(--red);padding:2px 8px;font-weight:600;">Collagen 51</div>
+                  <div style="font-size:14px;background:rgba(200,16,46,0.07);color:var(--red);padding:2px 8px;font-weight:600;">Inflammatory Activity ↓</div>
+                  <div style="font-size:14px;background:rgba(136,136,136,0.07);color:#888888;padding:2px 8px;font-weight:600;">Structural signals: Phase 2</div>
                 </div>
-                <div style="font-size:14px;color:var(--mid);line-height:1.6;margin-bottom:10px;">Patient notes: "Looking for professional assessment of collagen loss and treatment options."</div>
+                <div style="font-size:14px;color:var(--mid);line-height:1.6;margin-bottom:10px;">Patient notes: "Persistent redness and texture concerns, 3 months. Interested in structural skin assessment."</div>
                 <div style="font-size:14px;color:rgba(0,0,0,0.3);margin-bottom:8px;">⚠ Showing authorized data only · Patient controls full access</div>
                 <div style="display:flex;gap:8px;">
                   <button class="appt-btn start" style="font-size:14px;padding:4px 12px;">Accept</button>
@@ -2421,7 +2430,7 @@ p,li,td,div{min-font-size:14px;}
         <!-- AI Insight -->
         <div style="background:#EEECEA;padding:12px 14px;margin-top:4px;border:1px solid var(--border);">
           <div style="font-size:14px;font-weight:600;letter-spacing:0.15em;color:#111;text-transform:uppercase;margin-bottom:6px;">DrRuby Assessment</div>
-          <div style="font-size:15px;color:var(--ink);line-height:1.6;">Your collagen score (58) suggests your current peptide dose may be insufficient given your scan data. Your NR intake aligns well with your inflammation trends. Share this summary with your dermatologist before your next visit.</div>
+          <div style="font-size:15px;color:var(--ink);line-height:1.6;">Your skin barrier signals suggest your current peptide dose may be insufficient given your scan data. Your NR intake aligns well with your Inflammatory Activity trend. Share this summary with your dermatologist before your next visit.</div>
           <div style="margin-top:10px;display:flex;gap:8px;">
             <button style="background:var(--red);color:white;border:none;padding:5px 14px;font-size:14px;font-weight:600;cursor:pointer;letter-spacing:0.1em;">Export for Doctor</button>
             <button style="background:#fff;color:#111;border:1px solid var(--border);padding:5px 14px;font-size:14px;cursor:pointer;">View Full Analysis</button>
@@ -3185,7 +3194,11 @@ function showTab(name) {
   document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
   document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
   document.getElementById('tab-' + name).classList.add('active');
-  event.target.classList.add('active');
+  const matchingTab = document.querySelector(`.tab[onclick="showTab('${name}')"]`);
+  if (matchingTab) {
+    matchingTab.classList.add('active');
+    matchingTab.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'nearest' });
+  }
 }
 
 // ── HERO CAROUSEL ──
