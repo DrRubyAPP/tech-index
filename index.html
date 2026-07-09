@@ -57,10 +57,10 @@ p,li,td,div{min-font-size:14px;}
 /* ═══════════════════════════════
    HOMEPAGE MOCKUP
 ═══════════════════════════════ */
-.homepage-wrap{display:flex;flex-direction:column;gap:0;border:1px solid var(--border);overflow:hidden;box-shadow:0 4px 32px rgba(0,0,0,0.08);}
+.homepage-wrap{display:flex;flex-direction:column;gap:0;border:1px solid var(--border);overflow:hidden;box-shadow:0 8px 24px rgba(0,0,0,0.08);border-radius:16px;}
 
 /* Navbar */
-.hp-nav{background:var(--white);padding:0 48px;height:72px;display:flex;align-items:center;justify-content:space-between;border-bottom:2px solid var(--ink);}
+.hp-nav{background:var(--white);padding:0 48px;height:72px;display:flex;align-items:center;justify-content:space-between;}
 .hp-nav-logo{font-family:var(--serif);font-size:26px;font-weight:700;color:var(--ink);letter-spacing:0.01em;}
 .hp-nav-logo span{color:var(--red);}
 .hp-nav-links{display:flex;gap:36px;align-items:center;}
@@ -91,7 +91,7 @@ p,li,td,div{min-font-size:14px;}
 
 /* Slide content */
 .slide-content{position:relative;z-index:3;padding:0 72px 80px;max-width:680px;}
-.slide-eyebrow{font-size:13px;font-weight:700;letter-spacing:0.38em;text-transform:uppercase;color:var(--red);margin-bottom:20px;}
+.slide-eyebrow{font-size:14px;font-weight:700;letter-spacing:0.38em;text-transform:uppercase;color:var(--red);margin-bottom:20px;}
 .slide-title{font-family:var(--serif);font-size:72px;font-weight:600;color:var(--ink);line-height:1.05;margin-bottom:22px;}
 .slide-title em{font-style:italic;color:var(--red);font-weight:600;}
 .slide-sub{font-size:18px;font-weight:500;color:#111;line-height:1.8;max-width:480px;margin-bottom:36px;}
@@ -136,11 +136,11 @@ p,li,td,div{min-font-size:14px;}
 .trust-icon{width:44px;height:44px;border:1px solid rgba(200,16,46,0.3);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0;overflow:hidden;}
 .trust-icon img{width:100%;height:100%;object-fit:cover;border-radius:50%;}
 .trust-name{font-size:15px;font-weight:700;color:var(--ink);line-height:1.3;}
-.trust-role{font-size:13px;color:#444;letter-spacing:0.04em;margin-top:3px;line-height:1.5;font-weight:500;}
+.trust-role{font-size:14px;color:#444;letter-spacing:0.04em;margin-top:3px;line-height:1.5;font-weight:500;}
 .trust-separator{flex:1;}
 .trust-privacy{display:flex;align-items:center;gap:10px;flex-shrink:0;padding-left:40px;border-left:1px solid var(--border);}
 .trust-privacy-dot{width:7px;height:7px;border-radius:50%;background:var(--red);flex-shrink:0;}
-.trust-privacy-text{font-size:13px;font-weight:500;color:#111;letter-spacing:0.06em;white-space:nowrap;}
+.trust-privacy-text{font-size:14px;font-weight:500;color:#111;letter-spacing:0.06em;white-space:nowrap;}
 
 /* ── CHOICE SECTION ── */
 .hp-choice{display:grid;grid-template-columns:1fr 1fr;gap:0;}
@@ -170,7 +170,7 @@ p,li,td,div{min-font-size:14px;}
 .n1-col-num{font-family:var(--serif);font-size:64px;font-weight:600;color:rgba(200,16,46,0.55);line-height:1;margin-bottom:20px;}
 .n1-col-title{font-family:var(--serif);font-size:22px;font-weight:600;color:var(--ink);margin-bottom:12px;line-height:1.3;}
 .n1-col-desc{font-size:18px;font-weight:500;color:#111;line-height:1.85;flex:1;}
-.n1-col-highlight{font-size:13px;font-weight:600;color:var(--red);margin-top:20px;letter-spacing:0.06em;}
+.n1-col-highlight{font-size:14px;font-weight:600;color:var(--red);margin-top:20px;letter-spacing:0.06em;}
 
 /* ── SCROLL FEATURE SECTION ── */
 .hp-scroll-section{background:var(--off);padding:56px 72px;overflow:hidden;}
@@ -181,13 +181,13 @@ p,li,td,div{min-font-size:14px;}
 .scroll-track::-webkit-scrollbar{display:none;}
 .scroll-item{flex:0 0 280px;background:var(--white);border-right:1px solid var(--border);transition:transform 0.25s ease,box-shadow 0.25s ease;cursor:pointer;}
 .scroll-item:last-child{border-right:none;}
-.scroll-item:hover{transform:translateY(-4px);box-shadow:0 8px 32px rgba(0,0,0,0.1);z-index:2;position:relative;}
+.scroll-item:hover{transform:translateY(-4px);box-shadow:0 8px 24px rgba(0,0,0,0.08);z-index:2;position:relative;}
 .si-img{height:180px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;}
 .si-img-1{background:#C8102E;}
 .si-img-2{background:#FFFFFF;border-bottom:1px solid var(--border);}
-.si-img-3{background:#3A3A3A;}
+.si-img-3{background:#33302D;}
 .si-img-4{background:#E8E5E2;}
-.si-img-5{background:#1A1A1A;}
+.si-img-5{background:#292522;}
 .si-img-label{position:absolute;bottom:14px;left:16px;font-size:15px;font-weight:700;letter-spacing:0.24em;text-transform:uppercase;color:#ffffff;}
 .si-img-label.dark{color:#1A1A1A;}
 .si-large-text{font-family:var(--serif);font-size:100px;font-weight:600;opacity:1;line-height:1;user-select:none;color:inherit;}
@@ -213,7 +213,7 @@ p,li,td,div{min-font-size:14px;}
 .n1-stat-row{display:flex;gap:40px;margin-top:12px;}
 .n1-stat{text-align:left;}
 .n1-stat-val{font-family:var(--serif);font-size:64px;font-weight:600;color:var(--red);line-height:1;}
-.n1-stat-label{font-size:13px;font-weight:600;color:var(--ink);margin-top:6px;letter-spacing:0.12em;text-transform:uppercase;}
+.n1-stat-label{font-size:14px;font-weight:600;color:var(--ink);margin-top:6px;letter-spacing:0.12em;text-transform:uppercase;}
 
 /* ── BRENNER SCIENCE STRIP ── */
 .science-strip{background:var(--grey);border-top:1px solid var(--border);}
@@ -224,14 +224,14 @@ p,li,td,div{min-font-size:14px;}
 .sci-title em{font-style:italic;color:var(--red);}
 .sci-desc{font-size:18px;font-weight:500;color:var(--mid);line-height:1.9;}
 .sci-right{display:flex;flex-direction:column;gap:16px;}
-.sci-advisor{background:var(--white);border:1px solid var(--border);padding:24px 28px;display:flex;gap:20px;align-items:flex-start;}
+.sci-advisor{background:var(--white);border:1px solid var(--border);padding:24px 28px;display:flex;gap:20px;align-items:flex-start;border-radius:16px;}
 .sci-advisor-dot{width:40px;height:40px;background:#EEECEA;border:1px solid var(--border);border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:16px;color:var(--ink);}
 .sci-advisor-name{font-size:14px;font-weight:600;color:var(--ink);margin-bottom:2px;}
 .sci-advisor-role{font-size:14px;color:var(--mid);line-height:1.5;margin-bottom:10px;}
 .sci-advisor-quote{font-family:var(--serif);font-size:15px;font-style:italic;color:var(--mid);line-height:1.7;}
 /* How it works mini diagram */
 .science-how{padding:0 72px 56px;display:flex;gap:0;align-items:stretch;}
-.sci-step{flex:1;padding:28px 28px;border:1px solid var(--border);border-right:none;background:var(--white);position:relative;}
+.sci-step{flex:1;padding:28px 28px;border:1px solid var(--border);border-right:none;background:var(--white);position:relative;border-radius:16px;}
 .sci-step:last-child{border-right:1px solid var(--border);}
 .sci-step-num{font-family:var(--serif);font-size:42px;color:rgba(200,16,46,0.6);font-weight:600;margin-bottom:8px;line-height:1;}
 .sci-step-title{font-size:14px;font-weight:600;color:var(--ink);margin-bottom:6px;letter-spacing:0.04em;}
@@ -264,7 +264,7 @@ p,li,td,div{min-font-size:14px;}
 .spn-breadcrumb span{color:var(--ink);font-weight:500;}
 .spn-breadcrumb::before{content:'←';color:var(--mid);font-size:14px;}
 .spn-right{display:flex;gap:8px;align-items:center;}
-.spn-mode{font-size:14px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;border:1px solid var(--border);padding:5px 12px;cursor:pointer;color:var(--mid);}
+.spn-mode{font-size:14px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;border:1px solid var(--border);padding:5px 12px;cursor:pointer;color:var(--mid);border-radius:8px;}
 .spn-mode.active{background:var(--ink);color:white;border-color:var(--ink);}
 
 /* ① SCAN WINDOW */
@@ -287,10 +287,10 @@ p,li,td,div{min-font-size:14px;}
 .si-title em{font-style:italic;color:var(--red);}
 .si-desc{font-size:14px;font-weight:400;color:#111;line-height:1.9;max-width:340px;}
 .scan-modes{display:flex;gap:8px;flex-wrap:wrap;}
-.scan-mode-btn{font-size:14px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;padding:8px 16px;cursor:pointer;border:1px solid var(--border);color:#111;background:#fff;transition:all 0.2s;}
+.scan-mode-btn{font-size:14px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;padding:8px 16px;cursor:pointer;border:1px solid var(--border);color:#111;background:#fff;transition:all 0.2s;border-radius:8px;}
 .scan-mode-btn.active{background:var(--red);color:white;border-color:var(--red);}
 .scan-mode-btn:hover{border-color:rgba(200,16,46,0.4);color:var(--ink);}
-.scan-scope-card{background:#fff;border:1px solid var(--border);padding:14px 16px;display:flex;gap:12px;align-items:center;max-width:340px;}
+.scan-scope-card{background:#fff;border:1px solid var(--border);padding:14px 16px;display:flex;gap:12px;align-items:center;max-width:340px;border-radius:16px;}
 .scan-scope-img{width:44px;height:44px;object-fit:contain;opacity:0.7;flex-shrink:0;}
 .scan-scope-text{}
 .scan-scope-name{font-size:15px;font-weight:500;color:var(--ink);margin-bottom:2px;}
@@ -321,7 +321,7 @@ p,li,td,div{min-font-size:14px;}
 /* ③ TREND + REPORT GRID */
 .skin-mid-grid{display:grid;grid-template-columns:1.4fr 1fr;gap:16px;padding:20px 28px;background:var(--off);}
 /* Trend chart */
-.trend-card{background:var(--white);border:1px solid var(--border);padding:24px;}
+.trend-card{background:var(--white);border:1px solid var(--border);padding:24px;border-radius:16px;}
 .trend-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;}
 .trend-title{font-size:14px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--red);}
 .trend-periods{display:flex;gap:4px;}
@@ -343,7 +343,7 @@ p,li,td,div{min-font-size:14px;}
 /* ⑤ PRODUCT RECS (reuse existing styles) */
 
 /* ⑥ CLINIC ENTRY */
-.clinic-entry{background:#EEECEA;padding:32px 28px;display:flex;align-items:center;justify-content:space-between;gap:24px;margin:0 28px 20px;border:1px solid var(--border);}
+.clinic-entry{background:#EEECEA;padding:32px 28px;display:flex;align-items:center;justify-content:space-between;gap:24px;margin:0 28px 20px;border:1px solid var(--border);border-radius:16px;}
 .ce-left{}
 .ce-eyebrow{font-size:14px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--red);margin-bottom:8px;}
 .ce-title{font-family:var(--serif);font-size:22px;font-weight:500;color:var(--ink);line-height:1.3;}
@@ -353,7 +353,7 @@ p,li,td,div{min-font-size:14px;}
 /* ═══════════════════════════════
    USER PORTAL MOCKUP
 ═══════════════════════════════ */
-.portal-wrap{display:flex;height:760px;border:1px solid var(--border);overflow:hidden;box-shadow:0 4px 32px rgba(0,0,0,0.08);}
+.portal-wrap{display:flex;height:760px;border:1px solid var(--border);overflow:hidden;box-shadow:0 8px 24px rgba(0,0,0,0.08);border-radius:16px;}
 
 /* Sidebar */
 .up-sidebar{width:220px;background:var(--ink);display:flex;flex-direction:column;flex-shrink:0;}
@@ -367,7 +367,7 @@ p,li,td,div{min-font-size:14px;}
 .ups-item:hover{color:rgba(255,255,255,0.7);}
 .ups-item.active{color:white;border-left-color:var(--red);background:rgba(200,16,46,0.07);}
 .ups-icon{width:14px;height:14px;display:flex;align-items:center;justify-content:center;font-size:14px;}
-.ups-badge{font-size:14px;font-weight:700;background:var(--red);color:white;padding:1px 5px;border-radius:2px;margin-left:auto;}
+.ups-badge{font-size:14px;font-weight:700;background:var(--red);color:white;padding:1px 5px;border-radius:8px;margin-left:auto;}
 .ups-user{padding:16px 24px;border-top:1px solid rgba(255,255,255,0.06);}
 .ups-avatar{width:32px;height:32px;border-radius:50%;background:rgba(200,16,46,0.2);display:flex;align-items:center;justify-content:center;font-size:14px;color:white;font-weight:500;float:left;margin-right:10px;}
 .ups-name{font-size:14px;color:rgba(255,255,255,0.65);line-height:1.2;}
@@ -379,14 +379,14 @@ p,li,td,div{min-font-size:14px;}
 .utb-page{font-family:var(--serif);font-size:16px;color:var(--ink);}
 .utb-sub{font-size:14px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:var(--red);}
 .utb-right{display:flex;gap:8px;align-items:center;}
-.utb-pill{font-size:14px;background:var(--off);border:1px solid var(--border);padding:4px 10px;color:var(--mid);}
+.utb-pill{font-size:14px;background:var(--off);border:1px solid var(--border);padding:4px 10px;color:var(--mid);border-radius:8px;}
 .utb-btn{font-size:14px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;background:var(--red);color:white;padding:6px 12px;cursor:pointer;border:none;}
 
 .up-content{padding:20px 28px;display:flex;flex-direction:column;gap:16px;}
 
 /* Summary Bar */
 .up-summary{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;}
-.sum-card{background:var(--white);border:1px solid var(--border);padding:16px 20px;}
+.sum-card{background:var(--white);border:1px solid var(--border);padding:16px 20px;border-radius:16px;}
 .sum-label{font-size:14px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:var(--mid);margin-bottom:6px;}
 .sum-val{font-family:var(--serif);font-size:26px;font-weight:500;color:var(--ink);}
 .sum-val span{font-size:14px;color:var(--mid);font-family:var(--sans);}
@@ -399,7 +399,7 @@ p,li,td,div{min-font-size:14px;}
 .up-three-col{display:grid;grid-template-columns:2fr 1fr;gap:16px;}
 
 /* Cards */
-.u-card{background:var(--white);border:1px solid var(--border);padding:20px 22px;}
+.u-card{background:var(--white);border:1px solid var(--border);padding:20px 22px;border-radius:16px;}
 .u-card-title{font-size:14px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--red);margin-bottom:14px;display:flex;align-items:center;gap:8px;}
 .u-card-title::before{content:'';width:10px;height:1px;background:var(--red);}
 
@@ -426,13 +426,13 @@ p,li,td,div{min-font-size:14px;}
 .tl-label{font-size:15px;color:var(--ink);}
 
 /* Coach Widget */
-.coach-widget{background:#EEECEA;padding:20px 22px;border:1px solid var(--border);}
+.coach-widget{background:#EEECEA;padding:20px 22px;border:1px solid var(--border);border-radius:16px;}
 .coach-eyebrow{font-size:14px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--red);margin-bottom:6px;}
 .coach-msg{font-family:var(--serif);font-size:16px;font-style:italic;color:var(--ink);line-height:1.6;margin-bottom:16px;}
 .coach-input{background:#fff;border:1px solid var(--border);padding:10px 14px;width:100%;font-family:var(--sans);font-size:14px;color:var(--ink);outline:none;}
 .coach-input::placeholder{color:#aaa;}
 .coach-actions{display:flex;gap:8px;margin-top:8px;flex-wrap:wrap;}
-.coach-chip{font-size:14px;font-weight:500;color:#111;border:1px solid var(--border);padding:4px 10px;cursor:pointer;background:#fff;}
+.coach-chip{font-size:14px;font-weight:500;color:#111;border:1px solid var(--border);padding:4px 10px;cursor:pointer;background:#fff;border-radius:8px;}
 .coach-chip:hover{color:var(--red);border-color:rgba(200,16,46,0.4);}
 
 /* Product recs */
@@ -447,7 +447,7 @@ p,li,td,div{min-font-size:14px;}
 /* ═══════════════════════════════
    CLINIC PORTAL MOCKUP
 ═══════════════════════════════ */
-.clinic-wrap{display:flex;height:760px;border:1px solid var(--border);overflow:hidden;box-shadow:0 4px 32px rgba(0,0,0,0.08);}
+.clinic-wrap{display:flex;height:760px;border:1px solid var(--border);overflow:hidden;box-shadow:0 8px 24px rgba(0,0,0,0.08);border-radius:16px;}
 .cp-sidebar{width:220px;background:#F2F0EE;border-right:1px solid var(--border);display:flex;flex-direction:column;flex-shrink:0;}
 .cps-header{padding:24px 22px;border-bottom:1px solid var(--border);}
 .cps-logo{font-family:var(--serif);font-size:18px;color:var(--ink);}
@@ -458,7 +458,7 @@ p,li,td,div{min-font-size:14px;}
 .cps-item{display:flex;align-items:center;gap:10px;padding:9px 22px;font-size:14px;color:var(--mid);cursor:pointer;border-left:2px solid transparent;transition:all 0.2s;}
 .cps-item:hover{color:var(--ink);}
 .cps-item.active{color:var(--ink);border-left-color:var(--red);background:rgba(200,16,46,0.04);}
-.cps-badge{font-size:14px;font-weight:700;background:var(--red);color:white;padding:1px 5px;border-radius:2px;margin-left:auto;}
+.cps-badge{font-size:14px;font-weight:700;background:var(--red);color:white;padding:1px 5px;border-radius:8px;margin-left:auto;}
 .cps-user{padding:14px 22px;border-top:1px solid var(--border);}
 .cps-dr{font-size:14px;color:var(--ink);font-weight:500;}
 .cps-role{font-size:14px;color:var(--mid);}
@@ -469,11 +469,11 @@ p,li,td,div{min-font-size:14px;}
 .ctb-sub{font-size:14px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:var(--red);}
 .ctb-right{display:flex;gap:8px;align-items:center;}
 .ctb-btn{font-size:14px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:white;background:var(--red);padding:6px 12px;cursor:pointer;border:none;}
-.ctb-btn2{font-size:14px;font-weight:500;letter-spacing:0.08em;color:var(--ink);background:var(--white);padding:6px 12px;cursor:pointer;border:1px solid var(--border);}
+.ctb-btn2{font-size:14px;font-weight:500;letter-spacing:0.08em;color:var(--ink);background:var(--white);padding:6px 12px;cursor:pointer;border:1px solid var(--border);border-radius:8px;}
 
 .cp-content{padding:20px 28px;display:flex;flex-direction:column;gap:16px;}
 .cp-kpi-row{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;}
-.kpi-card{background:var(--white);border:1px solid var(--border);padding:14px 16px;}
+.kpi-card{background:var(--white);border:1px solid var(--border);padding:14px 16px;border-radius:16px;}
 .kpi-label{font-size:14px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:var(--mid);margin-bottom:4px;}
 .kpi-val{font-family:var(--serif);font-size:24px;font-weight:500;color:var(--ink);}
 .kpi-trend{font-size:14px;color:var(--mid);margin-top:2px;}
@@ -483,7 +483,7 @@ p,li,td,div{min-font-size:14px;}
 .cp-two{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
 .cp-three{display:grid;grid-template-columns:1.4fr 1fr;gap:16px;}
 
-.c-card{background:var(--white);border:1px solid var(--border);padding:20px 22px;}
+.c-card{background:var(--white);border:1px solid var(--border);padding:20px 22px;border-radius:16px;}
 .c-card-title{font-size:14px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--red);margin-bottom:14px;display:flex;align-items:center;gap:8px;}
 .c-card-title::before{content:'';width:10px;height:1px;background:var(--red);}
 
@@ -524,7 +524,7 @@ p,li,td,div{min-font-size:14px;}
    ARCHITECTURE DIAGRAM
 ═══════════════════════════════ */
 .arch-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
-.arch-node{background:var(--white);border:1px solid var(--border);padding:24px;position:relative;}
+.arch-node{background:var(--white);border:1px solid var(--border);padding:24px;position:relative;border-radius:16px;}
 .arch-node.primary{border-top:3px solid var(--red);}
 .arch-node.secondary{border-top:3px solid #888;}
 .arch-label{font-size:14px;font-weight:600;letter-spacing:0.22em;text-transform:uppercase;color:var(--mid);margin-bottom:8px;}
@@ -534,9 +534,9 @@ p,li,td,div{min-font-size:14px;}
 .arch-features li::before{content:'—';position:absolute;left:0;color:rgba(200,16,46,0.4);}
 .arch-features li strong{color:var(--ink);font-weight:500;}
 
-.arch-flow{display:flex;align-items:center;justify-content:center;gap:16px;padding:24px;background:var(--white);border:1px solid var(--border);}
+.arch-flow{display:flex;align-items:center;justify-content:center;gap:16px;padding:24px;background:var(--white);border:1px solid var(--border);border-radius:16px;}
 .af-node{text-align:center;}
-.af-box{padding:10px 20px;font-size:15px;font-weight:500;border:1px solid var(--border);color:var(--ink);}
+.af-box{padding:10px 20px;font-size:15px;font-weight:500;border:1px solid var(--border);color:var(--ink);border-radius:8px;}
 .af-box.red{background:var(--red);color:white;border-color:var(--red);}
 .af-arrow{font-size:16px;color:rgba(200,16,46,0.4);}
 .af-label{font-size:14px;color:var(--mid);margin-top:4px;letter-spacing:0.08em;}
@@ -549,7 +549,7 @@ p,li,td,div{min-font-size:14px;}
 .pal-hex{font-size:14px;color:var(--ink);font-family:monospace;}
 
 /* Typography */
-.type-row{display:flex;flex-direction:column;gap:12px;background:var(--white);border:1px solid var(--border);padding:24px;}
+.type-row{display:flex;flex-direction:column;gap:12px;background:var(--white);border:1px solid var(--border);padding:24px;border-radius:16px;}
 .type-item{display:flex;align-items:baseline;gap:20px;padding-bottom:12px;border-bottom:1px solid var(--border);}
 .type-item:last-child{border:none;padding:0;}
 .type-meta{font-size:14px;color:var(--mid);min-width:140px;}
@@ -561,7 +561,7 @@ p,li,td,div{min-font-size:14px;}
 
 /* ── RESPONSIVE HINT ── */
 .mobile-preview{display:flex;gap:24px;align-items:flex-start;}
-.mobile-frame{width:200px;flex-shrink:0;border:6px solid var(--ink);border-radius:18px;overflow:hidden;}
+.mobile-frame{width:200px;flex-shrink:0;border:6px solid var(--ink);border-radius:24px;overflow:hidden;}
 .mf-notch{background:var(--ink);height:18px;display:flex;align-items:center;justify-content:center;}
 .mf-notch-bar{width:50px;height:4px;background:#333;border-radius:2px;}
 .mf-screen{background:var(--white);}
@@ -660,7 +660,7 @@ p,li,td,div{min-font-size:14px;}
           <div class="slide-bg"></div>
 
           <!-- ▸ 把Canva导出的图放这里 (1920×580) -->
-          <img src="hero-slide3332.png" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;opacity:0.65;">
+          <img src="hero-new-1.jpg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;opacity:1;">
 
           <!-- Data overlay — DrRuby红色版 -->
           <div class="hero-data-overlay">
@@ -679,41 +679,41 @@ p,li,td,div{min-font-size:14px;}
 
               <!-- SIS趋势折线（26周改善曲线） -->
               <g class="hero-chart-group" opacity="0.55">
-                <text x="1100" y="88" fill="rgba(200,16,46,0.5)" font-size="11" font-family="Jost,sans-serif" letter-spacing="2" text-anchor="end">SIS SCORE — 26 WEEKS</text>
-                <polyline points="900,460 960,420 1020,410 1080,370 1140,340 1200,310 1260,280 1320,260 1380,230 1440,200 1500,190 1560,175 1620,160 1680,148 1740,138" fill="none" stroke="#C8102E" stroke-width="2"/>
+                <text x="1100" y="88" fill="rgba(200,16,46,0.5)" font-size="14" font-family="Jost,sans-serif" letter-spacing="2" text-anchor="end">SIS TREND — 26 WEEKS</text>
+                <polyline points="790,460 850,420 910,410 970,370 1030,340 1090,310 1150,280 1210,260 1270,230 1330,200 1390,190 1450,175 1510,160 1570,148 1630,138" fill="none" stroke="#C8102E" stroke-width="2"/>
                 <!-- 基线对比 (population avg) -->
-                <polyline points="900,460 960,450 1020,445 1080,440 1140,438 1200,435 1260,432 1320,430 1380,428 1440,425 1500,423 1560,420 1620,418 1680,415 1740,413" fill="none" stroke="rgba(200,16,46,0.25)" stroke-width="1.5" stroke-dasharray="5,5"/>
+                <polyline points="790,460 850,450 910,445 970,440 1030,438 1090,435 1150,432 1210,430 1270,428 1330,425 1390,423 1450,420 1510,418 1570,415 1630,413" fill="none" stroke="rgba(200,16,46,0.25)" stroke-width="1.5" stroke-dasharray="5,5"/>
                 <!-- 终点标注 -->
-                <circle cx="1740" cy="138" r="4" fill="#C8102E" opacity="0.8"/>
-                <text x="1755" y="143" fill="rgba(200,16,46,0.7)" font-size="12" font-family="Jost,sans-serif">+47</text>
+                <circle cx="1630" cy="138" r="4" fill="#C8102E" opacity="0.8"/>
+                <text x="1645" y="143" fill="rgba(200,16,46,0.7)" font-size="14" font-family="Jost,sans-serif">Improving ↑</text>
               </g>
 
-              <!-- SIS Score 圆形仪表 — 右侧 -->
-              <g class="hero-chart-group" opacity="0.6" transform="translate(1680,180)">
+              <!-- SIS Trend 圆形仪表 — 右侧 -->
+              <g class="hero-chart-group" opacity="0.6" transform="translate(1570,180)">
                 <!-- 外环 -->
                 <circle cx="0" cy="0" r="75" fill="none" stroke="rgba(200,16,46,0.15)" stroke-width="1"/>
-                <!-- 进度弧 (74/100 ≈ 278°) -->
+                <!-- 进度弧（趋势方向指示，非精确数值） -->
                 <circle cx="0" cy="0" r="75" fill="none" stroke="#C8102E" stroke-width="2.5"
                   stroke-dasharray="347 424" stroke-linecap="round"
                   transform="rotate(-90)"
                   class="hero-pulse"/>
                 <!-- 内环 -->
                 <circle cx="0" cy="0" r="54" fill="none" stroke="rgba(200,16,46,0.12)" stroke-width="1"/>
-                <!-- 数字 -->
-                <text x="0" y="-6" text-anchor="middle" fill="rgba(26,26,26,0.85)" font-size="28" font-family="Cormorant Garamond,serif" font-weight="300">74</text>
-                <text x="0" y="14" text-anchor="middle" fill="rgba(200,16,46,0.8)" font-size="10" font-family="Jost,sans-serif" letter-spacing="2">SIS SCORE</text>
+                <!-- 文字 -->
+                <text x="0" y="-2" text-anchor="middle" fill="rgba(26,26,26,0.85)" font-size="18" font-family="Cormorant Garamond,serif" font-weight="500" font-style="italic">Improving</text>
+                <text x="0" y="16" text-anchor="middle" fill="rgba(200,16,46,0.8)" font-size="14" font-family="Jost,sans-serif" letter-spacing="2">SIS TREND</text>
               </g>
 
               <!-- 四个biomarker标签 -->
-              <g class="hero-chart-group" opacity="0.7" font-family="Jost,sans-serif" font-size="11" letter-spacing="1.5">
-                <text x="1490" y="390" fill="rgba(26,26,26,0.5)">PIGMENTATION INDEX</text>
-                <text x="1490" y="412" fill="#C8102E" font-size="13" font-weight="500">68 / 100</text>
-                <text x="1490" y="440" fill="rgba(26,26,26,0.5)">ERYTHEMA SCORE</text>
-                <text x="1490" y="462" fill="#C8102E" font-size="13" font-weight="500">82 / 100</text>
-                <text x="1660" y="390" fill="rgba(26,26,26,0.5)">TEXTURE UNIFORMITY</text>
-                <text x="1660" y="412" fill="#C8102E" font-size="13" font-weight="500">71 / 100</text>
-                <text x="1660" y="440" fill="rgba(26,26,26,0.5)">PORE DENSITY</text>
-                <text x="1660" y="462" fill="#C8102E" font-size="13" font-weight="500">76 / 100</text>
+              <g class="hero-chart-group" opacity="0.7" font-family="Jost,sans-serif" font-size="14" letter-spacing="1.5">
+                <text x="1380" y="390" fill="rgba(26,26,26,0.5)">PIGMENTATION</text>
+                <text x="1380" y="412" fill="#C8102E" font-size="14" font-weight="500">Needs Attention</text>
+                <text x="1380" y="440" fill="rgba(26,26,26,0.5)">ERYTHEMA</text>
+                <text x="1380" y="462" fill="#C8102E" font-size="14" font-weight="500">Improving</text>
+                <text x="1550" y="390" fill="rgba(26,26,26,0.5)">TEXTURE</text>
+                <text x="1550" y="412" fill="#C8102E" font-size="14" font-weight="500">Improving</text>
+                <text x="1550" y="440" fill="rgba(26,26,26,0.5)">PORE DENSITY</text>
+                <text x="1550" y="462" fill="#C8102E" font-size="14" font-weight="500">Improving</text>
               </g>
 
               <!-- 散点 -->
@@ -740,7 +740,7 @@ p,li,td,div{min-font-size:14px;}
         <!-- Slide 2 — N=1 / Science -->
         <div class="hero-slide slide-2">
           <div class="slide-bg"></div>
-          <img src="hero-slide11.png" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;opacity:0.65;">
+          <img src="hero-new-4.jpg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;opacity:1;">
           <div class="slide-overlay" style="background:linear-gradient(to right,rgba(238,233,230,0.55) 0%,rgba(238,233,230,0.2) 50%,transparent 70%);"></div>
           <div class="slide-content">
             <div class="slide-eyebrow">The N=1 Principle</div>
@@ -752,25 +752,10 @@ p,li,td,div{min-font-size:14px;}
           </div>
         </div>
 
-        <!-- Slide 3 — Data on Device / Privacy -->
+        <!-- Slide 3 — Brenner / Expert validation -->
         <div class="hero-slide slide-3">
           <div class="slide-bg"></div>
-          <img src="hero-slide111.png" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;opacity:0.45;">
-          <div class="slide-overlay" style="background:linear-gradient(to right,rgba(238,233,230,0.55) 0%,rgba(238,233,230,0.2) 50%,transparent 70%);"></div>
-          <div class="slide-content">
-            <div class="slide-eyebrow">Privacy by Design</div>
-            <div class="slide-title">Your data is<br><em>encrypted,</em><br>never sold.</div>
-            <div class="slide-sub">We built DrRuby so your most personal health data is encrypted end-to-end, never sold, never shared, never used to train models for other companies.</div>
-            <div class="slide-btns">
-              <div class="slide-btn-red" onclick="showTab('arch')" style="cursor:pointer;">How It Works →</div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Slide 4 — Brenner / Expert validation -->
-        <div class="hero-slide slide-4">
-          <div class="slide-bg"></div>
-          <img src="hero-slide44.png" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;opacity:0.65;">
+          <img src="hero-new-2.jpg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;opacity:1;">
           <div class="slide-overlay"></div>
           <div class="slide-content">
             <div class="slide-eyebrow">Built on Real Science</div>
@@ -779,6 +764,21 @@ p,li,td,div{min-font-size:14px;}
             <div class="slide-btns">
               <div class="slide-btn-red" onclick="showTab('healthspan')" style="cursor:pointer;">Meet Our Scientists</div>
               <div class="slide-btn-ghost" onclick="showTab('arch')" style="cursor:pointer;">See the Architecture</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Slide 4 — Data on Device / Privacy -->
+        <div class="hero-slide slide-4">
+          <div class="slide-bg"></div>
+          <img src="hero-new-3.jpg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;opacity:1;">
+          <div class="slide-overlay" style="background:linear-gradient(to right,rgba(238,233,230,0.55) 0%,rgba(238,233,230,0.2) 50%,transparent 70%);"></div>
+          <div class="slide-content">
+            <div class="slide-eyebrow">Privacy by Design</div>
+            <div class="slide-title">Your data is<br><em>encrypted,</em><br>never sold.</div>
+            <div class="slide-sub">We built DrRuby so your most personal health data is encrypted end-to-end, never sold, never shared, never used to train models for other companies.</div>
+            <div class="slide-btns">
+              <div class="slide-btn-red" onclick="showTab('arch')" style="cursor:pointer;">How It Works →</div>
             </div>
           </div>
         </div>
@@ -802,8 +802,6 @@ p,li,td,div{min-font-size:14px;}
       <!-- Counter -->
       <div class="carousel-counter" id="slideCounter" style="position:absolute;top:32px;right:72px;font-size:14px;font-weight:600;letter-spacing:0.2em;color:rgba(255,255,255,0.2);z-index:10;"><span>01</span> / 04</div>
 
-      <!-- Progress bar -->
-      <div class="carousel-progress" id="carouselProgress" style="width:0%"></div>
     </div>
 
     <!-- ② TRUST BAR -->
@@ -842,7 +840,7 @@ p,li,td,div{min-font-size:14px;}
       <div style="text-align:center;padding:56px 40px 52px;">
         <div style="display:flex;align-items:center;justify-content:center;gap:18px;margin-bottom:24px;">
           <div style="width:56px;height:1px;background:var(--red);"></div>
-          <div style="font-size:11px;font-weight:700;letter-spacing:0.3em;text-transform:uppercase;color:var(--red);">Where would you like to start?</div>
+          <div style="font-size:14px;font-weight:700;letter-spacing:0.3em;text-transform:uppercase;color:var(--red);">Where would you like to start?</div>
           <div style="width:56px;height:1px;background:var(--red);"></div>
         </div>
         <div style="font-family:var(--serif);font-size:44px;font-weight:600;color:var(--ink);line-height:1.2;letter-spacing:-0.01em;">
@@ -921,7 +919,7 @@ p,li,td,div{min-font-size:14px;}
           <div class="si-body">
             <div class="si-tag">Personal Profile</div>
             <div class="si-name">Your Health Baseline</div>
-            <div class="si-desc">Skin, metabolic, hormonal, and lifestyle markers — all analyzed against your own history, not a population average.</div>
+            <div class="si-desc">Skin observations, health signals, and lifestyle context — all analyzed against your own history, not a population average.</div>
           </div>
         </div>
         <div class="scroll-item">
@@ -932,7 +930,7 @@ p,li,td,div{min-font-size:14px;}
           <div class="si-body">
             <div class="si-tag">Actionable Reports</div>
             <div class="si-name">Know What to Act On</div>
-            <div class="si-desc">Clear findings — Good, Monitor, Action — written in plain language. Downloadable to share with your doctor.</div>
+            <div class="si-desc">Clear findings — Observed, Watch Trend, Discuss — written in plain language. Downloadable to share with your doctor.</div>
           </div>
         </div>
         <div class="scroll-item">
@@ -1033,7 +1031,7 @@ p,li,td,div{min-font-size:14px;}
             <img src="charles%20brenner.jpg" style="width:56px;height:56px;border-radius:50%;object-fit:cover;flex-shrink:0;">
             <div>
               <div class="sci-advisor-name">Dr. Charles Brenner</div>
-              <div class="sci-advisor-role" style="font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:11px;color:var(--red);margin-bottom:6px;">Leading Metabolism Scientist · Founding Science Advisor</div>
+              <div class="sci-advisor-role" style="font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:14px;color:var(--red);margin-bottom:6px;">Leading Metabolism Scientist · Founding Science Advisor</div>
               <div class="sci-advisor-quote">Discoverer of the NR kinase pathway (2004) — establishing nicotinamide riboside as a key NAD+ precursor for cellular energy and repair. Formerly endowed chair at University of Iowa; newly recruited to University of Helsinki. An outspoken critic of anti-aging hype — and a natural fit for DrRuby's science-first mission.</div>
             </div>
           </div>
@@ -1096,8 +1094,7 @@ p,li,td,div{min-font-size:14px;}
           </div>
           <div>
             <div style="font-family:var(--serif);font-size:26px;font-weight:500;color:var(--ink);line-height:1.4;margin-bottom:20px;">"The most important question in health is not what the average person responds to — it's what <em>you</em> respond to."</div>
-            <div style="font-size:14px;color:var(--mid);line-height:1.8;">Dr. Brenner's research established the scientific basis for NAD+ metabolism and personalized metabolic response. At DrRuby, he leads the N=1 longitudinal study design within DrRuby's Healthspan research program — his review is limited to that program, not to DrRuby's AI, skin analysis, or product recommendations generally.</div>
-            <div style="font-size:13px;color:var(--mid);line-height:1.7;margin-top:14px;padding-top:14px;border-top:1px solid var(--border);font-style:italic;">Dr. Brenner's name appears only where he has explicitly reviewed or contributed. All other educational content, AI features, and skincare guidance are generated independently by the DrRuby platform and are not individually reviewed by Dr. Brenner.</div>
+            <div style="font-size:14px;color:var(--mid);line-height:1.8;">Dr. Brenner's research established the scientific basis for NAD+ metabolism and personalized metabolic response. At DrRuby, his review is limited to the N=1 longitudinal study design within the Healthspan research program — all other educational content, AI features, and skincare guidance are generated independently by the DrRuby platform and are not reviewed by Dr. Brenner.</div>
             <div style="display:flex;gap:24px;margin-top:24px;">
               <div style="text-align:center;">
                 <div style="font-family:var(--serif);font-size:28px;color:var(--red);">200+</div>
@@ -1484,8 +1481,8 @@ p,li,td,div{min-font-size:14px;}
           <div class="index-score-row" style="gap:8px;align-items:center;">
             <div style="font-size:32px;font-weight:600;color:#C8102E;line-height:1;">↑</div>
             <div style="display:flex;flex-direction:column;gap:2px;">
-              <div style="font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#C8102E;">Improving</div>
-              <div style="font-size:11px;color:#888;letter-spacing:0.08em;">Confidence: <strong style="color:#111;">High</strong></div>
+              <div style="font-size:14px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#C8102E;">Improving</div>
+              <div style="font-size:14px;color:#888;letter-spacing:0.08em;">Confidence: <strong style="color:#111;">High</strong></div>
             </div>
           </div>
           <div class="index-bar-wrap"><div class="index-bar good" style="width:72%;"></div></div>
@@ -1499,8 +1496,8 @@ p,li,td,div{min-font-size:14px;}
           <div class="index-score-row" style="gap:8px;align-items:center;">
             <div style="font-size:32px;font-weight:600;color:#888;line-height:1;">↓</div>
             <div style="display:flex;flex-direction:column;gap:2px;">
-              <div style="font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#888;">Needs Attention</div>
-              <div style="font-size:11px;color:#888;letter-spacing:0.08em;">Confidence: <strong style="color:#111;">Medium</strong></div>
+              <div style="font-size:14px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#888;">Needs Attention</div>
+              <div style="font-size:14px;color:#888;letter-spacing:0.08em;">Confidence: <strong style="color:#111;">Medium</strong></div>
             </div>
           </div>
           <div class="index-bar-wrap"><div class="index-bar warn" style="width:58%;"></div></div>
@@ -1514,8 +1511,8 @@ p,li,td,div{min-font-size:14px;}
           <div class="index-score-row" style="gap:8px;align-items:center;">
             <div style="font-size:32px;font-weight:600;color:#C8102E;line-height:1;">↑</div>
             <div style="display:flex;flex-direction:column;gap:2px;">
-              <div style="font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#C8102E;">Improving</div>
-              <div style="font-size:11px;color:#888;letter-spacing:0.08em;">Confidence: <strong style="color:#111;">High</strong></div>
+              <div style="font-size:14px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#C8102E;">Improving</div>
+              <div style="font-size:14px;color:#888;letter-spacing:0.08em;">Confidence: <strong style="color:#111;">High</strong></div>
             </div>
           </div>
           <div class="index-bar-wrap"><div class="index-bar good" style="width:81%;"></div></div>
@@ -1570,21 +1567,21 @@ p,li,td,div{min-font-size:14px;}
                 <div class="ai-find-title">Barrier function strengthening</div>
                 <div class="ai-find-desc">Inflammatory Activity trending up. Consistent with peptide serum introduction 4 weeks ago.</div>
               </div>
-              <div class="ai-tag good">Positive</div>
+              <div class="ai-tag good">Observed</div>
             </div>
             <div class="ai-finding warn">
               <div>
                 <div class="ai-find-title">UV pigmentation accumulation</div>
                 <div class="ai-find-desc">Pigmentation Index down 3pts. Sunscreen compliance may have dropped — cross-referenced with UV exposure log.</div>
               </div>
-              <div class="ai-tag warn">Monitor</div>
+              <div class="ai-tag warn">Watch Trend</div>
             </div>
             <div class="ai-finding alert">
               <div>
                 <div class="ai-find-title">Upgrade scan for Texture accuracy</div>
                 <div class="ai-find-desc">Texture & Pore Score is estimated from phone camera. SkinScope attachment will give full dermatoscope-grade reading.</div>
               </div>
-              <div class="ai-tag alert">Action</div>
+              <div class="ai-tag alert">Discuss</div>
             </div>
           </div>
           <div style="margin-top:14px;padding-top:12px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;">
@@ -1762,21 +1759,21 @@ p,li,td,div{min-font-size:14px;}
                   <div class="ai-find-title">Hydration levels improved significantly</div>
                   <div class="ai-find-desc">Skin moisture +18% over 30 days. Consistent with your new routine.</div>
                 </div>
-                <div class="ai-tag good">Positive</div>
+                <div class="ai-tag good">Observed</div>
               </div>
               <div class="ai-finding warn">
                 <div>
                   <div class="ai-find-title">Cortisol marker slightly elevated</div>
                   <div class="ai-find-desc">Consider stress reduction protocols. Sleep data shows irregular patterns.</div>
                 </div>
-                <div class="ai-tag warn">Monitor</div>
+                <div class="ai-tag warn">Watch Trend</div>
               </div>
               <div class="ai-finding alert">
                 <div>
                   <div class="ai-find-title">Vitamin D levels below optimal range</div>
                   <div class="ai-find-desc">Recommend supplementation — see product suggestions below.</div>
                 </div>
-                <div class="ai-tag alert">Action</div>
+                <div class="ai-tag alert">Discuss</div>
               </div>
             </div>
             <div style="margin-top:14px;padding-top:12px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;">
@@ -1805,37 +1802,37 @@ p,li,td,div{min-font-size:14px;}
                 <div style="font-size:15px;font-weight:700;letter-spacing:0.16em;color:var(--red);text-transform:uppercase;">DrRuby AI</div>
                 <div style="font-size:14px;color:#111;margin-top:2px;">Powered by your data · Not a chatbot</div>
               </div>
-              <div style="font-size:14px;background:rgba(200,16,46,0.15);color:var(--red);padding:3px 8px;border-radius:20px;font-weight:600;">● Live</div>
+              <div style="font-size:14px;background:rgba(200,16,46,0.15);color:var(--red);padding:3px 8px;border-radius:8px;font-weight:600;">● Live</div>
             </div>
 
             <!-- Chat messages -->
             <div style="flex:1;overflow-y:auto;padding:14px 16px;display:flex;flex-direction:column;gap:12px;background:#FAFAFA;">
 
               <!-- Proactive push from Insight Engine (Principle 1) -->
-              <div style="background:var(--red);border-radius:2px 12px 12px 12px;padding:12px 14px;max-width:88%;">
+              <div style="background:var(--red);border-radius:16px;padding:12px 14px;max-width:88%;">
                 <div style="font-size:14px;font-weight:700;letter-spacing:0.12em;color:rgba(255,255,255,0.6);text-transform:uppercase;margin-bottom:6px;">⚡ Insight Engine detected a change</div>
-                <div style="font-size:15px;color:white;line-height:1.7;">Your <strong>Recovery Score dropped 15%</strong> this week (Day 7–14). Cross-referencing your intervention log: you stopped Magnesium Glycinate on Jun 7.</div>
+                <div style="font-size:15px;color:white;line-height:1.7;">Your <strong>Recovery Capacity has been declining</strong> this week (Day 7–14). Cross-referencing your intervention log: you stopped Magnesium Glycinate on Jun 7.</div>
                 <div style="font-size:14px;color:rgba(255,255,255,0.75);margin-top:8px;line-height:1.6;">Research suggests magnesium supports sleep quality and autonomic recovery.<br><span style="color:rgba(255,255,255,0.5);">Source: Abbasi et al., 2012 · evidence: rct</span></div>
                 <div style="margin-top:10px;display:flex;gap:6px;">
-                  <div style="font-size:14px;background:rgba(255,255,255,0.15);color:white;padding:4px 10px;border-radius:20px;cursor:pointer;font-weight:600;">Resume + track 4 weeks</div>
-                  <div style="font-size:14px;background:rgba(255,255,255,0.1);color:rgba(255,255,255,0.7);padding:4px 10px;border-radius:20px;cursor:pointer;">Show my trend</div>
+                  <div style="font-size:14px;background:rgba(255,255,255,0.15);color:white;padding:4px 10px;border-radius:8px;cursor:pointer;font-weight:600;">Resume + track 4 weeks</div>
+                  <div style="font-size:14px;background:rgba(255,255,255,0.1);color:rgba(255,255,255,0.7);padding:4px 10px;border-radius:8px;cursor:pointer;">Show my trend</div>
                 </div>
               </div>
 
               <!-- User logs intervention via chat (Principle 3) -->
-              <div style="align-self:flex-end;background:white;border:1px solid var(--border);border-radius:12px 2px 12px 12px;padding:10px 13px;max-width:75%;">
+              <div style="align-self:flex-end;background:white;border:1px solid var(--border);border-radius:16px;padding:10px 13px;max-width:75%;">
                 <div style="font-size:15px;color:var(--ink);">I started magnesium again yesterday, 400mg before bed</div>
                 <div style="font-size:14px;color:var(--mid);margin-top:4px;">Jun 14 · 9:42am</div>
               </div>
 
               <!-- System confirms logging (Principle 3) -->
-              <div style="background:white;border:1px solid var(--red);border-radius:2px 12px 12px 12px;padding:10px 13px;max-width:85%;">
+              <div style="background:white;border:1px solid var(--red);border-radius:16px;padding:10px 13px;max-width:85%;">
                 <div style="font-size:14px;font-weight:700;color:var(--red);letter-spacing:0.1em;margin-bottom:5px;">✓ LOGGED TO INTERVENTION GRAPH</div>
-                <div style="font-size:15px;color:var(--ink);line-height:1.6;">Magnesium Glycinate 400mg · Start date Jun 13. I'll track your Recovery Score and HRV over the next 4 weeks and tell you if we see a response.</div>
+                <div style="font-size:15px;color:var(--ink);line-height:1.6;">Magnesium Glycinate 400mg · Start date Jun 13. I'll track your Recovery Capacity and HRV over the next 4 weeks and tell you if we see a response.</div>
               </div>
 
               <!-- Score card click → chatbot explains (Principle 4 hybrid UI) -->
-              <div style="background:white;border:1px solid var(--border);border-radius:2px 12px 12px 12px;padding:10px 13px;max-width:88%;">
+              <div style="background:white;border:1px solid var(--border);border-radius:16px;padding:10px 13px;max-width:88%;">
                 <div style="font-size:14px;color:var(--mid);margin-bottom:5px;">You tapped: Skin State ↑ Improving</div>
                 <div style="font-size:15px;color:var(--ink);line-height:1.7;">Your Skin State has been improving this month. The main driver is <strong>hydration</strong> — consistent with your new HA serum (started May 22). Pigmentation is the signal to watch — it's trending down.<br><span style="font-size:14px;color:var(--mid);">Based on: Skin scan Jun 5 · Wearable sleep data · Intervention log</span></div>
               </div>
@@ -1845,13 +1842,13 @@ p,li,td,div{min-font-size:14px;}
             <!-- Input area -->
             <div style="border-top:1px solid var(--border);padding:10px 14px;background:white;flex-shrink:0;">
               <div style="display:flex;gap:6px;margin-bottom:8px;flex-wrap:wrap;">
-                <div style="font-size:14px;background:var(--off);color:var(--ink);padding:4px 10px;border-radius:20px;cursor:pointer;border:1px solid var(--border);">Why is my Vitamin D low?</div>
-                <div style="font-size:14px;background:var(--off);color:var(--ink);padding:4px 10px;border-radius:20px;cursor:pointer;border:1px solid var(--border);">I started HRT today</div>
-                <div style="font-size:14px;background:var(--off);color:var(--ink);padding:4px 10px;border-radius:20px;cursor:pointer;border:1px solid var(--border);">How is my Skin State trending?</div>
+                <div style="font-size:14px;background:var(--off);color:var(--ink);padding:4px 10px;border-radius:8px;cursor:pointer;border:1px solid var(--border);">Why is my Vitamin D low?</div>
+                <div style="font-size:14px;background:var(--off);color:var(--ink);padding:4px 10px;border-radius:8px;cursor:pointer;border:1px solid var(--border);">I started HRT today</div>
+                <div style="font-size:14px;background:var(--off);color:var(--ink);padding:4px 10px;border-radius:8px;cursor:pointer;border:1px solid var(--border);">How is my Skin State trending?</div>
               </div>
               <div style="display:flex;gap:8px;align-items:center;">
-                <input style="flex:1;border:1px solid var(--border);border-radius:6px;padding:8px 12px;font-size:15px;font-family:inherit;outline:none;" placeholder="Ask a question or log something (supplement, symptom, lab…)">
-                <div style="background:var(--red);color:white;padding:8px 14px;border-radius:6px;font-size:14px;font-weight:700;cursor:pointer;flex-shrink:0;">Send</div>
+                <input style="flex:1;border:1px solid var(--border);border-radius:4px;padding:8px 12px;font-size:15px;font-family:inherit;outline:none;" placeholder="Ask a question or log something (supplement, symptom, lab…)">
+                <div style="background:var(--red);color:white;padding:8px 14px;border-radius:8px;font-size:14px;font-weight:700;cursor:pointer;flex-shrink:0;">Send</div>
               </div>
               <div style="font-size:7.5px;color:var(--mid);margin-top:6px;text-align:center;">DrRuby provides health information, not medical advice · Always consult your doctor</div>
             </div>
@@ -1862,17 +1859,17 @@ p,li,td,div{min-font-size:14px;}
               <div class="prod-item">
                 <div class="prod-img">💊</div>
                 <div><div class="prod-name">Vitamin D3 + K2</div><div class="prod-reason">Addresses your deficiency</div></div>
-                <div class="prod-score">94</div>
+                <div class="prod-score" style="font-size:14px;">Strong Fit</div>
               </div>
               <div class="prod-item">
                 <div class="prod-img">🧴</div>
                 <div><div class="prod-name">HA Serum — Hydration</div><div class="prod-reason">Supports skin improvement</div></div>
-                <div class="prod-score">89</div>
+                <div class="prod-score" style="font-size:14px;">Good Fit</div>
               </div>
               <div class="prod-item">
                 <div class="prod-img">🌙</div>
                 <div><div class="prod-name">Magnesium Glycinate</div><div class="prod-reason">Cortisol + sleep support</div></div>
-                <div class="prod-score">87</div>
+                <div class="prod-score" style="font-size:14px;">Good Fit</div>
               </div>
             </div>
           </div>
@@ -1896,7 +1893,7 @@ p,li,td,div{min-font-size:14px;}
       </div>
       <div>
         <div style="font-size:14px;font-weight:700;color:var(--ink);margin-bottom:4px;">3 · Chat = data logging</div>
-        <div style="font-size:8.5px;color:#111;line-height:1.6;">"I started magnesium today" → auto-logged to Intervention Graph, tracking begins. No forms. Conversation is the input interface.</div>
+        <div style="font-size:8.5px;color:#111;line-height:1.6;">"I started magnesium today" → auto-logged to Response Intelligence Engine, tracking begins. No forms. Conversation is the input interface.</div>
       </div>
       <div>
         <div style="font-size:14px;font-weight:700;color:var(--ink);margin-bottom:4px;">4 · Hybrid UI</div>
@@ -1924,7 +1921,7 @@ p,li,td,div{min-font-size:14px;}
         <div class="arch-name">AI Reports</div>
         <ul class="arch-features">
           <li><strong>Auto-generated</strong> after each data upload</li>
-          <li><strong>Findings:</strong> Good / Monitor / Action</li>
+          <li><strong>Findings:</strong> Observed / Watch Trend / Discuss</li>
           <li><strong>Plain language</strong> explanations</li>
           <li><strong>Downloadable PDF</strong> to share with doctor</li>
         </ul>
@@ -2172,7 +2169,7 @@ p,li,td,div{min-font-size:14px;}
           <div class="c-card" style="border-top:3px solid var(--red);">
             <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;">
               <div style="font-size:14px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--red);display:flex;align-items:center;gap:8px;"><span style="display:block;width:10px;height:1px;background:var(--red);"></span>New DrRuby Referrals</div>
-              <span style="font-size:14px;font-weight:700;background:var(--red);color:white;padding:2px 7px;border-radius:2px;">2 NEW</span>
+              <span style="font-size:14px;font-weight:700;background:var(--red);color:white;padding:2px 7px;border-radius:8px;">2 NEW</span>
             </div>
             <div style="display:flex;flex-direction:column;gap:10px;">
 
@@ -2451,7 +2448,7 @@ p,li,td,div{min-font-size:14px;}
 
       <!-- Brenner -->
       <div style="border:1px solid var(--border);padding:24px;">
-        <img src="charles%20brenner.jpg" style="width:48px;height:48px;object-fit:cover;object-position:center top;margin-bottom:14px;display:block;border-radius:2px;">
+        <img src="charles%20brenner.jpg" style="width:48px;height:48px;object-fit:cover;object-position:center top;margin-bottom:14px;display:block;border-radius:16px;">
         <div style="font-size:14px;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:var(--red);margin-bottom:4px;">NAD Biology</div>
         <div style="font-size:14px;font-weight:500;color:var(--ink);margin-bottom:4px;">Charles Brenner</div>
         <div style="font-size:14px;color:var(--mid);margin-bottom:12px;line-height:1.5;">Bioscientist · Pioneer of NAD+ biology · Founding Science Advisor, DrRuby</div>
@@ -2526,7 +2523,7 @@ p,li,td,div{min-font-size:14px;}
   <div style="background:var(--red);padding:32px 40px;display:flex;align-items:center;justify-content:space-between;">
     <div>
       <div style="font-family:var(--serif);font-size:22px;font-weight:500;color:white;margin-bottom:6px;">Your intel. Your doctor. Your decisions.</div>
-      <div style="font-size:15px;color:rgba(255,255,255,0.6);">DrRuby Healthspan — included with every membership · $20/month</div>
+      <div style="font-size:15px;color:rgba(255,255,255,0.6);">DrRuby Healthspan — Designed for lifelong learning · $20/month</div>
     </div>
     <div style="display:flex;gap:12px;">
       <button onclick="showTab('user')" style="background:white;color:var(--red);border:none;padding:10px 22px;font-family:var(--sans);font-size:15px;font-weight:700;letter-spacing:0.1em;cursor:pointer;">Go to My Dashboard →</button>
@@ -2636,7 +2633,7 @@ p,li,td,div{min-font-size:14px;}
             <div style="font-size:14px;font-weight:700;color:var(--ink);">Evidence Graph · RAG Knowledge Base</div>
             <div style="font-size:14px;color:var(--mid);margin-top:3px;">Structured scientific claims from Brenner (NAD+, metabolism), a women's health physician (not yet under agreement), dermatology literature · evidence_level tiers: rct / clinical_guideline / expert_opinion / emerging · PostgreSQL + pgvector · Not the moat — table stakes</div>
           </div>
-          <div style="margin-left:auto;font-size:14px;background:#E8E8E8;color:#111;padding:3px 10px;border-radius:20px;white-space:nowrap;">Table stakes</div>
+          <div style="margin-left:auto;font-size:14px;background:#E8E8E8;color:#111;padding:3px 10px;border-radius:8px;white-space:nowrap;">Table stakes</div>
         </div>
       </div>
       <div style="text-align:center;font-size:14px;color:rgba(200,16,46,0.3);padding:4px;">↓</div>
@@ -2648,7 +2645,7 @@ p,li,td,div{min-font-size:14px;}
             <div style="font-size:14px;font-weight:700;color:var(--ink);">User Longitudinal Data · On-Device</div>
             <div style="font-size:14px;color:var(--mid);margin-top:3px;">Labs, wearables, skin photos, symptoms, interventions, outcomes — stored locally encrypted (Core Data / Room + SQLCipher) · Tiered consent: Tier 0 default on-device, Tier 1 opt-in encrypted upload, Tier 2 opt-in research contribution</div>
           </div>
-          <div style="margin-left:auto;font-size:14px;background:#E3F2FD;color:#1565C0;padding:3px 10px;border-radius:20px;white-space:nowrap;">Input to moat</div>
+          <div style="margin-left:auto;font-size:14px;background:#E3F2FD;color:#1565C0;padding:3px 10px;border-radius:8px;white-space:nowrap;">Input to moat</div>
         </div>
       </div>
       <div style="text-align:center;font-size:14px;color:rgba(200,16,46,0.3);padding:4px;">↓</div>
@@ -2659,10 +2656,10 @@ p,li,td,div{min-font-size:14px;}
           <div style="flex:1;">
             <div style="font-size:14px;font-weight:700;color:var(--ink);">DrRuby Insight Engine · N-of-1 Analytics <span style="color:var(--red);">← THE MOAT</span></div>
             <div style="font-size:14px;color:var(--mid);margin-top:3px;line-height:1.7;">
-              Change detection (moving average, z-score) · Intervention Graph (what worked for <em>this</em> user, with lag and confidence) · North Star: Skin Age Delta™ · Supporting: Recovery Capacity™, Hormonal Pattern Intelligence™ · Metabolic/Inflammation as driver signals (not scored) · V1: rule-based + statistical · V2: Bayesian attribution · Patent candidates: Intervention Graph structure + longitudinal response learning
+              Change detection (moving average, z-score) · Response Intelligence Engine (what worked for <em>this</em> user, with lag and confidence) · North Star: Skin Age Delta™ · Supporting: Recovery Capacity™, Hormonal Pattern Intelligence™ · Metabolic/Inflammation as driver signals (not scored) · V1: rule-based + statistical · V2: Bayesian attribution · Patent candidates: Response Intelligence Engine structure + longitudinal response learning
             </div>
           </div>
-          <div style="margin-left:auto;font-size:14px;background:rgba(200,16,46,0.1);color:var(--red);padding:3px 10px;border-radius:20px;white-space:nowrap;font-weight:700;">IP · File patent</div>
+          <div style="margin-left:auto;font-size:14px;background:rgba(200,16,46,0.1);color:var(--red);padding:3px 10px;border-radius:8px;white-space:nowrap;font-weight:700;">IP · File patent</div>
         </div>
       </div>
       <div style="text-align:center;font-size:14px;color:rgba(200,16,46,0.3);padding:4px;">↓</div>
@@ -2674,7 +2671,7 @@ p,li,td,div{min-font-size:14px;}
             <div style="font-size:14px;font-weight:700;color:var(--ink);">Recommendation Engine</div>
             <div style="font-size:14px;color:var(--mid);margin-top:3px;">Combines Layer 3 insights + Layer 1 evidence → structured recommendation object · This runs before the LLM, not inside it · Output is structured data, not prose</div>
           </div>
-          <div style="margin-left:auto;font-size:14px;background:#E8F5E9;color:#2E7D32;padding:3px 10px;border-radius:20px;white-space:nowrap;">Differentiator</div>
+          <div style="margin-left:auto;font-size:14px;background:#E8F5E9;color:#2E7D32;padding:3px 10px;border-radius:8px;white-space:nowrap;">Differentiator</div>
         </div>
       </div>
       <div style="text-align:center;font-size:14px;color:rgba(200,16,46,0.3);padding:4px;">↓</div>
@@ -2684,15 +2681,15 @@ p,li,td,div{min-font-size:14px;}
           <div style="font-size:14px;font-weight:700;color:var(--mid);letter-spacing:0.16em;text-transform:uppercase;min-width:80px;">Layer 5</div>
           <div>
             <div style="font-size:14px;font-weight:700;color:var(--ink);">Conversation Interface · UI Only</div>
-            <div style="font-size:14px;color:var(--mid);margin-top:3px;">LLM API (Claude / GPT-4o) translates Layer 3+4 structured output into natural language + citations · Proactive push when Insight Engine detects change · Conversational data logging ("I started NR today" → writes to Intervention Graph) · Hybrid UI: score cards + chat · FDA guardrails embedded in system prompt</div>
+            <div style="font-size:14px;color:var(--mid);margin-top:3px;">LLM API (Claude / GPT-4o) translates Layer 3+4 structured output into natural language + citations · Proactive push when Insight Engine detects change · Conversational data logging ("I started NR today" → writes to Response Intelligence Engine) · Hybrid UI: score cards + chat · FDA guardrails embedded in system prompt</div>
           </div>
-          <div style="margin-left:auto;font-size:14px;background:#E8E8E8;color:#111;padding:3px 10px;border-radius:20px;white-space:nowrap;">UI, not product</div>
+          <div style="margin-left:auto;font-size:14px;background:#E8E8E8;color:#111;padding:3px 10px;border-radius:8px;white-space:nowrap;">UI, not product</div>
         </div>
       </div>
 
     </div>
     <div style="margin-top:16px;padding:12px 16px;background:#FFF8E1;border:1px solid #E8C080;font-size:8.5px;color:#8B5E20;line-height:1.7;">
-      <strong>Why this can't be replicated in 3 weeks:</strong> Layer 1 (RAG on PubMed) can. Layers 3–4 cannot — because they require months of a user's longitudinal data and the Intervention Graph that grows with it. The data is the moat. Brenner's role is Scientific Advisory Board, scoped to the N=1 study design and NAD+/metabolic science — he does not define skin scoring methodology or validate product claims outside that scope.
+      <strong>Why this can't be replicated in 3 weeks:</strong> Layer 1 (RAG on PubMed) can. Layers 3–4 cannot — because they require months of a user's longitudinal data and the Response Intelligence Engine that grows with it. The data is the moat. Brenner's role is Scientific Advisory Board, scoped to the N=1 study design and NAD+/metabolic science — he does not define skin scoring methodology or validate product claims outside that scope.
     </div>
   </div>
 
@@ -2874,12 +2871,12 @@ p,li,td,div{min-font-size:14px;}
 <div id="tab-science" class="screen" style="padding:0;height:calc(100vh - 100px);overflow-y:auto;background:#F7F7F7;">
 <style>
 .sci-wrap{max-width:900px;margin:0 auto;padding:56px 48px 80px;}
-.sci-cover{background:#EEECEA;padding:56px 56px 48px;margin-bottom:48px;border:1px solid var(--border);}
+.sci-cover{background:#EEECEA;padding:56px 56px 48px;margin-bottom:48px;border:1px solid var(--border);border-radius:24px;}
 .sci-cover-logo{font-family:var(--serif);font-size:52px;font-weight:500;color:var(--ink);line-height:1;}
 .sci-cover-logo span{color:var(--red);}
 .sci-cover-title{font-size:22px;font-weight:500;letter-spacing:0.06em;color:#111;margin-top:8px;font-family:var(--sans);}
 .sci-cover-sub{font-size:14px;font-weight:500;letter-spacing:0.22em;text-transform:uppercase;color:#111;margin-top:20px;font-family:var(--sans);}
-.sci-thesis{background:white;border-left:3px solid var(--red);padding:24px 28px;margin-bottom:48px;box-shadow:0 2px 12px rgba(0,0,0,0.06);}
+.sci-thesis{background:white;border-left:3px solid var(--red);padding:24px 28px;margin-bottom:48px;box-shadow:0 2px 8px rgba(0,0,0,0.05);}
 .sci-thesis p{font-family:var(--serif);font-size:18px;font-weight:500;color:var(--ink);line-height:1.6;font-style:italic;}
 .sci-thesis strong{font-style:normal;color:var(--red);}
 .sci-h1{font-family:var(--serif);font-size:28px;font-weight:500;color:var(--ink);padding-bottom:12px;border-bottom:2px solid var(--red);margin:48px 0 20px;}
@@ -2888,17 +2885,17 @@ p,li,td,div{min-font-size:14px;}
 .sci-body{font-size:15px;font-weight:400;color:#111;line-height:1.75;font-family:var(--sans);margin-bottom:12px;}
 .sci-bullet{font-size:15px;font-weight:400;color:#111;line-height:1.7;font-family:var(--sans);padding-left:20px;position:relative;margin-bottom:6px;}
 .sci-bullet::before{content:'—';position:absolute;left:0;color:var(--red);}
-.sci-callout{background:white;border:1px solid #E8E5E2;border-left:3px solid var(--red);padding:20px 24px;margin:16px 0;box-shadow:0 1px 6px rgba(0,0,0,0.04);}
+.sci-callout{background:white;border:1px solid #E8E5E2;border-left:3px solid var(--red);padding:20px 24px;margin:16px 0;box-shadow:0 2px 8px rgba(0,0,0,0.05);}
 .sci-callout-title{font-size:15px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:var(--red);margin-bottom:10px;font-family:var(--sans);}
 .sci-callout p,.sci-callout li{font-size:15px;font-weight:400;color:#111;line-height:1.7;font-family:var(--sans);}
 .sci-warning{background:#FFF0F0;border:1px solid rgba(200,16,46,0.2);border-left:3px solid var(--red);padding:16px 20px;margin:16px 0;}
 .sci-warning p{font-size:14px;color:#111;font-family:var(--sans);font-weight:500;line-height:1.65;}
 .sci-grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:16px 0;}
 .sci-grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin:16px 0;}
-.sci-card{background:white;border:1px solid #E8E5E2;padding:20px;box-shadow:0 1px 4px rgba(0,0,0,0.04);}
+.sci-card{background:white;border:1px solid #E8E5E2;padding:20px;box-shadow:0 2px 8px rgba(0,0,0,0.05);}
 .sci-card-title{font-size:15px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:var(--red);margin-bottom:10px;font-family:var(--sans);}
 .sci-card p,.sci-card li{font-size:14px;font-weight:400;color:#111;line-height:1.65;font-family:var(--sans);}
-.sci-card-dark{background:#EEECEA;border:1px solid var(--border);}
+.sci-card-dark{background:#EEECEA;border:1px solid var(--border);border-radius:16px;}
 .sci-card-dark .sci-card-title{color:var(--red);}
 .sci-card-dark p,.sci-card-dark li{color:#111;}
 .sci-table{width:100%;border-collapse:collapse;margin:16px 0;font-family:var(--sans);}
@@ -2918,7 +2915,7 @@ p,li,td,div{min-font-size:14px;}
 .sci-mcs-icon{font-size:20px;margin-bottom:8px;}
 .sci-mcs-label{font-size:15px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;font-family:var(--sans);margin-bottom:6px;}
 .sci-mcs-desc{font-size:14px;font-weight:400;color:#111;font-family:var(--sans);line-height:1.5;}
-.sci-oneliner{background:#EEECEA;padding:32px 40px;margin-top:48px;text-align:center;border:1px solid var(--border);}
+.sci-oneliner{background:#EEECEA;padding:32px 40px;margin-top:48px;text-align:center;border:1px solid var(--border);border-radius:16px;}
 .sci-oneliner p{font-family:var(--serif);font-size:22px;font-weight:500;color:var(--ink);font-style:italic;line-height:1.5;}
 .sci-oneliner p em{color:var(--red);font-style:normal;}
 .sci-divider{border:none;border-top:1px solid #DDD;margin:40px 0;}
@@ -3053,19 +3050,16 @@ p,li,td,div{min-font-size:14px;}
   </table>
   <div class="sci-h2">5.2 Calibration Drift · Measurement Confidence Score</div>
   <div class="sci-mcs">
-    <div class="sci-mcs-card" style="background:#F0FFF4;border-color:#28A745;">
-      <div class="sci-mcs-icon">✅</div>
-      <div class="sci-mcs-label" style="color:#28A745;">High Confidence</div>
+    <div class="sci-mcs-card" style="background:var(--off);border-color:var(--red);">
+      <div class="sci-mcs-label" style="color:var(--red);">High Confidence</div>
       <div class="sci-mcs-desc">设备一致 · 光线标准 · 位置对齐 · 压力正常<br>完整纳入 SIS 趋势</div>
     </div>
-    <div class="sci-mcs-card" style="background:#FFFBF0;border-color:#F0C040;">
-      <div class="sci-mcs-icon">⚠️</div>
-      <div class="sci-mcs-label" style="color:#B8860B;">Medium Confidence</div>
+    <div class="sci-mcs-card" style="background:var(--off);border-color:#888;">
+      <div class="sci-mcs-label" style="color:#888;">Medium Confidence</div>
       <div class="sci-mcs-desc">一项参数轻微偏差<br>纳入趋势但标注存疑</div>
     </div>
-    <div class="sci-mcs-card" style="background:#FFF0F0;border-color:var(--red);">
-      <div class="sci-mcs-icon">❌</div>
-      <div class="sci-mcs-label" style="color:var(--red);">Low Confidence</div>
+    <div class="sci-mcs-card" style="background:var(--off);border-color:#ccc;">
+      <div class="sci-mcs-label" style="color:#999;">Low Confidence</div>
       <div class="sci-mcs-desc">多项参数异常<br>本次数据不计入 SIS</div>
     </div>
   </div>
@@ -3092,24 +3086,24 @@ p,li,td,div{min-font-size:14px;}
   <!-- 7. FDA -->
   <div class="sci-h1">7. 美国监管策略 <em>FDA Regulatory Positioning</em></div>
   <div class="sci-grid2">
-    <div class="sci-card" style="border-left:3px solid #28A745;">
-      <div class="sci-card-title" style="color:#28A745;">✅ 核准使用的 Claim</div>
-      <div class="sci-bullet">Skin Health Tracking</div>
+    <div class="sci-card" style="border:1px solid var(--border);">
+      <div class="sci-card-title" style="color:#111;border-bottom:2px solid var(--red);padding-bottom:8px;display:inline-block;">General Wellness Position</div>
+      <div class="sci-bullet" style="margin-top:14px;">Skin Health Tracking</div>
       <div class="sci-bullet">Skin Improvement Monitoring</div>
       <div class="sci-bullet">Intervention Response Tracking</div>
       <div class="sci-bullet">SIS（Skin Improvement Score）</div>
       <br>
-      <p style="font-size:14px;color:#28A745;font-weight:500;">→ General Wellness Device 豁免路径</p>
+      <p style="font-size:14px;color:#666;font-weight:500;">→ General Wellness Device 豁免路径</p>
       <p style="font-size:14px;color:#111;">类比：Oura / Whoop / Eight Sleep</p>
     </div>
-    <div class="sci-card" style="border-left:3px solid var(--red);">
-      <div class="sci-card-title">❌ 必须避免的 Claim</div>
-      <div class="sci-bullet">Diagnose melanoma / skin cancer</div>
+    <div class="sci-card" style="border:1px solid var(--border);">
+      <div class="sci-card-title" style="color:#111;border-bottom:2px solid var(--red);padding-bottom:8px;display:inline-block;">Medical Device Position</div>
+      <div class="sci-bullet" style="margin-top:14px;">Diagnose melanoma / skin cancer</div>
       <div class="sci-bullet">Measure collagen density（诊断用途）</div>
       <div class="sci-bullet">Skin Age（年龄判断）</div>
       <div class="sci-bullet">医生诊断辅助 / 皮肤病诊断</div>
       <br>
-      <p style="font-size:14px;color:var(--red);font-weight:500;">→ 触发 FDA Class II，需 510(k)（18–36 个月）</p>
+      <p style="font-size:14px;color:#666;font-weight:500;">→ 触发 FDA Class II，需 510(k)（18–36 个月）</p>
     </div>
   </div>
 
@@ -3255,7 +3249,7 @@ window.addEventListener('load', () => {
 <div style="background:#1A1A1A;padding:80px 80px 72px;position:relative;overflow:hidden;">
   <div style="position:absolute;top:-60px;right:-60px;width:400px;height:400px;border:1px solid rgba(200,16,46,0.15);border-radius:50%;"></div>
   <div style="position:absolute;top:20px;right:80px;width:200px;height:200px;border:1px solid rgba(200,16,46,0.1);border-radius:50%;"></div>
-  <div style="font-size:11px;font-weight:700;letter-spacing:0.32em;text-transform:uppercase;color:var(--red);margin-bottom:20px;display:flex;align-items:center;gap:14px;">
+  <div style="font-size:14px;font-weight:700;letter-spacing:0.32em;text-transform:uppercase;color:var(--red);margin-bottom:20px;display:flex;align-items:center;gap:14px;">
     <div style="width:40px;height:1px;background:var(--red);"></div>
     How It Works
   </div>
@@ -3271,26 +3265,26 @@ window.addEventListener('load', () => {
 <div style="background:#FFFFFF;display:grid;grid-template-columns:1fr 1fr;min-height:400px;">
   <div style="padding:72px 80px;display:flex;flex-direction:column;justify-content:center;">
     <div style="font-family:var(--serif);font-size:96px;font-weight:600;color:rgba(200,16,46,0.12);line-height:1;margin-bottom:8px;">01</div>
-    <div style="font-size:11px;font-weight:700;letter-spacing:0.3em;text-transform:uppercase;color:var(--red);margin-bottom:16px;">Scan</div>
+    <div style="font-size:14px;font-weight:700;letter-spacing:0.3em;text-transform:uppercase;color:var(--red);margin-bottom:16px;">Scan</div>
     <div style="font-family:var(--serif);font-size:44px;font-weight:600;color:var(--ink);line-height:1.1;margin-bottom:20px;">
       Take a photo.<br>That's it.
     </div>
     <div style="font-size:17px;font-weight:500;color:#555;line-height:1.8;max-width:400px;">
       Open the app, point your phone at your cheek. No special lighting. No dermatoscope required. Your first scan is free — always.
     </div>
-    <div style="margin-top:28px;font-size:13px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--ink);display:flex;align-items:center;gap:10px;">
+    <div style="margin-top:28px;font-size:14px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--ink);display:flex;align-items:center;gap:10px;">
       Works on any iPhone or Android <span style="color:var(--red);">→</span>
     </div>
   </div>
   <div style="background:#F5F0EE;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;">
     <div style="text-align:center;">
-      <div style="width:120px;height:200px;background:var(--ink);border-radius:16px;margin:0 auto 20px;position:relative;display:flex;align-items:center;justify-content:center;">
+      <div style="width:120px;height:200px;background:var(--ink);border-radius:24px;margin:0 auto 20px;position:relative;display:flex;align-items:center;justify-content:center;">
         <div style="width:80px;height:80px;border-radius:50%;border:2px solid var(--red);display:flex;align-items:center;justify-content:center;">
           <div style="width:20px;height:20px;border-radius:50%;background:var(--red);"></div>
         </div>
         <div style="position:absolute;bottom:12px;left:50%;transform:translateX(-50%);width:30px;height:4px;border-radius:2px;background:rgba(255,255,255,0.3);"></div>
       </div>
-      <div style="font-size:13px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--red);">60 seconds</div>
+      <div style="font-size:14px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--red);">60 seconds</div>
     </div>
   </div>
 </div>
@@ -3299,31 +3293,32 @@ window.addEventListener('load', () => {
 <div style="background:#F0EFED;display:grid;grid-template-columns:1fr 1fr;min-height:400px;">
   <div style="background:#1A1A1A;display:flex;align-items:center;justify-content:center;padding:60px;">
     <div style="width:100%;max-width:320px;">
-      <div style="font-size:11px;font-weight:700;letter-spacing:0.24em;text-transform:uppercase;color:rgba(200,16,46,0.8);margin-bottom:24px;">Your SIS Score</div>
-      <div style="font-family:var(--serif);font-size:80px;font-weight:600;color:white;line-height:1;">74<span style="font-size:32px;color:rgba(255,255,255,0.4)">/100</span></div>
-      <div style="margin-top:28px;display:flex;flex-direction:column;gap:12px;">
+      <div style="font-size:14px;font-weight:700;letter-spacing:0.24em;text-transform:uppercase;color:rgba(200,16,46,0.8);margin-bottom:24px;">Your SIS Trend</div>
+      <div style="font-family:var(--serif);font-size:44px;font-weight:600;color:white;line-height:1.15;">Improving</div>
+      <div style="margin-top:8px;font-size:14px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.4);">Confidence: High</div>
+      <div style="margin-top:28px;display:flex;flex-direction:column;gap:14px;">
         <div style="display:flex;justify-content:space-between;align-items:center;">
-          <div style="font-size:13px;font-weight:600;color:rgba(255,255,255,0.6);letter-spacing:0.06em;">Pigmentation</div>
-          <div style="display:flex;align-items:center;gap:8px;"><div style="width:80px;height:3px;background:rgba(255,255,255,0.1);border-radius:2px;overflow:hidden;"><div style="width:72%;height:100%;background:var(--red);"></div></div><div style="font-size:13px;color:white;font-weight:600;">72</div></div>
+          <div style="font-size:14px;font-weight:600;color:rgba(255,255,255,0.6);letter-spacing:0.06em;">Pigmentation</div>
+          <div style="font-size:14px;color:white;font-weight:600;letter-spacing:0.04em;">Needs Attention</div>
         </div>
         <div style="display:flex;justify-content:space-between;align-items:center;">
-          <div style="font-size:13px;font-weight:600;color:rgba(255,255,255,0.6);letter-spacing:0.06em;">Erythema</div>
-          <div style="display:flex;align-items:center;gap:8px;"><div style="width:80px;height:3px;background:rgba(255,255,255,0.1);border-radius:2px;overflow:hidden;"><div style="width:60%;height:100%;background:var(--red);"></div></div><div style="font-size:13px;color:white;font-weight:600;">60</div></div>
+          <div style="font-size:14px;font-weight:600;color:rgba(255,255,255,0.6);letter-spacing:0.06em;">Erythema</div>
+          <div style="font-size:14px;color:white;font-weight:600;letter-spacing:0.04em;">Improving</div>
         </div>
         <div style="display:flex;justify-content:space-between;align-items:center;">
-          <div style="font-size:13px;font-weight:600;color:rgba(255,255,255,0.6);letter-spacing:0.06em;">Pore Density</div>
-          <div style="display:flex;align-items:center;gap:8px;"><div style="width:80px;height:3px;background:rgba(255,255,255,0.1);border-radius:2px;overflow:hidden;"><div style="width:82%;height:100%;background:var(--red);"></div></div><div style="font-size:13px;color:white;font-weight:600;">82</div></div>
+          <div style="font-size:14px;font-weight:600;color:rgba(255,255,255,0.6);letter-spacing:0.06em;">Pore Density</div>
+          <div style="font-size:14px;color:white;font-weight:600;letter-spacing:0.04em;">Improving</div>
         </div>
         <div style="display:flex;justify-content:space-between;align-items:center;">
-          <div style="font-size:13px;font-weight:600;color:rgba(255,255,255,0.6);letter-spacing:0.06em;">Texture</div>
-          <div style="display:flex;align-items:center;gap:8px;"><div style="width:80px;height:3px;background:rgba(255,255,255,0.1);border-radius:2px;overflow:hidden;"><div style="width:78%;height:100%;background:var(--red);"></div></div><div style="font-size:13px;color:white;font-weight:600;">78</div></div>
+          <div style="font-size:14px;font-weight:600;color:rgba(255,255,255,0.6);letter-spacing:0.06em;">Texture</div>
+          <div style="font-size:14px;color:white;font-weight:600;letter-spacing:0.04em;">Improving</div>
         </div>
       </div>
     </div>
   </div>
   <div style="padding:72px 80px;display:flex;flex-direction:column;justify-content:center;">
     <div style="font-family:var(--serif);font-size:96px;font-weight:600;color:rgba(200,16,46,0.12);line-height:1;margin-bottom:8px;">02</div>
-    <div style="font-size:11px;font-weight:700;letter-spacing:0.3em;text-transform:uppercase;color:var(--red);margin-bottom:16px;">Score</div>
+    <div style="font-size:14px;font-weight:700;letter-spacing:0.3em;text-transform:uppercase;color:var(--red);margin-bottom:16px;">Score</div>
     <div style="font-family:var(--serif);font-size:44px;font-weight:600;color:var(--ink);line-height:1.1;margin-bottom:20px;">
       4 biomarkers.<br>1 score. Just you.
     </div>
@@ -3341,7 +3336,7 @@ window.addEventListener('load', () => {
 <div style="background:#FFFFFF;display:grid;grid-template-columns:1fr 1fr;min-height:400px;">
   <div style="padding:72px 80px;display:flex;flex-direction:column;justify-content:center;">
     <div style="font-family:var(--serif);font-size:96px;font-weight:600;color:rgba(200,16,46,0.12);line-height:1;margin-bottom:8px;">03</div>
-    <div style="font-size:11px;font-weight:700;letter-spacing:0.3em;text-transform:uppercase;color:var(--red);margin-bottom:16px;">Track</div>
+    <div style="font-size:14px;font-weight:700;letter-spacing:0.3em;text-transform:uppercase;color:var(--red);margin-bottom:16px;">Track</div>
     <div style="font-family:var(--serif);font-size:44px;font-weight:600;color:var(--ink);line-height:1.1;margin-bottom:20px;">
       Weekly scans.<br>A model that<br>learns <em style="color:var(--red);">you.</em>
     </div>
@@ -3351,21 +3346,21 @@ window.addEventListener('load', () => {
     <div style="margin-top:28px;display:flex;gap:32px;">
       <div>
         <div style="font-family:var(--serif);font-size:48px;font-weight:600;color:var(--red);line-height:1;">26</div>
-        <div style="font-size:12px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--ink);margin-top:4px;">Week Protocol</div>
+        <div style="font-size:14px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--ink);margin-top:4px;">Week Protocol</div>
       </div>
       <div>
         <div style="font-family:var(--serif);font-size:48px;font-weight:600;color:var(--red);line-height:1;">4</div>
-        <div style="font-size:12px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--ink);margin-top:4px;">Biomarkers</div>
+        <div style="font-size:14px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--ink);margin-top:4px;">Biomarkers</div>
       </div>
       <div>
         <div style="font-family:var(--serif);font-size:48px;font-weight:600;color:var(--red);line-height:1;">N=1</div>
-        <div style="font-size:12px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--ink);margin-top:4px;">Just You</div>
+        <div style="font-size:14px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--ink);margin-top:4px;">Just You</div>
       </div>
     </div>
   </div>
   <div style="background:#F8F7F5;display:flex;align-items:center;justify-content:center;padding:60px;">
     <div style="width:100%;max-width:300px;">
-      <div style="font-size:11px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--red);margin-bottom:16px;">Your 8-week trend</div>
+      <div style="font-size:14px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--red);margin-bottom:16px;">Your 8-week trend</div>
       <div style="display:flex;align-items:flex-end;gap:6px;height:120px;border-bottom:1px solid var(--border);padding-bottom:4px;">
         <div style="flex:1;background:rgba(200,16,46,0.2);border-radius:2px 2px 0 0;" style="height:55%;"></div>
         <div style="flex:1;height:58%;background:rgba(200,16,46,0.25);border-radius:2px 2px 0 0;"></div>
@@ -3377,12 +3372,12 @@ window.addEventListener('load', () => {
         <div style="flex:1;height:90%;background:#C8102E;border-radius:2px 2px 0 0;"></div>
       </div>
       <div style="display:flex;justify-content:space-between;margin-top:8px;">
-        <div style="font-size:11px;color:#999;font-weight:500;">Week 1</div>
-        <div style="font-size:11px;color:var(--red);font-weight:700;">Week 8 ↑</div>
+        <div style="font-size:14px;color:#999;font-weight:500;">Week 1</div>
+        <div style="font-size:14px;color:var(--red);font-weight:700;">Week 8 ↑</div>
       </div>
       <div style="margin-top:16px;padding:12px 16px;background:var(--red);color:white;">
-        <div style="font-size:13px;font-weight:700;letter-spacing:0.1em;">SIS improving +12pts</div>
-        <div style="font-size:12px;font-weight:500;opacity:0.8;margin-top:2px;">Erythema down · Texture up</div>
+        <div style="font-size:14px;font-weight:700;letter-spacing:0.1em;">SIS improving +12pts</div>
+        <div style="font-size:14px;font-weight:500;opacity:0.8;margin-top:2px;">Erythema down · Texture up</div>
       </div>
     </div>
   </div>
@@ -3392,7 +3387,7 @@ window.addEventListener('load', () => {
 <div style="background:#C8102E;display:grid;grid-template-columns:1fr 1fr;min-height:400px;">
   <div style="padding:72px 80px;display:flex;flex-direction:column;justify-content:center;">
     <div style="font-family:var(--serif);font-size:96px;font-weight:600;color:rgba(255,255,255,0.12);line-height:1;margin-bottom:8px;">04</div>
-    <div style="font-size:11px;font-weight:700;letter-spacing:0.3em;text-transform:uppercase;color:rgba(255,255,255,0.7);margin-bottom:16px;">Act</div>
+    <div style="font-size:14px;font-weight:700;letter-spacing:0.3em;text-transform:uppercase;color:rgba(255,255,255,0.7);margin-bottom:16px;">Act</div>
     <div style="font-family:var(--serif);font-size:44px;font-weight:600;color:white;line-height:1.1;margin-bottom:20px;">
       AI tells you what's<br>changing — and why.
     </div>
@@ -3401,26 +3396,26 @@ window.addEventListener('load', () => {
     </div>
     <div style="margin-top:32px;display:flex;flex-direction:column;gap:12px;">
       <div style="display:flex;align-items:center;gap:12px;">
-        <div style="width:20px;height:20px;border:2px solid white;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><div style="font-size:11px;color:white;font-weight:700;">✓</div></div>
+        <div style="width:20px;height:20px;border:2px solid white;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><div style="font-size:14px;color:white;font-weight:700;">✓</div></div>
         <div style="font-size:15px;font-weight:600;color:white;">Weekly skin + healthspan report</div>
       </div>
       <div style="display:flex;align-items:center;gap:12px;">
-        <div style="width:20px;height:20px;border:2px solid white;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><div style="font-size:11px;color:white;font-weight:700;">✓</div></div>
+        <div style="width:20px;height:20px;border:2px solid white;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><div style="font-size:14px;color:white;font-weight:700;">✓</div></div>
         <div style="font-size:15px;font-weight:600;color:white;">Supplement stack evaluation</div>
       </div>
       <div style="display:flex;align-items:center;gap:12px;">
-        <div style="width:20px;height:20px;border:2px solid white;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><div style="font-size:11px;color:white;font-weight:700;">✓</div></div>
+        <div style="width:20px;height:20px;border:2px solid white;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><div style="font-size:14px;color:white;font-weight:700;">✓</div></div>
         <div style="font-size:15px;font-weight:600;color:white;">Doctor-ready data export</div>
       </div>
     </div>
   </div>
   <div style="display:flex;align-items:center;justify-content:center;padding:60px;">
     <div style="background:white;padding:32px;max-width:320px;width:100%;">
-      <div style="font-size:11px;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:var(--red);margin-bottom:16px;">— AI Weekly Report</div>
+      <div style="font-size:14px;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:var(--red);margin-bottom:16px;">— AI Weekly Report</div>
       <div style="font-family:var(--serif);font-size:18px;font-weight:600;color:var(--ink);line-height:1.4;margin-bottom:16px;">"Your Erythema dropped 8 points this week — consistent with changes observed during your tracking period."</div>
       <div style="border-top:1px solid var(--border);padding-top:14px;margin-top:4px;">
-        <div style="font-size:13px;font-weight:600;color:var(--ink);margin-bottom:6px;">What to do:</div>
-        <div style="font-size:13px;font-weight:500;color:#555;line-height:1.7;">Continue current protocol. Consider adding Vitamin C serum to target residual pigmentation. Scan again in 7 days.</div>
+        <div style="font-size:14px;font-weight:600;color:var(--ink);margin-bottom:6px;">What to do:</div>
+        <div style="font-size:14px;font-weight:500;color:#555;line-height:1.7;">Continue current protocol. Consider adding Vitamin C serum to target residual pigmentation. Scan again in 7 days.</div>
       </div>
     </div>
   </div>
@@ -3429,22 +3424,22 @@ window.addEventListener('load', () => {
 <!-- CREDIBILITY BAR -->
 <div style="background:#1A1A1A;padding:48px 80px;display:flex;align-items:center;gap:64px;">
   <div style="flex:1;">
-    <div style="font-size:11px;font-weight:700;letter-spacing:0.28em;text-transform:uppercase;color:rgba(200,16,46,0.8);margin-bottom:12px;">Built on real science</div>
+    <div style="font-size:14px;font-weight:700;letter-spacing:0.28em;text-transform:uppercase;color:rgba(200,16,46,0.8);margin-bottom:12px;">Built on real science</div>
     <div style="font-family:var(--serif);font-size:28px;font-weight:600;color:white;line-height:1.2;">Not wellness trends.<br>Metabolic aging research.</div>
   </div>
   <div style="display:flex;align-items:center;gap:20px;background:rgba(255,255,255,0.05);padding:24px 28px;border:1px solid rgba(255,255,255,0.1);">
     <img src="charles%20brenner.jpg" style="width:56px;height:56px;border-radius:50%;object-fit:cover;flex-shrink:0;">
     <div>
       <div style="font-size:14px;font-weight:700;color:white;">Dr. Charles Brenner</div>
-      <div style="font-size:12px;font-weight:500;color:var(--red);letter-spacing:0.1em;text-transform:uppercase;margin-top:3px;">Founding Science Advisor</div>
-      <div style="font-size:13px;font-weight:500;color:rgba(255,255,255,0.5);margin-top:4px;">Discoverer of the NR kinase pathway, 2004</div>
+      <div style="font-size:14px;font-weight:500;color:var(--red);letter-spacing:0.1em;text-transform:uppercase;margin-top:3px;">Founding Science Advisor</div>
+      <div style="font-size:14px;font-weight:500;color:rgba(255,255,255,0.5);margin-top:4px;">Discoverer of the NR kinase pathway, 2004</div>
     </div>
   </div>
 </div>
 
 <!-- CTA -->
 <div style="background:#F0EFED;padding:80px;text-align:center;border-top:1px solid var(--border);">
-  <div style="font-size:11px;font-weight:700;letter-spacing:0.3em;text-transform:uppercase;color:var(--red);margin-bottom:20px;display:flex;align-items:center;justify-content:center;gap:16px;">
+  <div style="font-size:14px;font-weight:700;letter-spacing:0.3em;text-transform:uppercase;color:var(--red);margin-bottom:20px;display:flex;align-items:center;justify-content:center;gap:16px;">
     <div style="width:40px;height:1px;background:var(--red);"></div>
     Ready to start?
     <div style="width:40px;height:1px;background:var(--red);"></div>
@@ -3455,7 +3450,7 @@ window.addEventListener('load', () => {
     <button style="background:var(--red);color:white;border:none;padding:18px 48px;font-family:var(--sans);font-size:15px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;cursor:pointer;">Start Free Scan →</button>
     <button style="background:transparent;color:var(--ink);border:2px solid var(--ink);padding:17px 32px;font-family:var(--sans);font-size:15px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;cursor:pointer;">Learn the Science</button>
   </div>
-  <div style="margin-top:20px;font-size:13px;font-weight:600;color:#888;letter-spacing:0.06em;">Encrypted · Never sold · Your data stays yours</div>
+  <div style="margin-top:20px;font-size:14px;font-weight:600;color:#888;letter-spacing:0.06em;">Encrypted · Never sold · Your data stays yours</div>
 </div>
 
 </div>
